@@ -1,0 +1,117 @@
+{% extends "base.html" %}
+{% block title %}Jitender Gupta{% endblock title %}
+
+
+
+{% block body %}
+{% load static %}
+
+<section class="page-title" style="background-image: url('{% static 'images/background/1709723307145.jpeg' %}')"> </section>
+
+
+<!-- Team Detail Section -->
+	<section class="team-detail-section">
+        <div class="pattern-layer" style="background-image: url('{% static 'images/background/pattern-25.png' %}')"></div>
+
+		<div class="auto-container">
+			<div class="row clearfix">
+				<!-- Info Column -->
+				<div class="info-column col-lg-4 col-md-6 col-sm-12">
+					<div class="image">
+						<!-- <img src="{% static 'images/resource/team/MD-Jitender-Gupta.png' %}" alt=""> -->
+					</div>
+					<h3>Jitender Gupta</h3>
+					<div class="designation">Managing Director</div>
+					<ul class="list">
+						<li>
+							<span class="icon flaticon-call-1"></span>
+							+91-9667279510
+						</li>
+						<li>
+							<span class="icon flaticon-mail"></span>
+							jitender.gupta@allievapharma.com
+						</li>
+						<li>
+							<span class="icon flaticon-maps-and-flags"></span>
+							14/16/1 Site 4, Sahibabad Industrial Area - Ghaziabad Uttar Pradesh 201010
+						</li>
+						<li>
+							<span class="icon flaticon-earth-globe-with-continents-maps"></span>
+							<a href="{% url 'index' %}">www.allievapharma.com</a>
+						</li>
+					</ul>
+					<div class="social-box clearfix">
+						<a class="contact-btn theme-btn" href=" {% url 'contact' %}">Contact Us <span class="flaticon-right-arrow-2"></span></a>
+                        <a href="https://www.facebook.com/allievapharmaprivatelimited" class="facebook fa fa-facebook"></a>
+                        <a href="https://x.com/AllievapharmaIt" class="twitter fa fa-twitter"></a>
+                        <a href="https://www.linkedin.com/company/allieva-pharma/" class="linkedin fa fa-linkedin" style="font-size:48px"></a>
+                        <a href="https://www.instagram.com/allieva_pharma/" class="instagram fa fa-instagram" style="font-size:48px"></a>
+					</div>
+				</div>
+				<!-- Content Column -->
+				<div class="content-column col-lg-8 col-md-12 col-sm-12">
+					<h3>About Me</h3>
+					<p>Jitender Gupta, the Managing Director of Allieva Pharma Private Limited, has been instrumental in steering the organization to the forefront of oncology medicine distribution in India.</p>
+					<p>His vision is rooted in delivering innovative and life-saving therapies to patients, underpinned by a commitment to quality, affordability, and accessibility.</p>
+					<p>With a strategic approach and deep industry expertise, </p>
+					<p>Jitender has fostered strong partnerships across the pharmaceutical sector, cementing Allieva Pharma’s reputation as a leader in its domain.</p>
+					<!-- Skills / Style Two -->
+					<div class="skills style-two">
+
+						<!-- Skill Item -->
+						<div class="skill-item">
+							<div class="skill-header clearfix">
+								<div class="skill-title">Oncology Medicine Distribution</div>
+							</div>
+							<div class="skill-bar">
+								<div class="bar-inner">
+									<div class="bar progress-line" data-width="85">
+										<div class="skill-percentage"><div class="count-box"><span class="count-text" data-speed="2000" data-stop="85">0</span>%</div></div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<!-- Skill Item -->
+						<div class="skill-item">
+							<div class="skill-header clearfix">
+								<div class="skill-title">Pharmaceutical Supply Chain Management </div>
+							</div>
+							<div class="skill-bar">
+								<div class="bar-inner">
+									<div class="bar progress-line" data-width="90">
+										<div class="skill-percentage"><div class="count-box"><span class="count-text" data-speed="2000" data-stop="90">0</span>%</div></div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<!-- Skill Item -->
+						<div class="skill-item">
+							<div class="skill-header clearfix">
+								<div class="skill-title">Healthcare Infrastructure Support</div>
+							</div>
+							<div class="skill-bar">
+								<div class="bar-inner">
+									<div class="bar progress-line" data-width="90">
+										<div class="skill-percentage"><div class="count-box"><span class="count-text" data-speed="2000" data-stop="90">0</span>%</div></div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+					</div>
+
+					<p>Jitender Gupta remains dedicated to enhancing Allieva Pharma's impact in the healthcare ecosystem, ensuring patients receive timely and effective treatments. His leadership embodies the company's mission to create a healthier and more hopeful future.</p>
+
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- End Team Page Section -->
+
+
+
+
+
+{% endblock body %}

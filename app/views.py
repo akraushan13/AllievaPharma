@@ -24,3 +24,7 @@ def contact(request):
 
 def shop(request):
     return render(request, 'shop.html')
+
+
+def shop_single(request):
+    return render(request, 'shop_single.html')

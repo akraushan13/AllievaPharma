@@ -10,9 +10,9 @@ from .models import Product, ProductImage
 class ProductForm(ModelForm):
   class Meta:
     model = Product
-    fields = ['product_name', 'brand_name', 'composition', 'manufacture', 'form','country_of_origin','packing', 'category', 'subcategory', 'descriptions', 'uses', 'side_effects', 'dosage' ]
+    fields = ['name', 'brand_name', 'composition', 'manufacture', 'form','country_of_origin','packing', 'category', 'subcategory', 'descriptions', 'uses', 'side_effects', 'dosage' ]
     widgets = {
-      'product_name': forms.TextInput(attrs={'class': 'form-control'}),
+      'name': forms.TextInput(attrs={'class': 'form-control'}),
       'brand_name': forms.TextInput(attrs={'class': 'form-control'}),
       'composition': forms.TextInput(attrs={'class': 'form-control'}),
       'manufacture': forms.TextInput(attrs={'class': 'form-control'}),
@@ -46,9 +46,13 @@ class MultipleFileField(forms.FileField):
       result = single_file_clean(data, initial)
     return result
 
+
 class ProductImageForm(ModelForm):
   images = MultipleFileField(label='Select files', required=False)
   
   class Meta:
     model = ProductImage
-    fields = ['images',]
+    fields = ['images']
+    widgets = {
+      'images': MultipleFileInput(attrs={'multiple': True})
+    }

@@ -24,33 +24,45 @@ def contact(request):
   return render(request, 'contact.html')
 
 
-def shop(request):
-  return render(request, 'shop.html')
+# def shop(request):
+#   return render(request, 'products.html')
 
 
-def shop_single(request):
-  return render(request, 'shop_single.html')
+# def shop_single(request):
+#   return render(request, 'productDetail.html')
 
 
-def create_product(request):
-  productform = ProductForm()
-  productimageform = ProductImageForm()
+# def create_product(request):
+#   productform = ProductForm()
+#   productimageform = ProductImageForm()
+#
+#   if request.method == 'POST':
+#
+#     files = request.FILES.getlist('images')
+#
+#     productform = ProductForm(request.POST, request.FILES)
+#     if productform.is_valid():
+#       product = productform.save(commit=False)
+#       product.vendor = request.user
+#       product.save()
+#       messages.success(request, "Product created successfully")
+#
+#       for file in files:
+#         ProductImage.objects.create(product=product, images=file)
+#
+#       return redirect("/")
+#
+#   context = {"p_form": productform, "i_form": productimageform}
+#   return render(request, "create.html", context)
+ 
   
-  if request.method == 'POST':
-    
-    files = request.FILES.getlist('images')
-    
-    productform = ProductForm(request.POST, request.FILES)
-    if productform.is_valid():
-      product = productform.save(commit=False)
-      product.vendor = request.user
-      product.save()
-      messages.success(request, "Product created successfully")
-      
-      for file in files:
-        ProductImage.objects.create(product=product, images=file)
-      
-      return redirect("index")
+def show_all_product(request):
+  products = Product.objects.all()
+  context = {"products": products}
+  return render(request, 'products.html', context)
   
-  context = {"p_form": productform, "i_form": productimageform}
-  return render(request, "create.html", context)
+def product_detail(request, pk):
+  product = Product.objects.get(id=pk)
+  images = ProductImage.objects.filter(product=product)
+  context = {"product": product, "images": images}
+  return render(request, 'productDetail.html', context)

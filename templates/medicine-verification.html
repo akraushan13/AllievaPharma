@@ -1,0 +1,208 @@
+{% extends "base.html" %}
+{% block title %}Medicine-Verification{% endblock title %}
+
+
+{% load static %}
+{% block body %}
+
+<div class="page-wrapper">
+
+
+	
+	<!-- Page Title -->
+<!--    <section class="page-title" style="background-image: url(images/background/9.jpg)">-->
+<!--        <div class="auto-container">-->
+<!--			<ul class="bread-crumb clearfix">-->
+<!--				<li><a href="index.html">Home</a></li>-->
+<!--				<li>Medicine Verification</li>-->
+<!--			</ul>-->
+<!--			<h2>Medicine Verification</h2>-->
+<!--        </div>-->
+<!--    </section>-->
+    <!-- End Page Title -->
+
+  <section class="page-title" style="background-image: url('{% static 'images/background/1709723307145.jpeg' %}')"> </section>
+  
+	<!-- Contact Page Section -->
+	<section class="contact-page-section">
+		<div class="auto-container">
+			<!-- Sec Title Three -->
+			<div class="sec-title-three centered">
+				<h2>Medicine Verification </h2>
+			</div>
+			
+			<div class="row clearfix">
+			
+				<!-- Location Block -->
+				<div class="location-block col-lg-4 col-md-6 col-sm-12">
+					<div class="inner-box wow fadeInLeft" data-wow-delay="0ms" data-wow-duration="1500ms">
+						<div class="content">
+							<span class="icon flaticon-tick"></span>
+							<strong>STEP 1</strong>
+						</div>
+						Please enter yours details
+					</div>
+				</div>
+				
+				<!-- Location Block -->
+				<div class="location-block col-lg-4 col-md-6 col-sm-12">
+					<div class="inner-box wow fadeInLeft" data-wow-delay="0ms" data-wow-duration="1500ms">
+						<div class="content">
+							<span class="icon flaticon-tick"></span>
+							<strong>Step 2</strong>
+						</div>
+						Please enter unique code
+					</div>
+				</div>
+				
+				<!-- Location Block -->
+				<div class="location-block col-lg-4 col-md-6 col-sm-12">
+					<div class="inner-box wow fadeInLeft" data-wow-delay="0ms" data-wow-duration="1500ms">
+						<div class="content">
+							<span class="icon flaticon-tick"></span>
+							<strong>Step 3</strong>
+						</div>
+						Click on verify button
+					</div>
+				</div>
+				
+			</div>
+			
+		</div>
+	</section>
+	
+
+		<section class="contact-page-section pt-0">
+		<div class="auto-container">
+			<!-- Sec Title Three -->
+			<div class="sec-title-three centered">
+				<h2>How to Validate a Genuine Product </h2>
+			</div>
+			</div>
+			<div class="auto-container">
+            <br>Scratch security label on the product to Unhide medicine authentication code.<br><br>
+Enter your country , contact number , medicine authentication code & Write the answer to a mathematical question. Or captcha <br><br>
+Press the Verify tab. On successful validation " Congratulations your Product is found Genuine " message would be displayed.<br><br>
+.In order to provide more precise verification we have begin the process to provide the Product name , batch , manufacturing & expiry dates as well on successful verification. However, products in the market before this additional feature will display " Congratulations your Product is found Genuine " message but may not display product data. In that case too Product should be deemed Genuine.<br><br>
+In case your Product fails the Authentication " Product Verification failed" messege would be displayed .<br><br>
+.In order to provide more precise verification we have begun the process to provide the Product name , batch , manufacturing & expiry dates as well on successful verification. However, products in the market before this additional feature will display a " Congratulations your Product is found Genuine " message but may not display correct product data. In that case too Product should be deemed Genuine.<br><br>
+In case your Product fails the Authentication " Product Verification failed message would be displayed . In such cases or in case your product doesn't have the security label or it is damaged or unhide contact your medicine provider & request to replace the product
+			</div><br>
+			</section>
+			
+	
+	<!-- End Location Section -->
+	<!-- Contact Form Section -->
+	 <div class="content-wrapper pt-0">
+    <div class="contact-form-section pt-0">
+    	<div class="auto-container">
+			<!-- Sec Title -->
+			<div class="sec-title alternate centered">
+				<div class="title">Submit Information</div>
+			</div>
+			<div class="inner-container">
+				
+				<!-- Contact Form -->
+				<div class="contact-form">
+					
+					<!-- Contact Form -->
+				  <form  id="captcha-form" method="POST"  class="book-appointment-form" name="validation" >
+                            <div class="content-title">
+                                <h4>Your Information</h4>
+                            </div>
+                            <div class="row">
+                         <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <input type="text" name="name" placeholder="Name*" id="name"
+                                                        required data-error="Please enter your name">
+                                                    <div class="help-block with-errors"></div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <input type="email" name="email" id="email" required
+                                                        placeholder="Email*" data-error="Please enter your email">
+                                                    <div class="help-block with-errors"></div>
+                                                </div>
+                                            </div>
+                                           <div class="col-md-6">
+                                                <div class="form-group">
+                                                  <input type="tel" name="phone" id="phone" required="" placeholder="Phone*" data-error="Please enter your phone" oninput="this.value = this.value.replace(/[^0-9]/g, '');">
+
+                                                    <div class="help-block with-errors"></div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <input type="text" name="country" placeholder="Country*" id="country" required data-error="Please enter your country">
+                                                    <div class="help-block with-errors"></div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <input type="text" name="verification_code" placeholder="Verification code*" id="verification_code" required data-error="Please enter your verification_code">
+                                                    <div class="help-block with-errors"></div>
+                                                </div>
+                                            </div>
+                                            
+                                           
+                                              <div class="col-md-3" style="text-align: center;line-height: 51px;">
+                                                 <span id="captcha-question"></span>
+                                                
+                                            </div>
+                                            
+                                             <div class="col-md-3">
+                                                 <span id="captcha-question"></span>
+                                                <div class="form-group">
+                                                    <input type="text" id="captcha-answer" name="captcha-answer" placeholder="Result*"  required data-error="Please enter your captcha">
+                                                    <div class="help-block with-errors"></div>
+                                                </div>
+                                            </div>
+
+                                    &nbsp;
+                                    &nbsp;
+                                    
+                                <div class="col-md-12 justify-content-center">
+                                    <div class="option-item " style="text-align: center;">
+                          
+                                           <button type="submit" class="btn style1">Verify</button>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </form>
+                    </div>
+                    &nbsp;
+                    &nbsp;
+                       <div class="row">
+                        <div id="success-result">
+                            
+                            <div class="tbl_1 mt-40" id="result_data">
+                            
+                            </div>
+                        </div>
+                    </div>
+				</div>
+				<!--End Contact Form -->
+				
+			</div>
+		</div>
+	</div>
+	<!-- End Contact Form Section -->
+ 
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% endblock body %}

@@ -22,6 +22,10 @@ def leadership(request):
 
 def contact(request):
   return render(request, 'contact.html')
+  
+  
+def medicine_verification(request):
+  return render(request, 'medicine-verification.html')
 
 
 # def shop(request):

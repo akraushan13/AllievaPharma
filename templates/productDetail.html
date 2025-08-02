@@ -13,17 +13,25 @@
     <div class="site-section">
       <div class="container">
         <div class="row">
-          <div class="col-md-5 mr-auto">
-            
-            {% for image in images  %}
-            
-            <div class="border text-center">
-              <img src="{{image.images.url}}" alt="Image">
-            </div>
-            
-            {% endfor %}
-            
-          </div>
+          <div class="col-md-6 mr-auto">
+  <!-- Main Image -->
+  <div class="border text-center">
+    <img id="mainImage"
+         src="{{ images.0.images.url }}"
+         alt="{{ product.name }}"
+         style="width: 100%; height: 400px; object-fit: contain; border: 1px solid #ccc; border-radius: 8px; background-color: #f8f8f8;">
+  </div>
+
+  <!-- Thumbnail Images -->
+  <div class="d-flex gap-2 mt-3 thumbnail-container">
+    {% for image in images %}
+    <img src="{{ image.images.url }}"
+         onclick="changeImage(this, '{{ image.images.url }}')"
+         style="width: 60px; height: 60px; object-fit: cover; cursor: pointer; border: 2px solid {% if forloop.first %}#007bff{% else %}transparent{% endif %}; border-radius: 4px;"
+    />
+    {% endfor %}
+  </div>
+</div>
           <div class="col-md-6">
             <h2 class="text-black">{{product.name}}</h2>
             
@@ -65,8 +73,8 @@
 
 <!--            <p><del>$95.00</del>  <strong class="text-primary h4">$55.00</strong></p>-->
 
-            
-            
+
+
 <!--            <div class="mb-5">-->
 <!--              <div class="input-group mb-3" style="max-width: 220px;">-->
 <!--                <div class="input-group-prepend">-->
@@ -146,6 +154,13 @@
   </div>
 
 
+<script>
+  function changeImage(elem, src) {
+    document.getElementById("mainImage").src = src;
+    document.querySelectorAll(".thumbnail-container img").forEach(img => img.style.border = "2px solid transparent");
+    elem.style.border = "2px solid #007bff";
+  }
+</script>
 
 
 

@@ -1,7 +1,8 @@
-from django.shortcuts import render, redirect
-from .models import Product,ProductImage
+from django.shortcuts import render, redirect, get_object_or_404
+from .models import Product,ProductImage, Category, SubCategory
 from .forms import ProductForm, ProductImageForm
 from django.contrib import messages
+
 # Create your views here.
 
 def index(request):
@@ -70,3 +71,23 @@ def product_detail(request, pk):
   images = ProductImage.objects.filter(product=product)
   context = {"product": product, "images": images}
   return render(request, 'productDetail.html', context)
+
+
+def category_products(request, category_name):
+    category = get_object_or_404(Category, name__iexact=category_name)
+    products = Product.objects.filter(category=category)
+    return render(request, 'category_products.html', {
+        "category": category,
+        "products": products
+    })
+
+
+def subcategory_products(request, category_name, subcategory_name):
+  category = get_object_or_404(Category, name__iexact=category_name)
+  subcategory = get_object_or_404(SubCategory, name__iexact=subcategory_name, category=category)
+  products = Product.objects.filter(category=category, subcategory=subcategory)
+  return render(request, 'subcategory_products.html', {
+    "category": category,
+    "subcategory": subcategory,
+    "products": products
+  })

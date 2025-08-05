@@ -147,27 +147,23 @@
 
 											<li><a href="{% url 'leadership' %}">Team</a></li>
 											<li><a href="{% url 'products' %}">Our Product</a></li>
-
-
 										</ul>
 									</li>
-                          <!--ul>
-                                  <li class="dropdown"><a href="https://www.allievapharma.com/products">Our Products</a>
+                  <li class="dropdown"><a href="{% url 'products' %}">Our Products</a>
 										<ul>
-											<li class="dropdown"><a href="https://www.allievapharma.com/products/product-category/oncology">ONCOLOGY</a>
+											<li class="dropdown"><a href="{% url 'category_products' 'oncology' %}">ONCOLOGY</a>
 												<ul>
-													<li><a href="https://www.allievapharma.com/products/product-category/oncology/orals">ORALS</a></li>
-													<li><a href="https://www.allievapharma.com/products/product-category/oncology/injectables">INJECTABLES</a></li>
-
+													<li><a href="{% url 'subcategory_products' 'oncology' 'orals' %}">ORALS</a></li>
+													<li><a href="{% url 'subcategory_products' 'oncology' 'injectables' %}">INJECTABLES</a></li>
 												</ul>
 											</li>
-											<li><a href="https://www.allievapharma.com/products/product-category/gastroenterology">GASTROENTEROLOGY</a></li>
-											<li class="dropdown"><a href="https://www.allievapharma.com/products/product-category/hepatology">HEPATOLOHY</a>
+											<li class="dropdown"><a href="{% url 'category_products' 'hepatology' %}">HEPATOLOGY</a>
 												<ul>
-													<li><a href="https://www.allievapharma.com/products/product-category/hepatology/hep-b">HEP-B</a></li>
-													<li><a href="https://www.allievapharma.com/products/product-category/hepatology/hep-c">HEP-C</a></li>
-
+													<li><a href="{% url 'subcategory_products' 'hepatology' 'hep-b' %}">HEP-B</a></li>
+													<li><a href="{% url 'subcategory_products' 'hepatology' 'hep-c' %}">HEP-C</a></li>
 												</ul>
+											<!--ul>
+											<li><a href="https://www.allievapharma.com/products/product-category/gastroenterology">GASTROENTEROLOGY</a></li>
 											<li><a href="https://www.allievapharma.com/products/product-category/nephrology">NEPHROLOGY</a></li>
 											<li><a href="https://www.allievapharma.com/products/product-category/hiv">HIV</a></li>
 											<li><a href="https://www.allievapharma.com/products/product-category/critical-care">CRITICAL CARE</a></li>
@@ -175,10 +171,9 @@
 											<li><a href="https://www.allievapharma.com/products/product-category/rheumatology">RHEUMATOLOGY</a></li>
 											<li><a href="https://www.allievapharma.com/products/product-category/anti-viral">ANTI VIRAL</a></li>
 											<li><a href="https://www.allievapharma.com/products/product-category/anti-biotic">ANTI BIOTIC</a></li>
+											</ul-->
 										</ul>
 									</li>
-									</ul-->
-
 									<li target="_blank" ><a href="https://allievapharma.com/hiring/">Career</a>
 										<!--ul>
 											<li><a href="project.html">Projects</a></li>
@@ -194,9 +189,8 @@
 										</ul>
 										-->
 									</li>
-									<li><a href="{% url 'contact' %}">Contact</a></li>
+									<li><a href="contact.html">Contact</a></li>
 								</ul>
-        
 							</div>
 						</nav>
 

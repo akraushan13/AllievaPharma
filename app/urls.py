@@ -10,8 +10,9 @@ urlpatterns = [
   path('contact/',views.contact, name='contact'),
   path('Medicine/verification',views.medicine_verification, name='medicine-verification'),
   
-  
   # path("create_product", views.create_product, name='create'),
   path('products/',views.show_all_product, name='products'),
-  path('product/<int:pk>/',views.product_detail, name='productDetail'),
+  path('products/<int:pk>/',views.product_detail, name='productDetail'),
+  path('products/category/<str:category_name>/', views.category_products, name='category_products'),
+  path('products/category/<str:category_name>/<str:subcategory_name>/', views.subcategory_products,name='subcategory_products'),
 ]

@@ -20,6 +20,7 @@ class SubCategory(models.Model):
 class Product(models.Model):
   # id = models.AutoField(primary_key=True)
   name = models.CharField(max_length=100)
+  image = models.ImageField(upload_to='images/', default='images/no-image.jpg')
   brand_name = models.CharField(max_length=100)
   composition = models.CharField(max_length=100)
   manufacture  = models.CharField(max_length=100, default="Allieva Pharma Private Limited")
@@ -43,7 +44,7 @@ class Product(models.Model):
   
 class ProductImage(models.Model):
   product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='images')
-  images = models.ImageField(upload_to='images')
+  images = models.ImageField(upload_to='images/', default='images/no-image.jpg')
   
   def __str__(self):
     return str(self.product.name)

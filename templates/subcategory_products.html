@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block title %}{{ subcategory.name }} | {{ category.name }}{% endblock %}
+
+{% block body %}
+{% load static %}
+<!-- Page Title -->
+<section class="page-title" style="background-image:url('{% static 'images/background/pattern-23.png' %}');">
+  <div class="auto-container">
+    <h1>{{ subcategory.name }}</h1>
+    <ul class="bread-crumb clearfix">
+      <li><a href="{% url 'index' %}">Home</a></li>
+      <li><a href="{% url 'category_products' category.name %}">{{ category.name }}</a></li>
+      <li>{{ subcategory.name }}</li>
+    </ul>
+  </div>
+</section>
+
+<!-- Products Section -->
+<section class="products-section">
+  <div class="auto-container">
+    <div class="sec-title">
+      <h2>{{ subcategory.name }} Products</h2>
+    </div>
+
+    <div class="row clearfix">
+      {% for product in products %}
+      <div class="product-block col-lg-4 col-md-6 col-sm-12">
+        <div class="inner-box">
+          <div class="image">
+            <img src="{{ product.image.url }}" alt="{{ product.name }}" style="height:300px; object-fit:contain;">
+            <a href="{% url 'productDetail' product.id %}" class="overlay-link"><span class="icon flaticon-link"></span></a>
+          </div>
+          <div class="lower-content">
+            <h5><a href="{% url 'productDetail' product.id %}">{{ product.name }}</a></h5>
+            <div class="text">{{ product.composition|truncatewords:10 }}</div>
+            <a href="{% url 'productDetail' product.id %}" class="read-more">View Details</a>
+          </div>
+        </div>
+      </div>
+      {% empty %}
+      <div class="col-12">
+        <p>No products available in this subcategory.</p>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endblock %}

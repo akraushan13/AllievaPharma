@@ -91,3 +91,7 @@ def subcategory_products(request, category_name, subcategory_name):
     "subcategory": subcategory,
     "products": products
   })
+
+
+def search(request):
+  return render(request, 'index.html')

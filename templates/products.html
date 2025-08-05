@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
-{% block title %}Oncology{% endblock title %}
+{% block title %}All Products{% endblock title %}
 {% block body %}
 
 
@@ -8,7 +8,13 @@
   <div class="site-wrap">
     
     <section class="page-title" style="background-image: url('{% static 'images/background/1709723307145.jpeg' %}')">
-    
+      <div class="auto-container">
+        <h1 style="text-transform: uppercase;">All Products</h1>
+          <ul class="bread-crumb clearfix">
+            <li><a href="{% url 'index' %}">Home</a></li>
+            <li>All Products</li>
+          </ul>
+      </div>
     </section>
 
     <div class="site-section">
@@ -31,23 +37,29 @@
           </div>
         </div>
         -->
-        <div class="row mt-mb-0">
+        <div class="row mt-0 mb-5">
           <div class="col-md-12 text-center">
-              <h2 class="text-dark"> <b>OUR PRODUCT</b> </h2>
+              <h2 class="text-dark"> <b>OUR PRODUCTS</b> </h2>
           </div>
         </div>
-        <div class="row">
+        
+        
+        
+      <div class="row">
         
       {% if products %}
       {% for product in products %}
           
           <div class="col-sm-6 col-lg-4 text-center item mb-4">
 <!--       <span class="tag">Sale</span>-->
-            <a href="{% url 'productDetail' product.pk  %}"> <img
-         src="{{ product.image.url }}"
-         alt="{{ product.name }}"
-         style="width: 100%; height: 300px; object-fit: contain; border: 1px solid #ccc; border-radius: 8px; background-color: #f8f8f8;"></a>
-            <h3 class="text-dark"><a href="{% url 'productDetail' product.pk  %}">{{product.name}}</a></h3>
+            <a href="{% url 'productDetail' product.pk  %}">
+              <img
+                src="{{ product.image.url }}"
+                alt="{{ product.name }}"
+                style="width: 100%; height: 300px; object-fit: contain; border: 1px solid #ccc; border-radius: 8px; background-color: #f8f8f8;">
+            </a>
+            <h3 class="text-dark mt-3"><a href="{% url 'productDetail' product.pk  %}">{{product.name}}</a></h3>
+            <h3 class="text-dark"><a href="{% url 'productDetail' product.pk  %}">{{product.composition}}</a></h3>
             <p><a href="cart.html" class="rounded-pill buy-now btn btn-sm height-auto px-4 py-3 btn-primary">ENQUIRY!</a></p>
             <!-- <p class="price"><del>95.00</del> &mdash; $55.00</p> -->
           </div>

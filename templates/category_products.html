@@ -1,22 +1,114 @@
 {% extends "base.html" %}
+{% load static %}
 {% block title %}{{ category.name }} Products{% endblock %}
 
 {% block body %}
-<h2>{{ category.name }} Products</h2>
-<div class="row">
-  {% for product in products %}
-    <div class="col-md-4">
-      <div class="card">
-        <img src="{{ product.image.url }}" class="card-img-top" alt="{{ product.name }}">
-        <div class="card-body">
-          <h5 class="card-title">{{ product.name }}</h5>
-          <p class="card-text">{{ product.composition }}</p>
-          <a href="{% url 'productDetail' product.id %}" class="btn btn-primary">View Details</a>
+
+<!-- Page Title -->
+<div class="site-wrap">
+<section class="page-title" style="background-image: url('{% static 'images/background/1709723307145.jpeg' %}')">
+  <div class="auto-container">
+    <h1 style="text-transform: uppercase;">{{ category.name }}</h1>
+    <ul class="bread-crumb clearfix">
+      <li><a href="{% url 'index' %}">Home</a></li>
+      <li>{{ category.name }}</li>
+    </ul>
+  </div>
+</section>
+
+<div class="site-section">
+  <div class="container">
+
+    <!-- Products Section Title -->
+    <div class="row mt-0 mb-5">
+      <div class="col-md-12 text-center">
+        <h2 class="text-dark" style="text-transform: uppercase;"> <b>{{ category.name }} PRODUCTS</b> </h2>
+      </div>
+    </div>
+
+    <!-- Product List -->
+    <div class="row">
+      {% if products %}
+        {% for product in products %}
+        <div class="col-sm-6 col-lg-4 text-center item mb-4">
+            <a href="{% url 'productDetail' product.pk %}">
+              <img
+              src="{{ product.image.url }}"
+              alt="{{ product.name }}"
+              style="width: 100%; height: 300px; object-fit: contain; border: 1px solid #ccc; border-radius: 8px; background-color: #f8f8f8;">
+            </a>
+            <h3 class="text-dark mt-3"><a href="{% url 'productDetail' product.pk %}">{{ product.name }}</a></h3>
+            <h3 class="text-dark"><a href="{% url 'productDetail' product.pk %}">{{ product.composition }}</a></h3>
+            <p><a href="cart.html" class="rounded-pill buy-now btn btn-sm height-auto px-4 py-3 btn-primary">ENQUIRY!</a></p>
+        </div>
+        {% endfor %}
+      {% else %}
+        <p>No products found in this category.</p>
+      {% endif %}
+    </div>
+
+    <!-- Pagination Placeholder -->
+    <div class="row mt-2 mb-0">
+      <div class="col-md-12 text-center">
+        <div class="site-block-27">
+          <ul>
+            <li><a href="#">&lt;</a></li>
+            <li class="active"><span>1</span></li>
+            <li><a href="#">2</a></li>
+            <li><a href="#">3</a></li>
+            <li><a href="#">4</a></li>
+            <li><a href="#">5</a></li>
+            <li><a href="#">&gt;</a></li>
+          </ul>
         </div>
       </div>
     </div>
-  {% empty %}
-    <p>No products found in this category.</p>
-  {% endfor %}
+
+  </div>
 </div>
+
+<!-- Info Section -->
+<section class="info-section mt-mb-0">
+  <div class="auto-container">
+    <div class="inner-container">
+      <div class="clearfix">
+
+        <!-- Info Block -->
+        <div class="info-block col-lg-4 col-md-6 col-sm-12">
+          <div class="inner-box">
+            <div class="content">
+              <div class="icon flaticon-headphones-1"></div>
+              <br>
+              <strong>24/7 Clients Support</strong>
+            </div>
+          </div>
+        </div>
+
+        <div class="info-block col-lg-4 col-md-6 col-sm-12">
+          <div class="inner-box">
+            <div class="content">
+              <div class="icon flaticon-bulb"></div>
+              <br>
+              <strong>Best Price</strong>
+            </div>
+          </div>
+        </div>
+
+        <div class="info-block col-lg-4 col-md-6 col-sm-12">
+          <div class="inner-box">
+            <div class="content">
+              <div class="icon flaticon-security"></div>
+              <br>
+              <strong>Quality Assurance</strong>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+</div> <!-- End of site-wrap -->
+
 {% endblock %}

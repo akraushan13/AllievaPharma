@@ -1,13 +1,14 @@
 {% extends "base.html" %}
-
+{% load static %}
 {% block title %}{{ subcategory.name }} | {{ category.name }}{% endblock %}
 
 {% block body %}
-{% load static %}
+
 <!-- Page Title -->
-<section class="page-title" style="background-image:url('{% static 'images/background/pattern-23.png' %}');">
-  <div class="auto-container">
-    <h1>{{ subcategory.name }}</h1>
+<div class="site-wrap">
+<section class="page-title " style="background-image: url('{% static 'images/background/1709723307145.jpeg' %}')">
+  <div class="auto-container ">
+    <h1 style="text-transform: uppercase;">{{ subcategory.name }}</h1>
     <ul class="bread-crumb clearfix">
       <li><a href="{% url 'index' %}">Home</a></li>
       <li><a href="{% url 'category_products' category.name %}">{{ category.name }}</a></li>
@@ -16,34 +17,133 @@
   </div>
 </section>
 
+  <div class="site-section ">
+      <div class="container ">
 <!-- Products Section -->
-<section class="products-section">
-  <div class="auto-container">
-    <div class="sec-title">
-      <h2>{{ subcategory.name }} Products</h2>
-    </div>
-
-    <div class="row clearfix">
-      {% for product in products %}
-      <div class="product-block col-lg-4 col-md-6 col-sm-12">
-        <div class="inner-box">
-          <div class="image">
-            <img src="{{ product.image.url }}" alt="{{ product.name }}" style="height:300px; object-fit:contain;">
-            <a href="{% url 'productDetail' product.id %}" class="overlay-link"><span class="icon flaticon-link"></span></a>
+        <div class="row mt-0 mb-5">
+          <div class="col-md-12 text-center">
+              <h2 class="text-dark " style="text-transform: uppercase;"> <b>{{ subcategory.name }} PRODUCTS</b> </h2>
           </div>
-          <div class="lower-content">
-            <h5><a href="{% url 'productDetail' product.id %}">{{ product.name }}</a></h5>
-            <div class="text">{{ product.composition|truncatewords:10 }}</div>
-            <a href="{% url 'productDetail' product.id %}" class="read-more">View Details</a>
+        </div>
+
+    <div class="row">
+      {% if products %}
+      {% for product in products %}
+       <div class="col-sm-6 col-lg-4 text-center item mt-mb-4">
+<!--       <span class="tag">Sale</span>-->
+            <a href="{% url 'productDetail' product.pk  %}">
+              <img
+              src="{{ product.image.url }}"
+              alt="{{ product.name }}"
+              style="width: 100%; height: 300px; object-fit: contain; border: 1px solid #ccc; border-radius: 8px; background-color: #f8f8f8;">
+            </a>
+            <h3 class="text-dark mt-3"><a href="{% url 'productDetail' product.pk  %}">{{product.name}}</a></h3>
+            <h3 class="text-dark"><a href="{% url 'productDetail' product.pk  %}">{{product.composition}}</a></h3>
+            <p><a href="cart.html" class="rounded-pill buy-now btn btn-sm height-auto px-4 py-3 btn-primary">ENQUIRY!</a></p>
+            <!-- <p class="price"><del>95.00</del> &mdash; $55.00</p> -->
+          </div>
+      {% endfor %}
+      {% endif %}
+  </div>
+
+
+<div class="row mt-2 mb-0">
+          <div class="col-md-12 text-center">
+            <div class="site-block-27">
+              <ul>
+                <li><a href="#">&lt;</a></li>
+                <li class="active"><span>1</span></li>
+                <li><a href="#">2</a></li>
+                <li><a href="#">3</a></li>
+                <li><a href="#">4</a></li>
+                <li><a href="#">5</a></li>
+                <li><a href="#">&gt;</a></li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>
-      {% empty %}
-      <div class="col-12">
-        <p>No products available in this subcategory.</p>
-      </div>
-      {% endfor %}
     </div>
+    
+<!--    <div class="site-section bg-primary bg-image" style="background-image: url('{% static 'shop/images/bg_2.jpg' %}')">-->
+<!--      <div class="container">-->
+<!--        <div class="row align-items-stretch">-->
+<!--          <div class="col-lg-6 mb-5 mb-lg-0">-->
+<!--            <a href="#" class="banner-1 h-100 d-flex" style="background-image: url('{% static 'shop/images/bg_1.jpg' %}')">-->
+<!--              <div class="banner-1-inner align-self-center">-->
+<!--                <h2>Pharma Products</h2>-->
+<!--                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Molestiae ex ad minus rem odio voluptatem.-->
+<!--                </p>-->
+<!--              </div>-->
+<!--            </a>-->
+<!--          </div>-->
+<!--          <div class="col-lg-6 mb-5 mb-lg-0">-->
+<!--            <a href="#" class="banner-1 h-100 d-flex" style="background-image: url('{% static 'shop/images/bg_2.jpg' %}')">-->
+<!--              <div class="banner-1-inner ml-auto  align-self-center">-->
+<!--                <h2>Rated by Experts</h2>-->
+<!--                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Molestiae ex ad minus rem odio voluptatem.-->
+<!--                </p>-->
+<!--              </div>-->
+<!--            </a>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+    
+    
+
+
+   
+    <section class="info-section mt-mb-0">
+		<div class="auto-container">
+			<div class="inner-container">
+				<div class="clearfix">
+
+					<!-- Info Block -->
+					<div class="info-block col-lg-4 col-md-6 col-sm-12">
+						<div class="inner-box">
+							<div class="content">
+								<div class="icon flaticon-headphones-1"></div>
+								<br>
+								<strong>24/7 Clients Support</strong>
+								<div class="text"> </div>
+							</div>
+						</div>
+					</div>
+
+					<!-- Info Block -->
+					<div class="info-block col-lg-4 col-md-6 col-sm-12">
+						<div class="inner-box">
+							<div class="content">
+								<div class="icon flaticon-bulb"></div>
+								<br>
+								<strong>Best Price</strong>
+								<div class="text"> </div>
+							</div>
+						</div>
+					</div>
+
+					<!-- Info Block -->
+					<div class="info-block col-lg-4 col-md-6 col-sm-12">
+						<div class="inner-box">
+							<div class="content">
+								<div class="icon flaticon-security"></div>
+								<br>
+								<strong>Quality Assurance</strong>
+								<div class="text"> </div>
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</section>
+  
+  
+  
   </div>
-</section>
+
+
+
 {% endblock %}

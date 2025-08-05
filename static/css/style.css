@@ -11718,3 +11718,17 @@
     .thumbnail-container img.active {
       border-color: #007bff;
     }
+
+    .search-box form {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.search-box input {
+    border-radius: 5px;
+}
+
+.search-box button {
+    margin-left: 5px;
+}

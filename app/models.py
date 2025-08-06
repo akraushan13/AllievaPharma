@@ -38,7 +38,7 @@ class Product(models.Model):
   side_effects = models.TextField()
   dosage = models.TextField()
   
-  
+
   def __str__(self):
     return self.name
   

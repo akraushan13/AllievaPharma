@@ -1,7 +1,12 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Product,ProductImage, Category, SubCategory
+from .models import Product, ProductImage, Category, SubCategory
+from django.db.models import Q
 from .forms import ProductForm, ProductImageForm
 from django.contrib import messages
+
+from django.core.mail import send_mail, BadHeaderError
+from django.http import HttpResponse, HttpResponseRedirect
+
 
 # Create your views here.
 
@@ -21,7 +26,36 @@ def leadership(request):
   return render(request, 'leadership.html')
 
 
+# def contact(request):
+#   return render(request, 'contact.html')
+  
 def contact(request):
+  if request.method == 'POST':
+    name = request.POST.get('username')
+    email = request.POST.get('email')
+    phone = request.POST.get('phone')
+    subject = request.POST.get('subject')
+    message = request.POST.get('message')
+      
+    full_message = f""" You have received a new message from Allieva Pharma Contact Form.
+      Name: {name}
+      Email: {email}
+      Phone: {phone}
+      Subject: {subject}
+      Message:{message}"""
+      
+    try:
+      send_mail(
+        subject=f"New Contact Form Submission: {subject}",
+        message=full_message,
+        from_email=None,  # Will use DEFAULT_FROM_EMAIL
+        recipient_list=['info@allievapharma.com'],
+        fail_silently=False,
+        )
+      messages.success(request, 'Your message has been sent successfully!')
+    except BadHeaderError:
+      return HttpResponse('Invalid header found.')
+    return redirect('contact')
   return render(request, 'contact.html')
   
   
@@ -93,5 +127,21 @@ def subcategory_products(request, category_name, subcategory_name):
   })
 
 
-def search(request):
-  return render(request, 'index.html')
+def search_products(request):
+    query = request.GET.get('q', '')
+    products = []
+
+    if query:
+        products = Product.objects.filter(
+            Q(name__icontains=query) |
+            Q(brand_name__icontains=query) |
+            Q(composition__icontains=query) |
+            Q(descriptions__icontains=query) |
+            Q(uses__icontains=query)
+        ).distinct()
+
+    context = {
+        'query': query,
+        'products': products
+    }
+    return render(request, 'search.html', context)

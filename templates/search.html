@@ -1,10 +1,110 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Title</title>
-</head>
-<body>
-<h1></h1>
-</body>
-</html>
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Search Results{% endblock title %}
+
+{% block body %}
+
+<div class="site-wrap">
+
+  <!-- Page Title Section (Same as products.html) -->
+  <section class="page-title" style="background-image: url('{% static 'images/background/1709723307145.jpeg' %}')">
+    <div class="auto-container">
+      <h1 style="text-transform: uppercase;">Search Results</h1>
+      <ul class="bread-crumb clearfix">
+        <li><a href="{% url 'index' %}">Home</a></li>
+        <li>Search</li>
+      </ul>
+    </div>
+  </section>
+
+  <div class="site-section">
+    <div class="container">
+      
+      <div class="row mt-0 mb-5">
+        <div class="col-md-12 text-center">
+          <div class="row mb-4">
+            <div class="col-12 text-center">
+              <a href="{% url 'products' %}" style="display: inline-block; padding: 10px 20px; border: 1px solid #00008B; color: #00008B; border-radius: 30px; text-decoration: none; font-weight: bold;">
+                ← Back to All Products
+              </a>
+            </div>
+          </div>
+          <h2 class="text-dark"> <b>RESULTS FOR "{{ query }}"</b> </h2>
+        </div>
+      </div>
+
+      <div class="row">
+        {% if products %}
+          {% for product in products %}
+          <div class="col-sm-6 col-lg-4 text-center item mb-4">
+            <a href="{% url 'productDetail' product.pk %}">
+              <img
+                src="{{ product.image.url }}"
+                alt="{{ product.name }}"
+                style="width: 100%; height: 300px; object-fit: contain; border: 1px solid #ccc; border-radius: 8px; background-color: #f8f8f8;">
+            </a>
+            <h3 class="text-dark mt-3"><a href="{% url 'productDetail' product.pk %}">{{ product.name }}</a></h3>
+            <h3 class="text-dark"><a href="{% url 'productDetail' product.pk %}">{{ product.composition }}</a></h3>
+            <p><a href="cart.html" class="rounded-pill buy-now btn btn-sm height-auto px-4 py-3 btn-primary">ENQUIRY!</a></p>
+          </div>
+          {% endfor %}
+        {% else %}
+          <div class="col-md-12 text-center">
+            <p class="text-muted">No products found matching your search.</p>
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+
+  <!-- Info Section (Same as products.html) -->
+  <section class="info-section mt-mb-0">
+    <div class="auto-container">
+      <div class="inner-container">
+        <div class="clearfix">
+
+          <!-- Info Block -->
+          <div class="info-block col-lg-4 col-md-6 col-sm-12">
+            <div class="inner-box">
+              <div class="content">
+                <div class="icon flaticon-headphones-1"></div>
+                <br>
+                <strong>24/7 Clients Support</strong>
+                <div class="text"> </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Info Block -->
+          <div class="info-block col-lg-4 col-md-6 col-sm-12">
+            <div class="inner-box">
+              <div class="content">
+                <div class="icon flaticon-bulb"></div>
+                <br>
+                <strong>Best Price</strong>
+                <div class="text"> </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Info Block -->
+          <div class="info-block col-lg-4 col-md-6 col-sm-12">
+            <div class="inner-box">
+              <div class="content">
+                <div class="icon flaticon-security"></div>
+                <br>
+                <strong>Quality Assurance</strong>
+                <div class="text"> </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+{% endblock body %}

@@ -138,8 +138,8 @@
                                   <li><a href="{% url 'products' %}">All Products</a></li>
                                 </ul>
                               </li>
-                              <li target="_blank" ><a href="https://allievapharma.com/hiring/">Career</a></li>
-                              <li class="dropdown"><a href="https://allievapharma.com/hiring/">News & Blog</a></li>
+                              <li target="_blank" ><a href="/">Career</a></li>
+                              <li class="dropdown"><a href="/">News & Blog</a></li>
                               <li><a href="{% url 'contact' %}">Contact</a></li>
                               <!-- Search Box -->
                               <li class="nav-item position-relative" style="list-style: none; margin-left: 15px;">
@@ -149,9 +149,9 @@
                                 </button>
                                 <!-- Search Popup Box -->
                                 <div id="search-popup" style="display: none; position: absolute; top: 30px; right: 0; background: white; padding: 10px; border: 1px solid #ddd; border-radius: 6px; box-shadow: 0 0 10px rgba(0,0,0,0.1); z-index: 999;">
-                                  <form id="search-form" style="display: flex; gap: 10px;">
+                                  <form id="search-form" action="{% url 'search_products' %}" method="get" style="display: flex; gap: 10px;">
                                     <input type="search" id="search-input" placeholder="Search products..." style="padding: 5px 10px; border: 1px solid #ccc; border-radius: 4px; width: 200px;">
-                                    <button type="submit" id="search-btn" style="background-color: #6c63ff; color: white; border: none; padding: 5px 12px; border-radius: 4px;">Search</button>
+                                    <button type="submit" id="search-btn" style="background-color: #00008B; color: white; border: none; padding: 5px 12px; border-radius: 4px;">Search</button>
                                   </form>
                                 </div>
                               </li>
@@ -357,6 +357,7 @@
       const searchPopup = document.getElementById('search-popup');
       const searchInput = document.getElementById('search-input');
       const searchBtn = document.getElementById('search-btn');
+<!--      Toggle popup-->
       searchToggle?.addEventListener('click', (e) => {
       e.stopPropagation();
       if (searchPopup.style.display === 'none' || searchPopup.style.display === '') {
@@ -366,24 +367,27 @@
         searchPopup.style.display = 'none';
       }
       });
+<!--      Close popup if clicked outside-->
       document.addEventListener('click', (e) => {
         if (!searchPopup.contains(e.target) && !searchToggle.contains(e.target)) {
         searchPopup.style.display = 'none';
         }
       });
 
+<!--      Close popup on Escape-->
       document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape') {
           searchPopup.style.display = 'none';
         }
       });
 
+<!--      Submit form using JS-->
+
       document.getElementById('search-form')?.addEventListener('submit', (e) => {
         e.preventDefault();
         const query = searchInput.value.trim();
         if (query) {
-          alert("Search for: " + query);
-          // Optionally: window.location.href = `/search/?q=${encodeURIComponent(query)}`;
+          window.location.href = `/search/?q=${encodeURIComponent(query)}`;
         }
       });
     </script>

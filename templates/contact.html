@@ -95,12 +95,19 @@
 				<h2>Needs Help? Let’s Get in Touch</h2>
 			</div>
 			<div class="inner-container">
+        
+        {% if messages %}
+        {% for message in messages %}
+        <div class="alert alert-success">{{ message }}</div>
+        {% endfor %}
+        {% endif %}
 
 				<!-- Contact Form -->
 				<div class="contact-form">
 
 					<!-- Contact Form -->
-					<form method="post" action="sendemail.php" id="contact-form">
+					<form method="post" action="{% url 'contact' %}" id="contact-form" onsubmit="return validateForm();">
+            {% csrf_token %}
 						<div class="row clearfix">
 
 							<div class="col-lg-6 col-md-6 col-sm-12 form-group">
@@ -143,5 +150,37 @@
 	</div>
 	<!-- End Contact Form Section -->
 
+<script>
+function validateForm() {
+    const name = document.forms["contact-form"]["username"].value.trim();
+    const email = document.forms["contact-form"]["email"].value.trim();
+    const phone = document.forms["contact-form"]["phone"].value.trim();
+    const subject = document.forms["contact-form"]["subject"].value.trim();
+    const message = document.forms["contact-form"]["message"].value.trim();
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const phoneRegex = /^[0-9]{10}$/;
+
+    if (!name || !email || !phone || !subject || !message) {
+        alert("All fields are required.");
+        return false;
+    }
+
+    if (!emailRegex.test(email)) {
+        alert("Please enter a valid email address.");
+        return false;
+    }
+
+    if (!phoneRegex.test(phone)) {
+        alert("Please enter a valid 10-digit phone number.");
+        return false;
+    }
+
+    return true;
+}
+</script>
+
 
 {% endblock body %}
+
+

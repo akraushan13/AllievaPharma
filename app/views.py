@@ -5,6 +5,7 @@ from .forms import ProductForm, ProductImageForm
 from django.contrib import messages
 
 from django.core.mail import send_mail, BadHeaderError
+import smtplib
 from django.http import HttpResponse, HttpResponseRedirect
 
 
@@ -29,6 +30,10 @@ def leadership(request):
 # def contact(request):
 #   return render(request, 'contact.html')
   
+import smtplib
+from django.shortcuts import render, redirect
+from django.contrib import messages
+
 def contact(request):
   if request.method == 'POST':
     name = request.POST.get('username')
@@ -36,26 +41,45 @@ def contact(request):
     phone = request.POST.get('phone')
     subject = request.POST.get('subject')
     message = request.POST.get('message')
-      
-    full_message = f""" You have received a new message from Allieva Pharma Contact Form.
-      Name: {name}
-      Email: {email}
-      Phone: {phone}
-      Subject: {subject}
-      Message:{message}"""
-      
+
+    full_message =f"""You have received a new message from Allieva Pharma Contact Form.
+                  Name: {name}
+                  Email: {email}
+                  Phone: {phone}
+                  Subject: {subject}
+                  Message: {message}"""
+
+    # SMTP settings
+    SMTP_SERVER = "mail.allievapharma.com"
+    SMTP_PORT = 465
+    USERNAME = "info@allievapharma.com"
+    PASSWORD = "Allieva@0908"
+    FROM_EMAIL = USERNAME
+    TO_EMAIL = "info@allievapharma.com"
+
     try:
-      send_mail(
-        subject=f"New Contact Form Submission: {subject}",
-        message=full_message,
-        from_email=None,  # Will use DEFAULT_FROM_EMAIL
-        recipient_list=['info@allievapharma.com'],
-        fail_silently=False,
-        )
+      print("Connecting to SMTP server...")
+      server = smtplib.SMTP_SSL(SMTP_SERVER, SMTP_PORT, timeout=10)
+      server.login(USERNAME.strip(), PASSWORD)
+      print(" Login successful!")
+      # Prepare email with subject + body
+      email_content = f"Subject: New Contact Form Submission: {subject}\n\n{full_message}"
+      # Send email
+      server.sendmail(FROM_EMAIL, TO_EMAIL, email_content)
+      print("✅ Email sent successfully!")
+      server.quit()
       messages.success(request, 'Your message has been sent successfully!')
-    except BadHeaderError:
-      return HttpResponse('Invalid header found.')
+    except smtplib.SMTPAuthenticationError as e:
+      print("❌ Authentication failed:", e)
+      messages.error(request, 'Email authentication failed. Please check credentials.')
+    except smtplib.SMTPConnectError as e:
+      print("❌ Connection failed:", e)
+      messages.error(request, 'Could not connect to email server.')
+    except Exception as e:
+      print("❌ Error:", e)
+      messages.error(request, f"An unexpected error occurred: {e}")
     return redirect('contact')
+
   return render(request, 'contact.html')
   
   

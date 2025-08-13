@@ -191,6 +191,23 @@
                       <!-- Main Menu -->
                         <nav class="main-menu">
                           <!--Keep This Empty / Menu will come through Javascript-->
+                          
+                          <!-- Search Box -->
+                              <li class="nav-item position-relative" style="list-style: none; margin-left: 15px;">
+                              <!-- Search Toggle Icon -->
+                                <button id="search-toggle1" aria-label="Toggle search box" style="background: none; border: none; cursor: pointer;">
+                                  <i class="fa fa-search" style="font-size: 18px; color: #000;"></i>
+                                </button>
+                                <!-- Search Popup Box -->
+                                <div id="search-popup1" style="display: none; position: absolute; top: 30px; right: 0; background: white; padding: 10px; border: 1px solid #ddd; border-radius: 6px; box-shadow: 0 0 10px rgba(0,0,0,0.1); z-index: 999;">
+                                  <form id="search-form1" action="{% url 'search_products' %}" method="get" style="display: flex; gap: 10px;">
+                                    <input type="search" id="search-input1" placeholder="Search products..." style="padding: 5px 10px; border: 1px solid #ccc; border-radius: 4px; width: 200px;">
+                                    <button type="submit" id="search-btn1" style="background-color: #00008B; color: white; border: none; padding: 5px 12px; border-radius: 4px;">Search</button>
+                                  </form>
+                                </div>
+                              </li>
+                              <!-- End Search Box -->
+                          
                         </nav>
                       <!-- Main Menu End-->
 
@@ -212,6 +229,25 @@
   					          <a href="/"><img src="{% static 'images/allieva-logo-dark.png' %}" alt="Allieva Logo" title="Allieva Pharma"></a>
                     </div>
                     <div class="menu-outer"><!--Here Menu Will Come Automatically Via Javascript / Same Menu as in Header--></div>
+                    
+                    
+                    <!-- Search Box -->
+                              <li class="nav-item position-relative" style="list-style: none; margin-left: 15px;">
+                              <!-- Search Toggle Icon -->
+                                <button id="search-toggle2" aria-label="Toggle search box" style="background: none; border: none; cursor: pointer;">
+                                  <i class="fa fa-search" style="font-size: 18px; color: #000;"></i>
+                                </button>
+                                <!-- Search Popup Box -->
+                                <div id="search-popup2" style="display: none; position: absolute; top: 30px; right: 0; background: white; padding: 10px; border: 1px solid #ddd; border-radius: 6px; box-shadow: 0 0 10px rgba(0,0,0,0.1); z-index: 999;">
+                                  <form id="search-form2" action="{% url 'search_products' %}" method="get" style="display: flex; gap: 10px;">
+                                    <input type="search" id="search-input2" placeholder="Search products..." style="padding: 5px 10px; border: 1px solid #ccc; border-radius: 4px; width: 200px;">
+                                    <button type="submit" id="search-btn2" style="background-color: #00008B; color: white; border: none; padding: 5px 12px; border-radius: 4px;">Search</button>
+                                  </form>
+                                </div>
+                              </li>
+                              <!-- End Search Box -->
+                    
+                    
                   </nav>
                 </div>
             </div>
@@ -391,5 +427,89 @@
         }
       });
     </script>
+  
+   <script>
+      const searchToggle1 = document.getElementById('search-toggle1');
+      const searchPopup1 = document.getElementById('search-popup1');
+      const searchInput1 = document.getElementById('search-input1');
+      const searchBtn1 = document.getElementById('search-btn1');
+<!--      Toggle popup-->
+      searchToggle1?.addEventListener('click', (e) => {
+      e.stopPropagation();
+      if (searchPopup1.style.display === 'none' || searchPopup1.style.display === '') {
+      searchPopup1.style.display = 'block';
+      searchInput1.focus();
+      } else {
+        searchPopup1.style.display = 'none';
+      }
+      });
+<!--      Close popup if clicked outside-->
+      document.addEventListener('click', (e) => {
+        if (!searchPopup1.contains(e.target) && !searchToggle1.contains(e.target)) {
+        searchPopup1.style.display = 'none';
+        }
+      });
+
+<!--      Close popup on Escape-->
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+          searchPopup1.style.display = 'none';
+        }
+      });
+
+<!--      Submit form using JS-->
+
+      document.getElementById('search-form1')?.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const query = searchInput1.value.trim();
+        if (query) {
+          window.location.href = `/search/?q=${encodeURIComponent(query)}`;
+        }
+      });
+    </script>
+  
+  
+   <script>
+      const searchToggle2 = document.getElementById('search-toggle2');
+      const searchPopup2 = document.getElementById('search-popup2');
+      const searchInput2 = document.getElementById('search-input2');
+      const searchBtn2 = document.getElementById('search-btn2');
+<!--      Toggle popup-->
+      searchToggle2?.addEventListener('click', (e) => {
+      e.stopPropagation();
+      if (searchPopup2.style.display === 'none' || searchPopup2.style.display === '') {
+      searchPopup2.style.display = 'block';
+      searchInput2.focus();
+      } else {
+        searchPopup2.style.display = 'none';
+      }
+      });
+<!--      Close popup if clicked outside-->
+      document.addEventListener('click', (e) => {
+        if (!searchPopup2.contains(e.target) && !searchToggle2.contains(e.target)) {
+        searchPopup2.style.display = 'none';
+        }
+      });
+
+<!--      Close popup on Escape-->
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+          searchPopup2.style.display = 'none';
+        }
+      });
+
+<!--      Submit form using JS-->
+
+      document.getElementById('search-form2')?.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const query = searchInput2.value.trim();
+        if (query) {
+          window.location.href = `/search/?q=${encodeURIComponent(query)}`;
+        }
+      });
+    </script>
+  
+  
+  
   </body>
 </html>

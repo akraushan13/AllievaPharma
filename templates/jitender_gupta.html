@@ -6,8 +6,17 @@
 {% block body %}
 {% load static %}
 
-<section class="page-title" style="background-image: url('{% static 'images/background/1709723307145.jpeg' %}')">
-
+<section class="page-title mb-0" style="background-image: url('{% static 'images/background/1709723307145.jpeg' %}');
+                padding: 30px;
+                background-size: cover;
+                background-position: center;">
+  <div class="auto-container mt-2">
+    <h1 style="text-transform: uppercase;">Jitender Gupta</h1>
+      <ul class="bread-crumb clearfix mb-0">
+        <li><a href="{% url 'index' %}">Home</a></li>
+        <li>Jitender Gupta</li>
+      </ul>
+  </div>
 </section>
 
 

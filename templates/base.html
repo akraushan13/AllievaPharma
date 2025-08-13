@@ -15,9 +15,22 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <!-- Stylesheets -->
+    <link rel="stylesheet" href=" {% static 'css/animate.css' %}">
+    <link rel="stylesheet" href=" {% static 'css/animation.css' %}">
     <link rel="stylesheet" href=" {% static 'css/bootstrap.css' %}">
-    <link rel="stylesheet" href=" {% static 'css/style.css' %}">
+    <link rel="stylesheet" href=" {% static 'css/custom-animate.css' %}">
+    <link rel="stylesheet" href=" {% static 'css/flaticon.css' %}">
+    <link rel="stylesheet" href=" {% static 'css/font-awesome.css' %}">
+    <link rel="stylesheet" href=" {% static 'css/global.css' %}">
+    <link rel="stylesheet" href=" {% static 'css/jquery.mCustomScrollbar.min.css' %}">
+    <link rel="stylesheet" href=" {% static 'css/jquery-ui.css' %}">
+    <link rel="stylesheet" href=" {% static 'css/magnific-popup.css' %}">
+    <link rel="stylesheet" href=" {% static 'css/odometer-theme-default.css' %}">
+    <link rel="stylesheet" href=" {% static 'css/owl.css' %}">
+    <link rel="stylesheet" href=" {% static 'css/preloader.css' %}">
     <link rel="stylesheet" href=" {% static 'css/responsive.css' %}">
+    <link rel="stylesheet" href=" {% static 'css/slick.css' %}">
+    <link rel="stylesheet" href=" {% static 'css/style.css' %}">
     <!-- shop/Stylesheets -->
     <link rel="stylesheet" href=" {% static 'shop/fonts/icomoon/style.css' %}">
     <link rel="stylesheet" href=" {% static 'shop/css/bootstrap.min.css' %}">
@@ -39,6 +52,8 @@
     <!-- Responsive -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    
+    <style>   {%block style %}  {% endblock style %} </style>
   </head>
 
   <body>
@@ -163,7 +178,7 @@
                           <div class="outer-box clearfix">
                             <!-- Btn Box -->
                               <div class="btn-box">
-                                <a href="https://www.allievapharma.com/Products-LBL-All.pdf" target="_blank" class="theme-btn btn-style-two clearfix">
+                                <a href="{% url 'download_catalogue' %}" target="_blank" class="theme-btn btn-style-two clearfix">
                                   <span class="btn-wrap">
                                     <span class="text-one">OUR CATALOGUE</span>
                                     <span class="text-two">OUR CATALOGUE</span>

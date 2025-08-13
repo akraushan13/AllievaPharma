@@ -1,12 +1,16 @@
-from django.shortcuts import render, redirect, get_object_or_404
-from .models import Product, ProductImage, Category, SubCategory
-from django.db.models import Q
-from .forms import ProductForm, ProductImageForm
-from django.contrib import messages
+import smtplib, os
 
+
+from .models import Product, ProductImage, Category, SubCategory
+from .forms import ProductForm, ProductImageForm
+
+from django.shortcuts import render, redirect, get_object_or_404
+from django.db.models import Q
+from django.conf import settings
+from django.contrib import messages
 from django.core.mail import send_mail, BadHeaderError
-import smtplib
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import FileResponse, Http404, HttpResponse, HttpResponseRedirect
+
 
 
 # Create your views here.
@@ -169,3 +173,14 @@ def search_products(request):
         'products': products
     }
     return render(request, 'search.html', context)
+
+
+def download_catalogue(request):
+  # Path to your file in static folder
+  file_path = os.path.join(settings.STATIC_DIR, 'catalogue', 'Products-LBL-All.pdf')
+  
+  if not os.path.exists(file_path):
+    raise Http404("Catalogue not found.")
+  
+  # FileResponse streams the file without loading it entirely into memory
+  return FileResponse(open(file_path, 'rb'), as_attachment=False, filename='Products-LBL-All.pdf')

@@ -26,7 +26,7 @@
                 background-size: cover;
                 background-position: center;">
   <div class="auto-container mt-2">
-    <h1 style="text-transform: uppercase;">Medicine Verification</h1>
+    <h3 style="text-transform: uppercase;">Medicine Verification</h3>
       <ul class="bread-crumb clearfix mb-0">
         <li><a href="{% url 'index' %}">Home</a></li>
         <li>Medicine Verification</li>
@@ -38,7 +38,7 @@
     <!-- End Page Title -->
   
 	<!-- Contact Page Section -->
-	<section class="contact-page-section">
+	<section class="contact-page-section mb-0">
 		<div class="auto-container">
 			<!-- Sec Title Three -->
 			<div class="sec-title-three centered">
@@ -86,127 +86,228 @@
 	</section>
 	
 
-		<section class="contact-page-section pt-0">
+		<section class="contact-page-section pt-0 pb-0">
 		<div class="auto-container">
 			<!-- Sec Title Three -->
 			<div class="sec-title-three centered">
 				<h2>How to Validate a Genuine Product </h2>
 			</div>
 			</div>
-			<div class="auto-container">
+			<div class="auto-container mb-0">
             <br>Scratch security label on the product to Unhide medicine authentication code.<br><br>
-Enter your country , contact number , medicine authentication code & Write the answer to a mathematical question. Or captcha <br><br>
+Enter your Name, Email, Phone, Country, Verification Code and captcha of result. <br><br>
 Press the Verify tab. On successful validation " Congratulations your Product is found Genuine " message would be displayed.<br><br>
-.In order to provide more precise verification we have begin the process to provide the Product name , batch , manufacturing & expiry dates as well on successful verification. However, products in the market before this additional feature will display " Congratulations your Product is found Genuine " message but may not display product data. In that case too Product should be deemed Genuine.<br><br>
-In case your Product fails the Authentication " Product Verification failed" messege would be displayed .<br><br>
-.In order to provide more precise verification we have begun the process to provide the Product name , batch , manufacturing & expiry dates as well on successful verification. However, products in the market before this additional feature will display a " Congratulations your Product is found Genuine " message but may not display correct product data. In that case too Product should be deemed Genuine.<br><br>
+In order to provide more precise verification we have begun the process to provide the Product name , batch , manufacturing & expiry dates as well on successful verification. However, products in the market before this additional feature will display a " Congratulations your Product is found Genuine " message but may not display correct product data. In that case too Product should be deemed Genuine.<br><br>
 In case your Product fails the Authentication " Product Verification failed message would be displayed . In such cases or in case your product doesn't have the security label or it is damaged or unhide contact your medicine provider & request to replace the product
 			</div><br>
 			</section>
-			
 	
 	<!-- End Location Section -->
+ 
 	<!-- Contact Form Section -->
-	 <div class="content-wrapper pt-0">
-    <div class="contact-form-section pt-0">
-    	<div class="auto-container">
-			<!-- Sec Title -->
-			<div class="sec-title alternate centered">
-				<div class="title">Submit Information</div>
-			</div>
+<div class="container py-0 mt-0">
+  <div class="row justify-content-center">
+    <div class="col-lg-9">
+      <!-- Card Wrapper -->
+<!--      <div class="card shadow-lg border-0 rounded-3">-->
+        <div class="card-body p-4 p-md-2">
+          <!-- Title -->
+          <h3 class="text-center mb-2 mt-2 fw-bold text-primary ">Submit Information</h3>
+          <p class="text-muted text-center mb-2">Please fill in your details below</p>
+
+          <!-- Contact Form -->
+          <form id="captcha-form" method="POST" class="needs-validation" novalidate>
+            <h5 class=" mb-3 fw-semibold">Your Information</h5>
+
+            <div class="row g-3">
+              <!-- Name -->
+              <div class="col-md-6">
+                <label for="name" class="form-label">Name*</label>
+                <input type="text" class="form-control" id="name" name="name" required>
+                <div class="invalid-feedback">Please enter your name.</div>
+              </div>
+
+              <!-- Email -->
+              <div class="col-md-6">
+                <label for="email" class="form-label">Email*</label>
+                <input type="email" class="form-control" id="email" name="email" required>
+                <div class="invalid-feedback">Please enter a valid email.</div>
+              </div>
+
+              <!-- Phone -->
+              <div class="col-md-6">
+                <label for="phone" class="form-label">Phone*</label>
+                <input type="tel" class="form-control" id="phone" name="phone"
+                  oninput="this.value = this.value.replace(/[^0-9]/g, '');" required>
+                <div class="invalid-feedback">Please enter your phone number.</div>
+              </div>
+
+              <!-- Country -->
+              <div class="col-md-6">
+                <label for="country" class="form-label">Country*</label>
+                <input type="text" class="form-control" id="country" name="country" required>
+                <div class="invalid-feedback">Please enter your country.</div>
+              </div>
+
+              <!-- Verification Code -->
+              <div class="col-md-6">
+                <label for="verification_code" class="form-label">Verification Code*</label>
+                <input type="text" class="form-control" id="verification_code" name="verification_code" required>
+                <div class="invalid-feedback">Please enter the verification code.</div>
+              </div>
+
+              <!-- Captcha -->
+              <div class="col-md-6">
+                <label class="form-label">Captcha*</label>
+                <div class="input-group">
+                  <span class="input-group-text fw-bold" id="captcha-question"></span>
+                  <input type="text" class="form-control" id="captcha-answer" name="captcha-answer" placeholder="Result*" required>
+                  <div class="invalid-feedback">Please solve the captcha.</div>
+                </div>
+              </div>
+              
+            </div>
+
+            <!-- Submit Button -->
+            <div class="d-grid mt-4">
+              <button type="submit" class="btn btn-primary btn-lg rounded-pill shadow-sm">
+                Verify
+              </button>
+            </div>
+          </form>
+
+          <!-- Success Result -->
+          <div class="mt-4" id="success-result">
+            <div class="alert alert-success d-none" id="result_data">
+              ✅ Your information has been submitted successfully!
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+<!--  </div>-->
+</div>
+
+	<!-- End Contact Form Section -->
+  
+  
+  <section class="info-section mt-mb-0">
+		<div class="auto-container">
 			<div class="inner-container">
-				
-				<!-- Contact Form -->
-				<div class="contact-form">
-					
-					<!-- Contact Form -->
-				  <form  id="captcha-form" method="POST"  class="book-appointment-form" name="validation" >
-                            <div class="content-title">
-                                <h4>Your Information</h4>
-                            </div>
-                            <div class="row">
-                         <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <input type="text" name="name" placeholder="Name*" id="name"
-                                                        required data-error="Please enter your name">
-                                                    <div class="help-block with-errors"></div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <input type="email" name="email" id="email" required
-                                                        placeholder="Email*" data-error="Please enter your email">
-                                                    <div class="help-block with-errors"></div>
-                                                </div>
-                                            </div>
-                                           <div class="col-md-6">
-                                                <div class="form-group">
-                                                  <input type="tel" name="phone" id="phone" required="" placeholder="Phone*" data-error="Please enter your phone" oninput="this.value = this.value.replace(/[^0-9]/g, '');">
+				<div class="clearfix">
 
-                                                    <div class="help-block with-errors"></div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <input type="text" name="country" placeholder="Country*" id="country" required data-error="Please enter your country">
-                                                    <div class="help-block with-errors"></div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <input type="text" name="verification_code" placeholder="Verification code*" id="verification_code" required data-error="Please enter your verification_code">
-                                                    <div class="help-block with-errors"></div>
-                                                </div>
-                                            </div>
-                                            
-                                           
-                                              <div class="col-md-3" style="text-align: center;line-height: 51px;">
-                                                 <span id="captcha-question"></span>
-                                                
-                                            </div>
-                                            
-                                             <div class="col-md-3">
-                                                 <span id="captcha-question"></span>
-                                                <div class="form-group">
-                                                    <input type="text" id="captcha-answer" name="captcha-answer" placeholder="Result*"  required data-error="Please enter your captcha">
-                                                    <div class="help-block with-errors"></div>
-                                                </div>
-                                            </div>
+					<!-- Info Block -->
+					<div class="info-block col-lg-4 col-md-6 col-sm-12">
+						<div class="inner-box">
+							<div class="content">
+								<div class="icon flaticon-headphones-1"></div>
+								<br>
+								<strong>24/7 Clients Support</strong>
+								<div class="text"> </div>
+							</div>
+						</div>
+					</div>
 
-                                    &nbsp;
-                                    &nbsp;
-                                    
-                                <div class="col-md-12 justify-content-center">
-                                    <div class="option-item " style="text-align: center;">
-                          
-                                           <button type="submit" class="btn style">Verify</button>
-                                    </div>
-                                </div>
-                            </div>
+					<!-- Info Block -->
+					<div class="info-block col-lg-4 col-md-6 col-sm-12">
+						<div class="inner-box">
+							<div class="content">
+								<div class="icon flaticon-bulb"></div>
+								<br>
+								<strong>Best Price</strong>
+								<div class="text"> </div>
+							</div>
+						</div>
+					</div>
 
+					<!-- Info Block -->
+					<div class="info-block col-lg-4 col-md-6 col-sm-12">
+						<div class="inner-box">
+							<div class="content">
+								<div class="icon flaticon-security"></div>
+								<br>
+								<strong>Quality Assurance</strong>
+								<div class="text"> </div>
+							</div>
+						</div>
+					</div>
 
-                        </form>
-                    </div>
-                    &nbsp;
-                    &nbsp;
-                       <div class="row">
-                        <div id="success-result">
-                            
-                            <div class="tbl_1 mt-40" id="result_data">
-                            
-                            </div>
-                        </div>
-                    </div>
 				</div>
-				<!--End Contact Form -->
-				
 			</div>
 		</div>
-	</div>
-	<!-- End Contact Form Section -->
+	</section>
  
 </div>
 
+
+
+<script>
+  // Bootstrap validation
+  (() => {
+    'use strict';
+    const forms = document.querySelectorAll('.needs-validation');
+
+    Array.from(forms).forEach(form => {
+      form.addEventListener('submit', event => {
+        if (!form.checkValidity()) {
+          event.preventDefault();
+          event.stopPropagation();
+        } else {
+          event.preventDefault(); // remove this if you want actual form submission
+          document.getElementById("result_data").classList.remove("d-none");
+        }
+        form.classList.add('was-validated');
+      }, false);
+    });
+  })();
+</script>
+
+
+<script>
+  let captchaAnswer = 0;
+
+  // Function to generate random captcha
+  function generateCaptcha() {
+    const num1 = Math.floor(Math.random() * 10) + 1;
+    const num2 = Math.floor(Math.random() * 10) + 1;
+    captchaAnswer = num1 + num2;
+    document.getElementById("captcha-question").textContent = `${num1} + ${num2} = ?`;
+  }
+
+  // Call on page load
+  generateCaptcha();
+
+  // Bootstrap validation with captcha check
+  (() => {
+    'use strict';
+    const form = document.getElementById('captcha-form');
+
+    form.addEventListener('submit', event => {
+      if (!form.checkValidity()) {
+        event.preventDefault();
+        event.stopPropagation();
+      } else {
+        event.preventDefault();
+
+        const userCaptcha = parseInt(document.getElementById("captcha-answer").value);
+
+        if (userCaptcha !== captchaAnswer) {
+          document.getElementById("captcha-answer").classList.add("is-invalid");
+          document.getElementById("captcha-answer").nextElementSibling.textContent = "Captcha is incorrect.";
+          return;
+        }
+
+        // Success
+        document.getElementById("result_data").classList.remove("d-none");
+        form.reset();
+        form.classList.remove('was-validated');
+        generateCaptcha(); // refresh captcha
+      }
+      form.classList.add('was-validated');
+    }, false);
+  })();
+</script>
 
 
 {% endblock body %}

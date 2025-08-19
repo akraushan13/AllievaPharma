@@ -6,167 +6,189 @@
 {% block body %}
 
 
-  <div class="site-wrap">
+<div class="site-wrap">
 
-    <section class="page-title mb-0" style="background-image: url('{% static 'images/background/1709723307145.jpeg' %}');
-                padding: 30px;
-                background-size: cover;
-                background-position: center;">
-      <div class="auto-container mt-2">
-        <h1 style="">Product Details</h1>
-          <ul class="bread-crumb clearfix mb-0">
-            <li><a href="{% url 'index' %}">Home</a></li>
-            <li><a href="{% url 'products' %}">All Products</a></li>
-            <li>Product Details</li>
-          </ul>
+  <section class="page-title mb-0" style="background-image: url('{% static 'images/background/1709723307145.jpeg' %}');
+              padding: 30px;
+              background-size: cover;
+              background-position: center;">
+    <div class="auto-container mt-2">
+      <h3 style="">Product Details</h3>
+        <ul class="bread-crumb clearfix mb-0">
+          <li><a href="{% url 'index' %}">Home</a></li>
+          <li><a href="{% url 'products' %}">All Products</a></li>
+          <li>Product Details</li>
+        </ul>
+    </div>
+  </section>
+
+  <div class="site-section mt-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 mr-auto">
+          <!-- Main Image -->
+          <div class="border text-center">
+            <img id="mainImage"
+                 src="{{ images.0.images.url }}"
+                 alt="{{ product.name }}"
+                 style="width: 100%; height: 400px; object-fit: contain; border: 1px solid #ccc; border-radius: 8px; background-color: #f8f8f8;">
+          </div>
+
+          <!-- Thumbnail Images -->
+          <div class="d-flex gap-2 mt-3 thumbnail-container">
+            {% for image in images %}
+            <img src="{{ image.images.url }}"
+                 onclick="changeImage(this, '{{ image.images.url }}')"
+                 style="width: 60px; height: 60px; object-fit: cover; cursor: pointer; border: 2px solid {% if forloop.first %}#007bff{% else %}transparent{% endif %}; border-radius: 4px;"/>
+            {% endfor %}
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <h2 class="text-black">{{product.name}}</h2>
+          
+          <table class="table custom-table">
+            <tbody>
+              <tr><td>Brand Name</td><td class="bg-light">{{product.brand_name}}</td></tr>
+              <tr><td>Composition</td><td class="bg-light">{{product.composition}}</td></tr>
+              <tr><td>Manufacture By</td><td class="bg-light">{{product.manufacture}}</td></tr>
+              <tr><td>Form</td><td class="bg-light">{{product.form}}</td></tr>
+              <tr><td>Packing</td><td class="bg-light">{{product.packing}}</td></tr>
+              <tr><td>Country Of Origin</td><td class="bg-light">{{product.country_of_origin}}</td></tr>
+            </tbody>
+          </table>
+
+          <!-- ENQUIRY button -->
+          <p>
+            <a href="#"
+               class="rounded-pill btn btn-sm height-auto px-4 py-3 btn-primary enquiry-btn"
+               data-bs-toggle="modal"
+               data-bs-target="#enquiryModal"
+               data-product="{{ product.name }} - {{ product.composition }}">
+              ENQUIRY!
+            </a>
+          </p>
+        </div>
+        
+        <div class="mt-5">
+          <div class="col-md-12">
+            <h3 class="text-decoration-underline text-primary">Description</h3>
+             <table class="table custom-table mt-2">
+                <tbody>
+                  <tr><td class="fw-bold">Description</td><td>{{product.descriptions}}</td></tr>
+                  <tr><td class="fw-bold">Uses</td><td>{{product.uses}}</td></tr>
+                  <tr><td class="fw-bold">Side Effects</td><td>{{product.side_effects}}</td></tr>
+                  <tr><td class="fw-bold">Dosage</td><td>{{product.dosage}}</td></tr>
+                </tbody>
+              </table>
+          </div>
+        </div>
+        
       </div>
-    </section>
-
-    <div class="site-section">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-6 mr-auto">
-  <!-- Main Image -->
-  <div class="border text-center">
-    <img id="mainImage"
-         src="{{ images.0.images.url }}"
-         alt="{{ product.name }}"
-         style="width: 100%; height: 400px; object-fit: contain; border: 1px solid #ccc; border-radius: 8px; background-color: #f8f8f8;">
+    </div>
   </div>
 
-  <!-- Thumbnail Images -->
-  <div class="d-flex gap-2 mt-3 thumbnail-container">
-    {% for image in images %}
-    <img src="{{ image.images.url }}"
-         onclick="changeImage(this, '{{ image.images.url }}')"
-         style="width: 60px; height: 60px; object-fit: cover; cursor: pointer; border: 2px solid {% if forloop.first %}#007bff{% else %}transparent{% endif %}; border-radius: 4px;"
-    />
-    {% endfor %}
+  <!-- Enquiry Modal -->
+  <div class="modal fade" id="enquiryModal" tabindex="-1" aria-labelledby="enquiryModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content">
+
+        <div class="modal-header">
+          <h5 class="modal-title" id="enquiryModalLabel">Get In Touch</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+
+        <div class="modal-body">
+          <form method="POST" action="{% url 'send_enquiry' %}">
+            {% csrf_token %}
+            <input type="hidden" id="enquiry-product" name="product">
+
+            <div class="row mb-3">
+              <div class="col">
+                <label>First Name <span style="color:red">*</span></label>
+                <input type="text" name="first_name" class="form-control" required>
+              </div>
+              <div class="col">
+                <label>Last Name <span style="color:red">*</span></label>
+                <input type="text" name="last_name" class="form-control" required>
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label>Email <span style="color:red">*</span></label>
+              <input type="email" name="email" class="form-control" required>
+            </div>
+
+            <div class="mb-3">
+              <label>Subject</label>
+              <input type="text" id="enquiry-subject" name="subject" class="form-control">
+            </div>
+
+            <div class="mb-3">
+              <label>Message</label>
+              <textarea name="message" class="form-control" rows="4"></textarea>
+            </div>
+
+            <button type="submit" class="btn w-100" style="background-color:#4ef2f2;color:#000;">
+              SEND MESSAGE
+            </button>
+          </form>
+        </div>
+
+      </div>
+    </div>
   </div>
+  
+  
+  <section class="info-section mt-mb-0">
+		<div class="auto-container">
+			<div class="inner-container">
+				<div class="clearfix">
+
+					<!-- Info Block -->
+					<div class="info-block col-lg-4 col-md-6 col-sm-12">
+						<div class="inner-box">
+							<div class="content">
+								<div class="icon flaticon-headphones-1"></div>
+								<br>
+								<strong>24/7 Clients Support</strong>
+								<div class="text"> </div>
+							</div>
+						</div>
+					</div>
+
+					<!-- Info Block -->
+					<div class="info-block col-lg-4 col-md-6 col-sm-12">
+						<div class="inner-box">
+							<div class="content">
+								<div class="icon flaticon-bulb"></div>
+								<br>
+								<strong>Best Price</strong>
+								<div class="text"> </div>
+							</div>
+						</div>
+					</div>
+
+					<!-- Info Block -->
+					<div class="info-block col-lg-4 col-md-6 col-sm-12">
+						<div class="inner-box">
+							<div class="content">
+								<div class="icon flaticon-security"></div>
+								<br>
+								<strong>Quality Assurance</strong>
+								<div class="text"> </div>
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</section>
+ 
+ 
+
 </div>
-          <div class="col-md-6">
-            <h2 class="text-black">{{product.name}}</h2>
-            
-                  <table class="table custom-table">
-            
-                    <tbody>
-                      <tr>
-                        <td>Brand Name</td>
-                        <td class="bg-light">{{product.brand_name}}</td>
-                      </tr>
-                      <tr>
-                        <td>Composition</td>
-                        <td class="bg-light">{{product.composition}}</td>
-                      </tr>
-                      <tr>
-                        <td>Manufacture By</td>
-                        <td class="bg-light">{{product.manufacture}}</td>
-                      </tr>
-                      <tr>
-                        <td>Form</td>
-                        <td class="bg-light">{{product.form}}</td>
-                      </tr>
-                      <tr>
-                        <td>Packing</td>
-                        <td class="bg-light">{{product.packing}}</td>
-                      </tr>
-                      <tr>
-                        <td>Country Of Origin</td>
-                        <td class="bg-light">{{product.country_of_origin}}</td>
-                      </tr>
-                    </tbody>
-                  </table>
-            
-<!--            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur, vitae, explicabo? Incidunt facere, natus
-              soluta dolores iusto! Molestiae expedita veritatis nesciunt doloremque sint asperiores fuga voluptas,
-                  distinctio, aperiam, ratione dolore.</p>-->
-            
-            
-
-<!--            <p><del>$95.00</del>  <strong class="text-primary h4">$55.00</strong></p>-->
-
-
-
-<!--            <div class="mb-5">-->
-<!--              <div class="input-group mb-3" style="max-width: 220px;">-->
-<!--                <div class="input-group-prepend">-->
-<!--                  <button class="btn btn-outline-primary js-btn-minus" type="button">&minus;</button>-->
-<!--                </div>-->
-<!--                <input type="text" class="form-control text-center" value="1" placeholder=""-->
-<!--                  aria-label="Example text with button addon" aria-describedby="button-addon1">-->
-<!--                <div class="input-group-append">-->
-<!--                  <button class="btn btn-outline-primary js-btn-plus" type="button">&plus;</button>-->
-<!--                </div>-->
-<!--              </div>-->
-<!--    -->
-<!--            </div>-->
-<!--            <p><a href="cart.html" class="buy-now btn btn-sm height-auto px-4 py-3 btn-primary">Add To Cart</a></p>-->
-            
-            
-            <p><a href="cart.html" class="rounded-pill btn btn-sm height-auto px-4 py-3 btn-primary"> ENQUIRY! </a></p>
-          </div>
-          
-          <div class="mt-2">
-              <div class="col-md-12">
-                <h2 class="text-decoration-underline text-primary">Description</h2>
-                 <table class="table custom-table">
-            
-                    <tbody>
-                      <tr>
-                        <td class="fw-bold">Description</td>
-                        <td>{{product.descriptions}}</td>
-                      </tr>
-                      <tr>
-                        <td class="fw-bold">Uses</td>
-                        <td>{{product.uses}}</td>
-                      </tr>
-                      <tr>
-                        <td class="fw-bold">Side Effects</td>
-                        <td>{{product.side_effects}}</td>
-                      </tr>
-                      <tr>
-                        <td class="fw-bold">Dosage</td>
-                        <td>{{product.dosage}}</td>
-                      </tr>
-                    </tbody>
-                  </table>
-              </div>
-          </div>
-          
-          
-        </div>
-      </div>
-    </div>
-
-    <div class="site-section bg-secondary bg-image" style="background-image: url('{% static 'shop/images/bg_2.jpg' %}')">
-      <div class="container">
-        <div class="row align-items-stretch">
-          <div class="col-lg-6 mb-5 mb-lg-0">
-            <a href="#" class="banner-1 h-100 d-flex" style="background-image: url('{% static 'shop/images/bg_1.jpg' %}')">
-              <div class="banner-1-inner align-self-center">
-                <h2>Pharma Products</h2>
-                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Molestiae ex ad minus rem odio voluptatem.
-                </p>
-              </div>
-            </a>
-          </div>
-          <div class="col-lg-6 mb-5 mb-lg-0">
-            <a href="#" class="banner-1 h-100 d-flex" style="background-image: url('{% static 'shop/images/bg_2.jpg' %}')">
-              <div class="banner-1-inner ml-auto  align-self-center">
-                <h2>Rated by Experts</h2>
-                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Molestiae ex ad minus rem odio voluptatem.
-                </p>
-              </div>
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-    
-    
-  
-  
-  </div>
 
 
 <script>
@@ -175,9 +197,23 @@
     document.querySelectorAll(".thumbnail-container img").forEach(img => img.style.border = "2px solid transparent");
     elem.style.border = "2px solid #007bff";
   }
+
+  // Fill enquiry modal with product details
+  document.addEventListener('click', function (e) {
+    const btn = e.target.closest('.enquiry-btn');
+    if (!btn) return;
+
+    const product = btn.getAttribute('data-product') || '';
+
+    const titleEl   = document.getElementById('enquiryModalLabel');
+    const subjectEl = document.getElementById('enquiry-subject');
+    const hiddenEl  = document.getElementById('enquiry-product');
+
+    if (titleEl)   titleEl.textContent   = 'Enquiry for: ' + product;
+    if (subjectEl) subjectEl.value       = 'Enquiry about: ' + product;
+    if (hiddenEl)  hiddenEl.value        = product;
+  });
 </script>
 
 
-
 {% endblock body %}
-

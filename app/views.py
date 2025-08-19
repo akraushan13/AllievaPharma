@@ -1,8 +1,8 @@
 import smtplib, os
 
-
 from .models import Product, ProductImage, Category, SubCategory
 from .forms import ProductForm, ProductImageForm
+from .utils import send_email
 
 from django.shortcuts import render, redirect, get_object_or_404
 from django.db.models import Q
@@ -10,6 +10,7 @@ from django.conf import settings
 from django.contrib import messages
 from django.core.mail import send_mail, BadHeaderError
 from django.http import FileResponse, Http404, HttpResponse, HttpResponseRedirect
+from django.urls import reverse
 
 
 
@@ -29,14 +30,18 @@ def jitender_gupta(request):
 
 def leadership(request):
   return render(request, 'leadership.html')
+  
+def thankyou(request):
+  return render(request, 'thankyou.html')
 
 
 # def contact(request):
 #   return render(request, 'contact.html')
-  
+
 import smtplib
 from django.shortcuts import render, redirect
 from django.contrib import messages
+
 
 def contact(request):
   if request.method == 'POST':
@@ -45,58 +50,37 @@ def contact(request):
     phone = request.POST.get('phone')
     subject = request.POST.get('subject')
     message = request.POST.get('message')
+    
+    full_message = f"""
+      You have received a new message from Allieva Pharma Contact Form.
 
-    full_message =f"""You have received a new message from Allieva Pharma Contact Form.
-                  Name: {name}
-                  Email: {email}
-                  Phone: {phone}
-                  Subject: {subject}
-                  Message: {message}"""
-
-    # SMTP settings
-    SMTP_SERVER = "mail.allievapharma.com"
-    SMTP_PORT = 465
-    USERNAME = "info@allievapharma.com"
-    PASSWORD = "Allieva@0908"
-    FROM_EMAIL = USERNAME
-    TO_EMAIL = "info@allievapharma.com"
-
-    try:
-      print("Connecting to SMTP server...")
-      server = smtplib.SMTP_SSL(SMTP_SERVER, SMTP_PORT, timeout=10)
-      server.login(USERNAME.strip(), PASSWORD)
-      print(" Login successful!")
-      # Prepare email with subject + body
-      email_content = f"Subject: New Contact Form Submission: {subject}\n\n{full_message}"
-      # Send email
-      server.sendmail(FROM_EMAIL, TO_EMAIL, email_content)
-      print("✅ Email sent successfully!")
-      server.quit()
-      messages.success(request, 'Your message has been sent successfully!')
-    except smtplib.SMTPAuthenticationError as e:
-      print("❌ Authentication failed:", e)
-      messages.error(request, 'Email authentication failed. Please check credentials.')
-    except smtplib.SMTPConnectError as e:
-      print("❌ Connection failed:", e)
-      messages.error(request, 'Could not connect to email server.')
-    except Exception as e:
-      print("❌ Error:", e)
-      messages.error(request, f"An unexpected error occurred: {e}")
-    return redirect('contact')
-
+      Name: {name}
+      Email: {email}
+      Phone: {phone}
+      Subject: {subject}
+      Message: {message}
+      """
+    
+    success, response_msg = send_email(
+      subject=f"New Contact Form Submission: {subject}",
+      body=full_message
+    )
+    
+    if success:
+      return render(request, "thankyou.html", {
+        "message": "Your message has been sent successfully!",
+        "previous_page": reverse("contact")
+      })
+    else:
+      messages.error(request, response_msg)
+      return redirect("contact")
+  
   return render(request, 'contact.html')
   
   
 def medicine_verification(request):
   return render(request, 'medicine-verification.html')
 
-
-# def shop(request):
-#   return render(request, 'products.html')
-
-
-# def shop_single(request):
-#   return render(request, 'productDetail.html')
 
 
 # def create_product(request):
@@ -184,3 +168,40 @@ def download_catalogue(request):
   
   # FileResponse streams the file without loading it entirely into memory
   return FileResponse(open(file_path, 'rb'), as_attachment=False, filename='Products-LBL-All.pdf')
+
+
+def send_enquiry(request):
+  if request.method == 'POST':
+    first_name = request.POST.get('first_name')
+    last_name = request.POST.get('last_name')
+    email = request.POST.get('email')
+    subject = request.POST.get('subject')
+    message = request.POST.get('message')
+    product = request.POST.get('product')
+    
+    full_message = f"""
+      You have received a new product enquiry from Allieva Pharma.
+
+      Product: {product}
+      Name: {first_name} {last_name}
+      Email: {email}
+      Subject: {subject}
+      Message: {message}
+      """
+    
+    success, response_msg = send_email(
+      subject=f"New Product Enquiry: {subject}",
+      body=full_message
+    )
+    
+    if success:
+      previous_page = request.META.get("HTTP_REFERER", reverse("products"))
+      return render(request, "thankyou.html", {
+        "message": "Your enquiry has been sent successfully!",
+        "previous_page": previous_page
+      })
+    else:
+      messages.error(request, response_msg)
+      return redirect("products")
+  
+  return redirect("products")

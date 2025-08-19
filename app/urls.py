@@ -8,6 +8,7 @@ urlpatterns = [
   path('jitender-gupta/',views.jitender_gupta, name='jitender_gupta'),
   path('leadership/',views.leadership, name='leadership'),
   path('contact/',views.contact, name='contact'),
+  path('thankyou/',views.thankyou, name='thankyou'),
   path('Medicine/verification',views.medicine_verification, name='medicine-verification'),
   
   # path("create_product", views.create_product, name='create'),
@@ -17,5 +18,6 @@ urlpatterns = [
   path('products/category/<str:category_name>/<str:subcategory_name>/', views.subcategory_products,name='subcategory_products'),
   path('search/', views.search_products, name='search_products'),
   path('download-catalogue/', views.download_catalogue, name='download_catalogue'),
+  path('send-enquiry/', views.send_enquiry, name='send_enquiry'),
 
 ]

@@ -34,6 +34,9 @@ def send_email(subject, body, to_email="info@allievapharma.com"):
 # Where to look for the CSV:
 # 1) settings.MEDICINE_CSV_PATH if set
 # 2) <BASE_DIR>/data/products.csv as a default
+
+# MEDICINE_CSV_PATH = os.path.join(settings.BASE_DIR, "data", "products.csv")
+
 def _csv_path():
 	if hasattr(settings, "MEDICINE_CSV_PATH") and settings.MEDICINE_CSV_PATH:
 		return settings.MEDICINE_CSV_PATH
@@ -68,13 +71,13 @@ def get_product_by_code(code: str):
 		with open(path, newline="", encoding="utf-8") as f:
 			reader = csv.DictReader(f)
 			for row in reader:
-				vcode = _get_first_nonempty(row, "Verification Code", "Code")
+				vcode = _get_first_nonempty(row, "Verification code", "Code")
 				if vcode and vcode.strip().upper() == code.upper():
 					product_name = _get_first_nonempty(row, "Product Name", "Product")
-					batch = _get_first_nonempty(row, "Batch Name", "Batch", "Batch No", "Batch Number")
-					mfg = _get_first_nonempty(row, "Manufacture Date", "Mfg Date", "Manufacturing Date")
-					exp = _get_first_nonempty(row, "Expiry Date", "Exp Date")
-					
+					batch = _get_first_nonempty(row, "Batch name", "Batch", "Batch No", "Batch Number")
+					mfg = _get_first_nonempty(row, "Manufacture date", "Mfg Date", "Manufacturing Date")
+					exp = _get_first_nonempty(row, "Expiry date", "Exp Date")
+					# print(product_name,batch,mfg,exp)
 					return {
 						"product_name": product_name,
 						"batch": batch,

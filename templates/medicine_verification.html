@@ -1,0 +1,244 @@
+{% extends "base.html" %}
+{% block title %}Medicine_Verification{% endblock title %}
+{% load static %}
+{% block body %}
+
+<div class="page-wrapper">
+
+  <!-- Page Title -->
+  <section class="page-title mb-0" style="background-image: url('{% static 'images/background/1709723307145.jpeg' %}');
+                padding: 30px;
+                background-size: cover;
+                background-position: center;">
+    <div class="auto-container mt-2">
+      <h3 style="text-transform: uppercase;">Medicine Verification</h3>
+      <ul class="bread-crumb clearfix mb-0">
+        <li><a href="{% url 'index' %}">Home</a></li>
+        <li>Medicine Verification</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Steps -->
+  <section class="contact-page-section mb-0">
+    <div class="auto-container">
+      <div class="sec-title-three centered">
+        <h2>Medicine Verification</h2>
+      </div>
+      <div class="row clearfix">
+        <div class="location-block col-lg-4 col-md-6 col-sm-12">
+          <div class="inner-box">
+            <div class="content">
+              <span class="icon flaticon-tick"></span>
+              <strong>STEP 1</strong>
+            </div>
+            Please enter your details
+          </div>
+        </div>
+        <div class="location-block col-lg-4 col-md-6 col-sm-12">
+          <div class="inner-box">
+            <div class="content">
+              <span class="icon flaticon-tick"></span>
+              <strong>STEP 2</strong>
+            </div>
+            Please enter unique code
+          </div>
+        </div>
+        <div class="location-block col-lg-4 col-md-6 col-sm-12">
+          <div class="inner-box">
+            <div class="content">
+              <span class="icon flaticon-tick"></span>
+              <strong>STEP 3</strong>
+            </div>
+            Click on verify button
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Instructions -->
+  <section class="contact-page-section pt-0 pb-0">
+    <div class="auto-container">
+      <div class="sec-title-three centered">
+        <h2>How to Validate a Genuine Product </h2>
+      </div>
+    </div>
+    <div class="auto-container mb-0">
+      <br>Scratch security label on the product to Unhidden medicine authentication code.<br><br>
+      Enter your Name, Email, Phone, Country, Verification Code and captcha of result.<br><br>
+      Press the Verify tab. On successful validation " Congratulations your Product is found Genuine " message would be displayed.<br><br>
+      In order to provide more precise verification we have begun the process to provide the Product name, batch, manufacturing & expiry dates as well on successful verification. However, products in the market before this additional feature will display a " Congratulations your Product is found Genuine " message but may not display correct product data. In that case too Product should be deemed Genuine.<br><br>
+      In case your Product fails the Authentication " Product Verification failed " message would be displayed. In such cases or in case your product doesn't have the security label, or it is damaged/unreadable, contact your medicine provider & request a replacement.
+    </div><br>
+  </section>
+
+  <!-- Contact Form Section -->
+  <div class="container py-0 mt-0">
+    <div class="row justify-content-center">
+      <div class="col-lg-9">
+        <div class="card-body p-4 p-md-2">
+          <h3 class="text-center mb-2 mt-2 fw-bold text-primary">Submit Information</h3>
+          <p class="text-muted text-center mb-2">Please fill in your details below</p>
+
+          <!-- Show Django messages (errors like captcha fail) -->
+          {% if messages %}
+            {% for msg in messages %}
+              <div class="alert alert-{{ msg.tags }}">{{ msg }}</div>
+            {% endfor %}
+          {% endif %}
+
+          <!-- Contact Form -->
+          <form id="captcha-form" method="POST" action="{% url 'medicine_verification' %}" class="needs-validation" novalidate>
+            {% csrf_token %}
+            <h5 class="mb-3 fw-semibold">Your Information</h5>
+
+            <div class="row g-3">
+              <!-- Name -->
+              <div class="col-md-6">
+                <label for="name" class="form-label">Name*</label>
+                <input type="text" class="form-control" id="name" name="name" required>
+                <div class="invalid-feedback">Please enter your name.</div>
+              </div>
+
+              <!-- Email -->
+              <div class="col-md-6">
+                <label for="email" class="form-label">Email*</label>
+                <input type="email" class="form-control" id="email" name="email" required>
+                <div class="invalid-feedback">Please enter a valid email.</div>
+              </div>
+
+              <!-- Phone -->
+              <div class="col-md-6">
+                <label for="phone" class="form-label">Phone*</label>
+                <input type="tel" class="form-control" id="phone" name="phone"
+                       oninput="this.value = this.value.replace(/[^0-9]/g, '');" required>
+                <div class="invalid-feedback">Please enter your phone number.</div>
+              </div>
+
+              <!-- Country -->
+              <div class="col-md-6">
+                <label for="country" class="form-label">Country*</label>
+                <input type="text" class="form-control" id="country" name="country" required>
+                <div class="invalid-feedback">Please enter your country.</div>
+              </div>
+
+              <!-- Verification Code -->
+              <div class="col-md-6">
+                <label for="verification_code" class="form-label">Verification Code*</label>
+                <input type="text" class="form-control" id="verification_code" name="verification_code" required>
+                <div class="invalid-feedback">Please enter the verification code.</div>
+              </div>
+
+              <!-- Captcha -->
+              <div class="col-md-6">
+                <label class="form-label">Captcha*</label>
+                <div class="input-group">
+                  <span class="input-group-text fw-bold" id="captcha-question">{{ captcha_question }}</span>
+                  <input type="text" class="form-control" id="captcha-answer" name="captcha-answer" placeholder="Result*" required>
+                  <div class="invalid-feedback">Please solve the captcha.</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Submit Button -->
+            <div class="d-grid mt-4">
+              <button type="submit" class="btn btn-primary btn-lg rounded-pill shadow-sm">Verify</button>
+            </div>
+          </form>
+
+          <!-- Result Section -->
+          <div class="mt-4">
+            {% if message %}
+              <div class="alert alert-{{ message_class|default:'info' }}">
+                {{ message }}
+              </div>
+            {% endif %}
+
+            {% if product %}
+              <div class="card mt-3">
+                <div class="card-body">
+                  <h5 class="mb-3">Product Details</h5>
+                  <p><strong>Product Name:</strong> {{ product.product_name }}</p>
+                  <p><strong>Batch:</strong> {{ product.batch }}</p>
+                  <p><strong>Manufacture Date:</strong> {{ product.mfg_date }}</p>
+                  <p><strong>Expiry Date:</strong> {{ product.exp_date }}</p>
+                  <p class="mb-0"><strong>Verification Code:</strong> {{ product.verification_code }}</p>
+                </div>
+              </div>
+            {% endif %}
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  
+    <section class="info-section mt-mb-0">
+		<div class="auto-container">
+			<div class="inner-container">
+				<div class="clearfix">
+
+					<!-- Info Block -->
+					<div class="info-block col-lg-4 col-md-6 col-sm-12">
+						<div class="inner-box">
+							<div class="content">
+								<div class="icon flaticon-headphones-1"></div>
+								<br>
+								<strong>24/7 Clients Support</strong>
+								<div class="text"> </div>
+							</div>
+						</div>
+					</div>
+
+					<!-- Info Block -->
+					<div class="info-block col-lg-4 col-md-6 col-sm-12">
+						<div class="inner-box">
+							<div class="content">
+								<div class="icon flaticon-bulb"></div>
+								<br>
+								<strong>Best Price</strong>
+								<div class="text"> </div>
+							</div>
+						</div>
+					</div>
+
+					<!-- Info Block -->
+					<div class="info-block col-lg-4 col-md-6 col-sm-12">
+						<div class="inner-box">
+							<div class="content">
+								<div class="icon flaticon-security"></div>
+								<br>
+								<strong>Quality Assurance</strong>
+								<div class="text"> </div>
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</section>
+ 
+ 
+</div>
+
+<!--  Bootstrap validation  -->
+<script>
+(() => {
+  'use strict';
+  const forms = document.querySelectorAll('.needs-validation');
+  Array.from(forms).forEach(form => {
+    form.addEventListener('submit', event => {
+      if (!form.checkValidity()) {
+        event.preventDefault();
+        event.stopPropagation();
+      }
+      form.classList.add('was-validated');
+    }, false);
+  });
+})();
+</script>
+
+{% endblock body %}

@@ -1,16 +1,18 @@
-import smtplib, os
+import smtplib, os, random
 
 from .models import Product, ProductImage, Category, SubCategory
 from .forms import ProductForm, ProductImageForm
-from .utils import send_email
+from .utils import send_email, get_product_by_code
 
+from django.http import FileResponse, Http404, HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, redirect, get_object_or_404
+from django.views.decorators.http import require_http_methods
+from django.core.mail import send_mail, BadHeaderError
 from django.db.models import Q
 from django.conf import settings
 from django.contrib import messages
-from django.core.mail import send_mail, BadHeaderError
-from django.http import FileResponse, Http404, HttpResponse, HttpResponseRedirect
 from django.urls import reverse
+from django.utils.html import escape
 
 
 
@@ -76,11 +78,6 @@ def contact(request):
       return redirect("contact")
   
   return render(request, 'contact.html')
-  
-  
-def medicine_verification(request):
-  return render(request, 'medicine-verification.html')
-
 
 
 # def create_product(request):
@@ -205,3 +202,79 @@ def send_enquiry(request):
       return redirect("products")
   
   return redirect("products")
+
+
+CAPTCHA_SESSION_KEY = "medicine_captcha_answer"
+def _new_captcha(request):
+    a = random.randint(1, 9)
+    b = random.randint(1, 9)
+    request.session[CAPTCHA_SESSION_KEY] = a + b
+    return f"{a} + {b} = ?"
+
+
+@require_http_methods(["GET", "POST"])
+def medicine_verification(request):
+  context = {}
+  if request.method == "GET":
+    # Fresh captcha on first load
+    context["captcha_question"] = _new_captcha(request)
+    return render(request, "medicine_verification.html", context)
+  
+  # ----- POST: validate form & captcha -----
+  name = (request.POST.get("name") or "").strip()
+  email = (request.POST.get("email") or "").strip()
+  phone = (request.POST.get("phone") or "").strip()
+  country = (request.POST.get("country") or "").strip()
+  verification_code = (request.POST.get("verification_code") or "").strip()
+  user_captcha = (request.POST.get("captcha-answer") or "").strip()
+  
+  # Server-side captcha check
+  expected = request.session.get(CAPTCHA_SESSION_KEY)
+  try:
+    user_value = int(user_captcha)
+  except (TypeError, ValueError):
+    user_value = None
+  
+  if expected is None or user_value != expected:
+    messages.error(request, "Captcha is incorrect. Please try again.")
+    # Always issue a new captcha
+    context["captcha_question"] = _new_captcha(request)
+    return render(request, "medicine_verification.html", context)
+  
+  # If you want minimal required field checks on the server too:
+  if not all([name, email, phone, country, verification_code]):
+    messages.error(request, "Please fill all required fields.")
+    context["captcha_question"] = _new_captcha(request)
+    return render(request, "medicine_verification.html", context)
+  
+  # ----- Lookup in CSV -----
+  product = get_product_by_code(verification_code)
+  # print(product)
+  if product:
+    # Found the code = genuine
+    if product.get("has_full_details"):
+      # Newer stock: show all the details
+      context["message_class"] = "success"
+      context["message"] = "✅ Congratulations! Your Product is found Genuine."
+      context["product"] = product
+    else:
+      # Older stock: code genuine, but details not present
+      context["message_class"] = "success"
+      context["message"] = (
+        "✅ Congratulations! Your Product is found Genuine. "
+        "However, detailed product info may not be available for some older stock."
+      )
+      # You can omit 'product' here, or pass what you have
+      context["product"] = None
+  else:
+    # Not found = verification failed
+    context["message_class"] = "danger"
+    context["message"] = (
+      "❌ Product Verification Failed. "
+      "If the security label is missing/damaged/unreadable, please contact your medicine provider and request a replacement."
+    )
+    context["product"] = None
+  
+  # Rotate captcha on every POST outcome (prevents replay)
+  context["captcha_question"] = _new_captcha(request)
+  return render(request, "medicine_verification.html", context)

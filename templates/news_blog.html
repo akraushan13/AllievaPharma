@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}News & Blog{% endblock title %}
+
+{% block body %}
+
+<div class="site-wrap">
+
+  <!-- Page Title Section -->
+  <section class="page-title mb-0" style="background-image: url('{% static 'images/background/1709723307145.jpeg' %}');
+                padding: 30px;
+                background-size: cover;
+                background-position: center;">
+    <div class="auto-container mt-2">
+      <h3 style="text-transform: uppercase;">News & Blog</h3>
+      <ul class="bread-crumb clearfix mb-0">
+        <li><a href="{% url 'index' %}">Home</a></li>
+        <li>News & Blog</li>
+      </ul>
+    </div>
+  </section>
+
+
+<h1>news_blog</h1>
+
+</div>
+{% endblock body %}

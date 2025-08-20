@@ -13,7 +13,7 @@
                 background-size: cover;
                 background-position: center;">
     <div class="auto-container mt-2">
-      <h1 style="text-transform: uppercase;">Search Results</h1>
+      <h3 style="text-transform: uppercase;">Search Results</h3>
       <ul class="bread-crumb clearfix mb-0">
         <li><a href="{% url 'index' %}">Home</a></li>
         <li>Search</li>
@@ -26,7 +26,7 @@
       
       <div class="row mt-0 mb-5">
         <div class="col-md-12 text-center">
-          <div class="row mb-4">
+          <div class="row mb-4 mt-4">
             <div class="col-12 text-center">
               <a href="{% url 'products' %}" style="display: inline-block; padding: 10px 20px; border: 1px solid #00008B; color: #00008B; border-radius: 30px; text-decoration: none; font-weight: bold;">
                 ← Back to All Products
@@ -40,7 +40,7 @@
       <div class="row">
         {% if products %}
           {% for product in products %}
-          <div class="col-sm-6 col-lg-4 text-center item mb-4">
+          <div class="col-sm-6 col-lg-3 text-center item mb-4">
             <a href="{% url 'productDetail' product.pk %}">
               <img
                 src="{{ product.image.url }}"
@@ -48,9 +48,72 @@
                 style="width: 100%; height: 300px; object-fit: contain; border: 1px solid #ccc; border-radius: 8px; background-color: #f8f8f8;">
             </a>
             <h3 class="text-dark mt-3"><a href="{% url 'productDetail' product.pk %}">{{ product.name }}</a></h3>
-            <h3 class="text-dark"><a href="{% url 'productDetail' product.pk %}">{{ product.composition }}</a></h3>
-            <p><a href="cart.html" class="rounded-pill buy-now btn btn-sm height-auto px-4 py-3 btn-primary">ENQUIRY!</a></p>
+            <h5 class="text-dark mb-2"><a href="{% url 'productDetail' product.pk %}">{{ product.composition }}</a></h5>
+            <p>
+              <a href="#"
+                class="rounded-pill buy-now btn btn-sm height-auto px-4 py-3 btn-primary enquiry-btn"
+                data-bs-toggle="modal"
+                data-bs-target="#enquiryModal"
+                data-product="{{ product.name }} - {{ product.composition }}">
+                ENQUIRY!
+              </a>
+            </p>
+            <!-- <p class="price"><del>95.00</del> &mdash; $55.00</p> -->
           </div>
+        
+          <!-- Enquiry Modal  -->
+    <div class="modal fade" id="enquiryModal" tabindex="-1" aria-labelledby="enquiryModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content">
+
+        <div class="modal-header">
+          <h5 class="modal-title" id="enquiryModalLabel">Get In Touch</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+
+        <div class="modal-body">
+          <form method="POST" action="{% url 'send_enquiry' %}">
+            {% csrf_token %}
+
+            <!-- (Optional) Hidden field to also send product info separately -->
+            <input type="hidden" id="enquiry-product" name="product">
+
+            <div class="row mb-3">
+              <div class="col">
+                <label>First Name <span style="color:red">*</span></label>
+                <input type="text" name="first_name" class="form-control" required>
+              </div>
+              <div class="col">
+                <label>Last Name <span style="color:red">*</span></label>
+                <input type="text" name="last_name" class="form-control" required>
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label>Email <span style="color:red">*</span></label>
+              <input type="email" name="email" class="form-control" required>
+            </div>
+
+            <div class="mb-3">
+              <label>Subject</label>
+              <input type="text" id="enquiry-subject" name="subject" class="form-control">
+            </div>
+
+            <div class="mb-3">
+              <label>Message</label>
+              <textarea name="message" class="form-control" rows="4"></textarea>
+            </div>
+
+            <button type="submit" class="btn w-100" style="background-color:#4ef2f2;color:#000;">
+              SEND MESSAGE
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+    </div>
+        
+        
           {% endfor %}
         {% else %}
           <div class="col-md-12 text-center">
@@ -59,6 +122,37 @@
         {% endif %}
       </div>
     </div>
+    
+    <div class="row mt-2 mb-2">
+  <div class="col-md-12 text-center mb-5">
+    <div class="site-block-27 ">
+      <ul style="padding:0; margin:0; list-style:none; display:flex; justify-content:center; gap:8px;">
+        <li style="display:inline-block;">
+          <a href="#" style="display:flex; align-items:center; justify-content:center; width:40px; height:40px; border-radius:50%; border:1px solid #ddd; text-decoration:none; color:#000; font-size:16px;">&lt;</a>
+        </li>
+        <li style="display:inline-block;">
+          <span style="display:flex; align-items:center; justify-content:center; width:40px; height:40px; border-radius:50%; border:1px solid #333; background:#333; color:#fff; font-size:16px;">1</span>
+        </li>
+        <li style="display:inline-block;">
+          <a href="#" style="display:flex; align-items:center; justify-content:center; width:40px; height:40px; border-radius:50%; border:1px solid #ddd; text-decoration:none; color:#000; font-size:16px;">2</a>
+        </li>
+        <li style="display:inline-block;">
+          <a href="#" style="display:flex; align-items:center; justify-content:center; width:40px; height:40px; border-radius:50%; border:1px solid #ddd; text-decoration:none; color:#000; font-size:16px;">3</a>
+        </li>
+        <li style="display:inline-block;">
+          <a href="#" style="display:flex; align-items:center; justify-content:center; width:40px; height:40px; border-radius:50%; border:1px solid #ddd; text-decoration:none; color:#000; font-size:16px;">4</a>
+        </li>
+        <li style="display:inline-block;">
+          <a href="#" style="display:flex; align-items:center; justify-content:center; width:40px; height:40px; border-radius:50%; border:1px solid #ddd; text-decoration:none; color:#000; font-size:16px;">5</a>
+        </li>
+        <li style="display:inline-block;">
+          <a href="#" style="display:flex; align-items:center; justify-content:center; width:40px; height:40px; border-radius:50%; border:1px solid #ddd; text-decoration:none; color:#000; font-size:16px;">&gt;</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+  
   </div>
 
   <!-- Info Section (Same as products.html) -->
@@ -109,5 +203,25 @@
   </section>
 
 </div>
+
+
+<script>
+  // Fill modal title + subject + hidden field when an ENQUIRY button is clicked
+  document.addEventListener('click', function (e) {
+    const btn = e.target.closest('.enquiry-btn');
+    if (!btn) return;
+
+    const product = btn.getAttribute('data-product') || '';
+
+    const titleEl   = document.getElementById('enquiryModalLabel');
+    const subjectEl = document.getElementById('enquiry-subject');
+    const hiddenEl  = document.getElementById('enquiry-product');
+
+    if (titleEl)   titleEl.textContent   = 'Enquiry for: ' + product;
+    if (subjectEl) subjectEl.value       = 'Enquiry about: ' + product;
+    if (hiddenEl)  hiddenEl.value        = product;
+  });
+</script>
+
 
 {% endblock body %}

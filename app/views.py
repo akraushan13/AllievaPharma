@@ -278,3 +278,11 @@ def medicine_verification(request):
   # Rotate captcha on every POST outcome (prevents replay)
   context["captcha_question"] = _new_captcha(request)
   return render(request, "medicine_verification.html", context)
+
+
+def career(request):
+  return render(request, 'career.html')
+  
+  
+def news_blog(request):
+  return render(request, 'news_blog.html')

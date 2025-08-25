@@ -1,0 +1,72 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.urgent {
+    position: relative;
+}
+.urgent-chan {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 10;
+    padding: 2px 10px;
+    border-radius: 0 20px 0 20px;;
+    border: 2px solid red;
+    color: red;
+    font-size: 0.9rem;
+    font-weight: bold;
+}
+
+.fast-bttn{
+    color: white;
+    background-color: #00D09B;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.fast-bttn:hover{
+    color: #00D09B;
+    background-color: rgb(0, 0, 0);
+    scale: 1.05;
+}
+
+.rot .rota i{
+    transition: transform 0.5s linear;
+    transform-style: preserve-3d;
+}
+
+.rot:hover .rota i{
+    transform: rotateY(360deg);
+
+}
+
+.teeam{
+    color: white;
+}
+
+.teeam h5{
+    color: #00D09B;
+    font-weight: bold;
+}
+.addt a{
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
+    list-style: none;
+}
+
+.addt a:hover{
+    color: #00D09B;
+    text-decoration: none;
+    list-style: none;
+}
+
+
+.abb-box{
+    background: linear-gradient(rgba(2, 0, 51, 0.669)), url('../images/background/1709723307145.jpeg') no-repeat center center;
+    background-size: cover;
+    color: white;
+}

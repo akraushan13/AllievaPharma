@@ -1,75 +1,51 @@
+{% extends "base.html" %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Thank You</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            background: #fff;
-            margin: 0;
-            padding: 50px;
-        }
-        .checkmark {
-            font-size: 60px;
-            color: green;
-        }
-        h1 {
-            font-size: 40px;
-            margin: 20px 0 10px;
-        }
-        p {
-            font-size: 18px;
-            color: #555;
-        }
-        .btn {
-            display: inline-block;
-            margin-top: 20px;
-            padding: 12px 24px;
-            background-color: #4ef3f3;
-            color: black;
-            text-decoration: none;
-            border-radius: 5px;
-            font-weight: bold;
-        }
-        .btn:hover {
-            background-color: #37dada;
-        }
-        #countdown {
-            margin-top: 15px;
-            font-size: 16px;
-            color: #888;
-        }
-    </style>
-</head>
-<body>
-    <div>
-        <div class="checkmark">✔</div>
-        <h1>Thank you!</h1>
-        <p>{{ message }}</p>
-        <a href="{% if previous_page %}{{ previous_page }}{% else %}{% url 'products' %}{% endif %}" class="btn">
-            BACK TO PREVIOUS PAGE
-        </a>
-        <div id="countdown">Redirecting in <span id="seconds">5</span> seconds...</div>
+
+{% block title %} Thank You {% endblock %}
+
+{% block body %}
+
+<section class="page-title mb-0" style="background-image: url('{% static 'images/background/1709723307145.jpeg' %}');
+                padding: 30px;
+                background-size: cover;
+                background-position: center;">
+  <div class="auto-container mt-2">
+    <h3 style="text-transform: uppercase;">Thank you</h3>
+      <ul class="bread-crumb clearfix mb-0">
+        <li><a href="{% url 'index' %}">Home</a></li>
+        <li>Thank you</li>
+      </ul>
+  </div>
+</section>
+
+
+<div class="container text-center py-5">
+    <div class="checkmark display-3 text-success">✔</div>
+    <h1 class="mt-3">Thank you!</h1>
+    <p class="lead">{{ message }}</p>
+
+    <a href="{% if previous_page %}{{ previous_page }}{% else %}{% url 'products' %}{% endif %}"
+       class="btn btn-info mt-3">
+       BACK TO PREVIOUS PAGE
+    </a>
+
+    <div id="countdown" class="text-muted mt-3 mb-5">
+        Redirecting in <span id="seconds">5</span> seconds...
     </div>
+</div>
 
-    <!-- Auto redirect with countdown -->
-    <script>
-        let seconds = 5;
-        const countdownEl = document.getElementById("seconds");
-        const redirectUrl = "{% if previous_page %}{{ previous_page }}{% else %}{% url 'products' %}{% endif %}";
+<script>
+    let seconds = 5;
+    const countdownEl = document.getElementById("seconds");
+    const redirectUrl = "{% if previous_page %}{{ previous_page }}{% else %}{% url 'products' %}{% endif %}";
 
-        const timer = setInterval(function() {
-            seconds--;
-            countdownEl.textContent = seconds;
-            if (seconds <= 0) {
-                clearInterval(timer);
-                window.location.href = redirectUrl;
-            }
-        }, 1000);
-    </script>
-</body>
-</html>
+    const timer = setInterval(function() {
+        seconds--;
+        countdownEl.textContent = seconds;
+        if (seconds <= 0) {
+            clearInterval(timer);
+            window.location.href = redirectUrl;
+        }
+    }, 1000);
+</script>
+{% endblock %}

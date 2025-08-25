@@ -264,7 +264,6 @@ def medicine_verification(request):
         "✅ Congratulations! Your Product is found Genuine. "
         "However, detailed product info may not be available for some older stock."
       )
-      # You can omit 'product' here, or pass what you have
       context["product"] = None
   else:
     # Not found = verification failed
@@ -286,3 +285,13 @@ def career(request):
   
 def news_blog(request):
   return render(request, 'news_blog.html')
+
+
+def error_403(request, exception=None):
+    return render(request, "errors/403.html", status=403)
+
+def error_404(request, exception=None):
+    return render(request, "errors/404.html", status=404)
+
+def error_500(request):
+    return render(request, "errors/500.html", status=500)

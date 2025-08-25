@@ -1,4 +1,4 @@
-/* Industo Industry HTML Template */
+
 
 @import url('global.css');
 @import url('font-awesome.css');
@@ -230,6 +230,8 @@
 .main-header .header-lower .inner-container:after{
 	display:none;
 }
+
+
 
 .main-header .nav-outer{
 	position:relative;
@@ -11732,3 +11734,4 @@
 .search-box button {
     margin-left: 5px;
 }
+

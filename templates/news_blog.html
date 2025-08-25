@@ -5,15 +5,15 @@
 
 {% block body %}
 
-<div class="site-wrap">
+<div class="site-wrap" style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #333; margin: 0; padding: 0;">
 
   <!-- Page Title Section -->
   <section class="page-title mb-0" style="background-image: url('{% static 'images/background/1709723307145.jpeg' %}');
                 padding: 30px;
                 background-size: cover;
                 background-position: center;">
-    <div class="auto-container mt-2">
-      <h3 style="text-transform: uppercase;">News & Blog</h3>
+    <div class="auto-container mt-4">
+      <h3 class="text-white" style="text-transform: uppercase;">News & Blog</h3>
       <ul class="bread-crumb clearfix mb-0">
         <li><a href="{% url 'index' %}">Home</a></li>
         <li>News & Blog</li>
@@ -21,8 +21,137 @@
     </div>
   </section>
 
+    <!-- News Section -->
+    <section style="padding: 20px 0;">
+        <div class="container">
+            <div class="row">
+                <!-- News Card 1 -->
+                <div class="col-md-6 col-lg-4" style="margin-bottom: 30px;">
+                    <div class="card" style="border: none; border-radius: 10px; overflow: hidden; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05); transition: all 0.3s ease; height: 100%;">
+                        <img src="https://placehold.co/600x400" class="card-img-top" alt="Scientist in lab examining pharmaceutical samples" style="height: 200px; object-fit: cover; width: 100%;">
+                        <div class="card-body" style="padding: 25px;">
+                            <span style="background-color: #000254; color: white; padding: 5px 10px; border-radius: 4px; font-size: 12px; font-weight: 600; text-transform: uppercase;">Research</span>
+                            <p style="color: #777; font-size: 14px; margin-bottom: 10px;">June 15, 2023</p>
+                            <h5 style="color: #1B00A0; font-weight: 600; margin-bottom: 15px;">Breakthrough in Cancer Treatment Research</h5>
+                            <p style="color: #666; margin-bottom: 20px;">Our research team has made significant progress in developing new targeted therapies for lung cancer patients. Preliminary results show promising outcomes.</p>
+                            <a href="#" class="btn" style="background-color: #1B00A0; color: white; border: none; padding: 8px 20px; border-radius: 4px; font-weight: 500;">Read More</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- News Card 2 -->
+                <div class="col-md-6 col-lg-4" style="margin-bottom: 30px;">
+                    <div class="card" style="border: none; border-radius: 10px; overflow: hidden; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05); transition: all 0.3s ease; height: 100%;">
+                        <img src="../static/images/background/Background-banner.jpg" class="card-img-top" alt="Modern pharmaceutical manufacturing facility" style="height: 200px; object-fit: cover; width: 100%;">
+                        <div class="card-body" style="padding: 25px;">
+                            <span style="background-color: #000254; color: white; padding: 5px 10px; border-radius: 4px; font-size: 12px; font-weight: 600; text-transform: uppercase;">Facility</span>
+                            <p style="color: #777; font-size: 14px; margin-bottom: 10px;">May 28, 2023</p>
+                            <h5 style="color: #1B00A0; font-weight: 600; margin-bottom: 15px;">New Manufacturing Facility Inauguration</h5>
+                            <p style="color: #666; margin-bottom: 20px;">Allieva Pharma proudly announces the opening of our state-of-the-art manufacturing facility, increasing our production capacity by 40%.</p>
+                            <a href="#" class="btn" style="background-color: #1B00A0; color: white; border: none; padding: 8px 20px; border-radius: 4px; font-weight: 500;">Read More</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- News Card 3 -->
+                <div class="col-md-6 col-lg-4" style="margin-bottom: 30px;">
+                    <div class="card" style="border: none; border-radius: 10px; overflow: hidden; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05); transition: all 0.3s ease; height: 100%;">
+                        <img src="https://placehold.co/600x400" class="card-img-top" alt="Team of healthcare professionals discussing" style="height: 200px; object-fit: cover; width: 100%;">
+                        <div class="card-body" style="padding: 25px;">
+                            <span style="background-color: #000254; color: white; padding: 5px 10px; border-radius: 4px; font-size: 12px; font-weight: 600; text-transform: uppercase;">Team</span>
+                            <p style="color: #777; font-size: 14px; margin-bottom: 10px;">April 10, 2023</p>
+                            <h5 style="color: #1B00A0; font-weight: 600; margin-bottom: 15px;">New Leadership Team Announcement</h5>
+                            <p style="color: #666; margin-bottom: 20px;">We welcome our new leadership team members who bring decades of pharmaceutical industry experience to drive innovation at Allieva Pharma.</p>
+                            <a href="#" class="btn" style="background-color: #1B00A0; color: white; border: none; padding: 8px 20px; border-radius: 4px; font-weight: 500;">Read More</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- News Card 4 -->
+                <div class="col-md-6 col-lg-4" style="margin-bottom: 30px;">
+                    <div class="card" style="border: none; border-radius: 10px; overflow: hidden; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05); transition: all 0.3s ease; height: 100%;">
+                        <img src="https://placehold.co/600x400" class="card-img-top" alt="Doctor explaining medication to elderly patient" style="height: 200px; object-fit: cover; width: 100%;">
+                        <div class="card-body" style="padding: 25px;">
+                            <span style="background-color: #000254; color: white; padding: 5px 10px; border-radius: 4px; font-size: 12px; font-weight: 600; text-transform: uppercase;">Patient Care</span>
+                            <p style="color: #777; font-size: 14px; margin-bottom: 10px;">March 22, 2023</p>
+                            <h5 style="color: #1B00A0; font-weight: 600; margin-bottom: 15px;">Improving Medication Adherence</h5>
+                            <p style="color: #666; margin-bottom: 20px;">Our recent study explores innovative approaches to enhance medication adherence among elderly patients with chronic conditions.</p>
+                            <a href="#" class="btn" style="background-color: #1B00A0; color: white; border: none; padding: 8px 20px; border-radius: 4px; font-weight: 500;">Read More</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- News Card 5 -->
+                <div class="col-md-6 col-lg-4" style="margin-bottom: 30px;">
+                    <div class="card" style="border: none; border-radius: 10px; overflow: hidden; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05); transition: all 0.3s ease; height: 100%;">
+                        <img src="https://placehold.co/600x400" class="card-img-top" alt="Certificate of pharmaceutical excellence" style="height: 200px; object-fit: cover; width: 100%;">
+                        <div class="card-body" style="padding: 25px;">
+                            <span style="background-color: #000254; color: white; padding: 5px 10px; border-radius: 4px; font-size: 12px; font-weight: 600; text-transform: uppercase;">Awards</span>
+                            <p style="color: #777; font-size: 14px; margin-bottom: 10px;">February 18, 2023</p>
+                            <h5 style="color: #1B00A0; font-weight: 600; margin-bottom: 15px;">Allieva Receives Excellence Award</h5>
+                            <p style="color: #666; margin-bottom: 20px;">We are honored to receive the 2023 Pharmaceutical Excellence Award for our contributions to innovative drug development.</p>
+                            <a href="#" class="btn" style="background-color: #1B00A0; color: white; border: none; padding: 8px 20px; border-radius: 4px; font-weight: 500;">Read More</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- News Card 6 -->
+                <div class="col-md-6 col-lg-4" style="margin-bottom: 30px;">
+                    <div class="card" style="border: none; border-radius: 10px; overflow: hidden; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05); transition: all 0.3s ease; height: 100%;">
+                        <img src="https://placehold.co/600x400" class="card-img-top" alt="Community vaccination drive in progress" style="height: 200px; object-fit: cover; width: 100%;">
+                        <div class="card-body" style="padding: 25px;">
+                            <span style="background-color: #000254; color: white; padding: 5px 10px; border-radius: 4px; font-size: 12px; font-weight: 600; text-transform: uppercase;">Community</span>
+                            <p style="color: #777; font-size: 14px; margin-bottom: 10px;">January 5, 2023</p>
+                            <h5 style="color: #1B00A0; font-weight: 600; margin-bottom: 15px;">Community Vaccination Drive Success</h5>
+                            <p style="color: #666; margin-bottom: 20px;">Our recent vaccination drive reached over 5,000 community members, providing essential immunizations and health screenings.</p>
+                            <a href="#" class="btn" style="background-color: #1B00A0; color: white; border: none; padding: 8px 20px; border-radius: 4px; font-weight: 500;">Read More</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Pagination -->
+            <div style="text-align: center; margin-top: 30px;">
+                <nav aria-label="Page navigation">
+                    <ul class="pagination justify-content-center">
+                        <li class="page-item disabled">
+                            <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
+                        </li>
+                        <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                        <li class="page-item">
+                            <a class="page-link" href="#">Next</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </section>
 
-<h1>news_blog</h1>
+    <!-- Newsletter Section -->
+    <section style="background-color: #f5f9ff; padding: 60px 0; margin-top: 40px;">
+        <div class="container" style="text-align: center; padding-bottom: 50px;">
+            <h3 style="color: #1B00A0; font-weight: 700; margin-bottom: 20px;">Subscribe to Our Newsletter</h3>
+            <p style="margin-bottom: 25px;">Stay informed about our latest developments, research findings, and industry insights.</p>
+            <div style="max-width: 500px; margin: 0 auto;">
+                <form class="row g-2">
+                    <div class="col-md-8">
+                        <input type="email" class="form-control" placeholder="Your email address" style="width: 100%;">
+                    </div>
+                    <div class="col-md-4">
+                        <button type="submit" class="btn btn-primary" style="width: 100%; background-color: #1B00A0; border: none;">Subscribe</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+
+
 
 </div>
 {% endblock body %}

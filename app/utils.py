@@ -13,21 +13,21 @@ def send_email(subject, body, to_email="info@allievapharma.com"):
 		# print("Connecting to SMTP server...")
 		server = smtplib.SMTP_SSL(SMTP_SERVER, SMTP_PORT, timeout=3)
 		server.login(USERNAME.strip(), PASSWORD)
-		# print("✅ Login successful!")
+		# print(" Login successful!")
 		
 		email_content = f"Subject: {subject}\n\n{body}"
 		server.sendmail(FROM_EMAIL, to_email, email_content)
-		# print("✅ Email sent successfully!")
+		# print("Email sent successfully!")
 		server.quit()
 		return True, "Email sent successfully"
 	except smtplib.SMTPAuthenticationError as e:
-		print("❌ Authentication failed:", e)
+		print(" Authentication failed:", e)
 		return False, "Email authentication failed"
 	except smtplib.SMTPConnectError as e:
-		print("❌ Connection failed:", e)
+		print(" Connection failed:", e)
 		return False, "Could not connect to email server"
 	except Exception as e:
-		print("❌ Error:", e)
+		print(" Error:", e)
 		return False, f"Unexpected error: {e}"
 
 

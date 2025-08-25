@@ -4,7 +4,7 @@ from django import forms
 from django.forms import ModelForm
 from unicodedata import category
 
-from .models import Product, ProductImage
+from .models import Product, ProductImage, Application
 
 
 class ProductForm(ModelForm):
@@ -55,4 +55,17 @@ class ProductImageForm(ModelForm):
     fields = ['images']
     widgets = {
       'images': MultipleFileInput(attrs={'multiple': True})
+    }
+
+
+class ApplicationForm(forms.ModelForm):
+  consent = forms.BooleanField(required=True, label="I consent to Allieva Pharma processing my personal data")
+  
+  class Meta:
+    model = Application
+    fields = ["job", "first_name", "last_name", "email", "phone", "resume", "cover_letter", "consent"]
+    
+    widgets = {
+      "job": forms.HiddenInput(),  # hidden job field
+      "cover_letter": forms.Textarea(attrs={ "placeholder": "Tell us why you're the right candidate...", "rows": 5}),
     }

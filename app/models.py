@@ -49,3 +49,38 @@ class ProductImage(models.Model):
   def __str__(self):
     return str(self.product.name)
   
+
+class JobTag(models.Model):
+  name = models.CharField(max_length=100, unique=True)
+  
+  def __str__(self):
+    return self.name
+
+class JobPosting(models.Model):
+  title = models.CharField(max_length=200)
+  location = models.CharField(max_length=100)
+  urgent = models.CharField(max_length=50)
+  posted_on = models.DateField(auto_now_add=True)
+  job_description = models.TextField()
+  responsibilities = models.TextField()
+  requirements = models.TextField()
+  tags = models.ManyToManyField(JobTag, related_name="jobs")
+  
+  def __str__(self):
+    return self.title
+  
+class Application(models.Model):
+  job = models.ForeignKey("JobPosting", on_delete=models.CASCADE, related_name="applications")
+  first_name = models.CharField(max_length=100)
+  last_name = models.CharField(max_length=100)
+  email = models.EmailField()
+  phone = models.CharField(max_length=20)
+  resume = models.FileField(upload_to="resumes/")
+  cover_letter = models.TextField(blank=True, null=True)
+  consent = models.BooleanField(default=False)
+  applied_on = models.DateTimeField(auto_now_add=True)
+  
+  def __str__(self):
+    return f"{self.first_name} {self.last_name} - {self.job.title}"
+  
+  

@@ -1,7 +1,7 @@
 import smtplib, os, random
 
-from .models import Product, ProductImage, Category, SubCategory
-from .forms import ProductForm, ProductImageForm
+from .models import Product, ProductImage, Category, SubCategory, JobPosting
+from .forms import ProductForm, ProductImageForm, ApplicationForm
 from .utils import send_email, get_product_by_code
 
 from django.http import FileResponse, Http404, HttpResponse, HttpResponseRedirect
@@ -35,6 +35,17 @@ def leadership(request):
   
 def thankyou(request):
   return render(request, 'thankyou.html')
+  
+def error_403(request, exception=None):
+  return render(request, "errors/403.html", status=403)
+
+
+def error_404(request, exception=None):
+  return render(request, "errors/404.html", status=404)
+
+
+def error_500(request):
+  return render(request, "errors/500.html", status=500)
 
 
 # def contact(request):
@@ -278,20 +289,20 @@ def medicine_verification(request):
   context["captcha_question"] = _new_captcha(request)
   return render(request, "medicine_verification.html", context)
 
-
-def career(request):
-  return render(request, 'career.html')
-  
   
 def news_blog(request):
   return render(request, 'news_blog.html')
 
 
-def error_403(request, exception=None):
-    return render(request, "errors/403.html", status=403)
+def career(request):
+  jobs = JobPosting.objects.all()
+  if request.method == "POST":
+    form = ApplicationForm(request.POST, request.FILES)
+    if form.is_valid():
+      form.save()
+      return redirect("career")
+  else:
+    form = ApplicationForm()
+  context = {"jobs": jobs, "form": form}
+  return render(request, 'career.html', context)
 
-def error_404(request, exception=None):
-    return render(request, "errors/404.html", status=404)
-
-def error_500(request):
-    return render(request, "errors/500.html", status=500)

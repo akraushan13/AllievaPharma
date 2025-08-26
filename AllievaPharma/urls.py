@@ -22,9 +22,11 @@ from django.conf.urls.static import static
 from app import views
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('',include('app.urls')),
-] + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
+	path('admin/', admin.site.urls),
+	path('',include('app.urls')),
+]
+if settings.DEBUG:
+	urlpatterns += static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
 
 handler403 = views.error_403
 handler404 = views.error_404

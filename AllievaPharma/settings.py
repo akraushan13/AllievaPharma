@@ -14,7 +14,7 @@ from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent.parent
 TEMPLATE_DIR = os.path.join(BASE_DIR, "templates")
 STATIC_DIR = os.path.join(BASE_DIR, "static")
-MEDIA_ROOT = os.path.join(BASE_DIR,"media")
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -139,6 +139,7 @@ STATICFILES_DIRS = [
 ]
 
 MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR,"media")
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field

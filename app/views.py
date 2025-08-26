@@ -1,6 +1,6 @@
 import smtplib, os, random
 
-from .models import Product, ProductImage, Category, SubCategory, JobPosting
+from .models import Product, ProductImage, Category, SubCategory, JobPosting, NewsEvent
 from .forms import ProductForm, ProductImageForm, ApplicationForm
 from .utils import send_email, get_product_by_code
 
@@ -289,10 +289,6 @@ def medicine_verification(request):
   context["captcha_question"] = _new_captcha(request)
   return render(request, "medicine_verification.html", context)
 
-  
-def news_blog(request):
-  return render(request, 'news_blog.html')
-
 
 def career(request):
   jobs = JobPosting.objects.all()
@@ -305,4 +301,18 @@ def career(request):
     form = ApplicationForm()
   context = {"jobs": jobs, "form": form}
   return render(request, 'career.html', context)
+
+
+def news_event(request):
+  newsEvent = NewsEvent.objects.all()
+  context = {"newsEvent": newsEvent}
+  return render(request, 'news_blog.html',context)
+  
+def news_detail(request, pk):
+  news_item = get_object_or_404(NewsEvent, id=pk)
+  recent_news = NewsEvent.objects.exclude(id=pk).order_by('-id')[:5]
+  context = {"news_item": news_item,
+             "recent_news": recent_news
+             }
+  return render(request, "news_detail.html", context)
 

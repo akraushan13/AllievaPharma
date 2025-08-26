@@ -1,0 +1,149 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}News & Blog{% endblock title %}
+
+
+{% block body %}
+   <style>
+    .blog-img {
+     max-width: 600px;
+     height: 400px;
+     display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px auto;
+    }
+
+    .blog-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .facebook-media{
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    text-decoration: none;
+    }
+
+    .facebook-img{
+        width: 40px;
+        height: 40px;
+    }
+
+     .facebook-img img{
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+     }
+
+     .insta{
+        text-decoration: none;
+     }
+
+     .insta:hover{
+        color: #0011ff;
+        text-decoration: underline;
+     }
+
+   </style>
+
+
+  <!-- Blog Post Content -->
+  <div class="container mt-5">
+    <div class="row">
+      <!-- Main Content -->
+      {% if news_item %}
+      
+      <div class="col-lg-8 mb-5">
+        <article>
+            <h3 class="mb-3">{{news_item.title}}</h3>
+            <div class="blog-img">
+          <img src=" {{ news_item.image1.url }} " class="img-fluid rounded mb-4 text-center" alt="Header Image">
+          </div>
+          <p class="text-muted">By <strong>{{news_item.author}}</strong> | {{news_item.date}}</p>
+          <p class=" mb-5 ">{{news_item.description}}</p>
+        </article>
+      </div>
+      
+      {% endif %}
+      
+      <!-- Sidebar -->
+      <div class="col-lg-4">
+        <div class="p-4 mb-4 bg-light rounded">
+          <h4>Recent Posts</h4>
+          <ul class="list-unstyled">
+            {% for news in recent_news %}
+            <li>
+              <a href="{% url 'news_detail' news.pk %}">
+                {{ news.title }}
+              </a>
+            </li>
+            {% empty %}
+              <li>No recent news available</li>
+            {% endfor %}
+          </ul>
+        </div>
+
+        <div class="p-4">
+          <div class="social-media">
+            <div class="facebook">
+                <a href="https://www.facebook.com/allievapharmaprivatelimited/" class="insta">
+                    <div class="facebook-media">
+                        <div class="facebook-img">
+                    <img src="{% static 'images/icons/facebook.png' %}" alt="facebook" >
+                    </div>
+                    <div class="facebook-text">
+                         <p>Facebook</p>
+                    </div>
+                    </div>
+                </a>
+            </div>
+            <div class="facebook">
+                <a href="https://www.instagram.com/allieva_pharma/" class=" insta">
+                    <div class="facebook-media">
+                        <div class="facebook-img">
+                    <img src="{% static 'images/icons/instagram.png' %}" alt="instagram">
+                    </div>
+                    <div class="facebook-text">
+                         <p>Instagram</p>
+                    </div>
+                    </div>
+                </a>
+            </div>
+            <div class="facebook">
+                <a href="https://www.linkedin.com/in/allieva-pharma-3215a52a7/" class=" insta">
+                    <div class="facebook-media">
+                        <div class="facebook-img">
+                    <img src="{% static 'images/icons/linkdin.png' %}" alt="linkdin">
+                    </div>
+                    <div class="facebook-text">
+                         <p>Linkdin</p>
+                    </div>
+                    </div>
+                </a>
+            </div>
+            <div class="facebook">
+                <a href="https://x.com/AllievapharmaIt" class=" insta">
+                    <div class="facebook-media">
+                        <div class="facebook-img">
+                    <img src="{% static 'images/icons/x.png' %}" alt="twitter">
+                    </div>
+                    <div class="facebook-text">
+                         <p>Twitter</p>
+                    </div>
+                    </div>
+                </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+{% endblock body %}

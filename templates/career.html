@@ -104,8 +104,11 @@
                     <div id="job1" class="accordion-collapse collapse" data-bs-parent="#jobsAccordion">
                         <div class="accordion-body">
                             <h6>Job Description:</h6>
-                            <p>{{job.job_description}}</p>
-                            
+                          <ul>
+                          {% for line in job.job_description|splitlines %}
+                            <li>{{ line }}</li>
+                            {% endfor %}
+                            </ul>
                             <h6 class="mt-4">Responsibilities:</h6>
                             <ul>
                               {% for line in job.responsibilities|splitlines %}

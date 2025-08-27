@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
-
+{% load split_line %}
 {% block title %}News & Blog{% endblock title %}
 
 
@@ -64,7 +64,14 @@
           <img src=" {{ news_item.image1.url }} " class="img-fluid rounded mb-4 text-center" alt="Header Image">
           </div>
           <p class="text-muted">By <strong>{{news_item.author}}</strong> | {{news_item.date}}</p>
-          <p class=" mb-5 ">{{news_item.description}}</p>
+<!--          <p class=" mb-5 ">{{news_item.description}}</p>-->
+          
+                            <ul class="mb-5">
+                          {% for line in news_item.description|splitlines %}
+                            <li><p>{{ line }}</p></li>
+                            {% endfor %}
+                            </ul>
+          
         </article>
       </div>
       

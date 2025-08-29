@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>   {%block title %}  {% endblock title %} | ALLIEVA PHARMA PVT LTD  </title>
     <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <link rel="stylesheet" href="{% static 'css/responsive.css' %}">
@@ -173,9 +173,26 @@
             <!--End Header lower-->
             <!-- Sticky Header  -->
             <div class="sticky-header">
-                <div class="auto-container clearfix">
+                <div class="auto-container clearfix newsearch-s">
+                   <!-- Search Box -->
+                              <li class="navigation clearfix newsearch-bar" style="list-style: none; margin-left: 15px;">
+                              <!-- Search Toggle Icon -->
+                                <button id="search-toggle1" aria-label="Toggle search box" style="background: none; border: none; cursor: pointer;">
+                                  <i class="fa fa-search" style="font-size: 18px;"></i>
+                                </button>
+                                
+                                
+                                <!-- Search Popup Box -->
+                                <div id="search-popup1" style="display: none; position: absolute; top: 30px; right: 0; background: white; padding: 10px; border: 1px solid #ddd; border-radius: 6px; box-shadow: 0 0 10px rgba(0,0,0,0.1); z-index: 999;">
+                                  <form id="search-form1" action="{% url 'search_products' %}" method="get" style="display: flex; gap: 10px;">
+                                    <input type="search" id="search-input1" placeholder="Search products..." style="padding: 5px 10px; border: 1px solid #ccc; border-radius: 4px; width: 200px;">
+                                    <button type="submit" id="search-btn1" style="background-color: #00008B; color: white; border: none; padding: 5px 12px; border-radius: 4px;">Search</button>
+                                  </form>
+                                </div>
+                              </li>
+                              <!-- End Search Box -->
                     <!--Logo-->
-                    <div class="logo pull-left">
+                    <div class="logo pull-left pull-left-new">
                         <a href="/" title="">
                             <img src="{% static 'images/allieva-logo-dark.png' %}" alt="Allieva Logo"
                                 title="Allieva Pharma">
@@ -186,21 +203,7 @@
                         <!-- Main Menu -->
                         <nav class="main-menu">
                             <!--Keep This Empty / Menu will come through Javascript-->
-          <!-- Search Box -->
-                              <li class="navigation clearfix" style="list-style: none; margin-left: 15px;">
-                              <!-- Search Toggle Icon -->
-                                <button id="search-toggle1" aria-label="Toggle search box" style="background: none; border: none; cursor: pointer;">
-                                  <i class="fa fa-search" style="font-size: 18px;"></i>
-                                </button>
-                                <!-- Search Popup Box -->
-                                <div id="search-popup1" style="display: none; position: absolute; top: 30px; right: 0; background: white; padding: 10px; border: 1px solid #ddd; border-radius: 6px; box-shadow: 0 0 10px rgba(0,0,0,0.1); z-index: 999;">
-                                  <form id="search-form1" action="{% url 'search_products' %}" method="get" style="display: flex; gap: 10px;">
-                                    <input type="search" id="search-input1" placeholder="Search products..." style="padding: 5px 10px; border: 1px solid #ccc; border-radius: 4px; width: 200px;">
-                                    <button type="submit" id="search-btn1" style="background-color: #00008B; color: white; border: none; padding: 5px 12px; border-radius: 4px;">Search</button>
-                                  </form>
-                                </div>
-                              </li>
-                              <!-- End Search Box -->
+         
                         </nav>
                         <!-- Main Menu End-->
 

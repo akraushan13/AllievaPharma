@@ -76,3 +76,55 @@ border
 : 2px solid black;
 }
 
+
+/* !-----search bar in header----! */
+
+.newsearch-s{
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.newsearch-bar{
+    position: absolute;
+    top: 50%;
+    left: 97%;
+    transform: translate(-50%, -50%);
+    z-index: 999;
+}
+
+@media (max-width:900px) {
+     .pull-left-new{
+        width: 150px;
+    }
+}
+
+
+@media (max-width:850px) {
+     .pull-left-new{
+        width: 100px;
+    }
+}
+
+@media (max-width:794px) {
+     .pull-left-new{
+        width: 70px;
+    }
+}
+
+@media (max-width:765px) {
+
+		.newsearch-s{
+		display: block;
+		}
+    .newsearch-bar{
+        display: none;
+    }
+
+     .pull-left-new{
+        width: 250px;
+    }
+}
+
+
+

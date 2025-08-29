@@ -17,7 +17,7 @@ urlpatterns = [
   path('products/category/<str:category_name>/', views.category_products, name='category_products'),
   path('products/category/<str:category_name>/<str:subcategory_name>/', views.subcategory_products,name='subcategory_products'),
   path('search/', views.search_products, name='search_products'),
-  path('download-catalogue/', views.download_catalogue, name='download_catalogue'),
+  path('download/', views.download_catalogue, name='download_catalogue'),
   path('send-enquiry/', views.send_enquiry, name='send_enquiry'),
   
   

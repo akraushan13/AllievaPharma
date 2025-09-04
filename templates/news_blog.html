@@ -27,8 +27,8 @@
     <section style="padding: 20px 0;">
         <div class="container">
             <div class="row">
-              {% if newsEvent %}
-              {% for news in newsEvent %}
+              {% if page_obj  %}
+              {% for news in page_obj  %}
                 <!-- News Card 1 -->
                 <div class="col-md-6 col-lg-4" style="margin-bottom: 30px;">
                     <div class="card" style="border: none; border-radius: 10px; overflow: hidden; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05); transition: all 0.3s ease; height: 100%;">
@@ -49,7 +49,7 @@
           
             
             <!-- Pagination -->
-            <div style="text-align: center; margin-top: 30px; margin-bottom: 100px;">
+<!--            <div style="text-align: center; margin-top: 30px; margin-bottom: 100px;">-->
 <!--                <nav aria-label="Page navigation">-->
 <!--                    <ul class="pagination justify-content-center">-->
 <!--                        <li class="page-item disabled">-->
@@ -63,7 +63,88 @@
 <!--                        </li>-->
 <!--                    </ul>-->
 <!--                </nav>-->
-            </div>
+<!--            </div>-->
+          
+<div class="row mt-2 mb-2">
+  <div class="col-md-12 text-center mb-5">
+    <div class="site-block-27">
+      <ul style="padding:0; margin:0; list-style:none; display:flex; justify-content:center; gap:8px;">
+
+        {% if page_obj.has_previous %}
+          <li>
+            <a href="?q={{ query }}&page={{ page_obj.previous_page_number }}"
+               style="display:flex; align-items:center; justify-content:center; width:40px; height:40px; border-radius:50%; border:1px solid #ddd; text-decoration:none; color:#000; font-size:16px;">
+              &lt;
+            </a>
+          </li>
+        {% endif %}
+
+        {# Show first page #}
+        {% if 1 not in page_obj.paginator.page_range %}
+          <li>
+            <a href="?q={{ query }}&page=1"
+               style="display:flex; align-items:center; justify-content:center; width:40px; height:40px; border-radius:50%; border:1px solid #ddd; text-decoration:none; color:#000; font-size:16px;">
+              1
+            </a>
+          </li>
+        {% endif %}
+
+        {# Left ellipsis #}
+        {% if page_obj.number > 3 %}
+          <li><span style="width:40px; text-align:center;">...</span></li>
+        {% endif %}
+
+        {# Page numbers around current page (2 before, 2 after) #}
+        {% for num in page_obj.paginator.page_range %}
+          {% if num >= page_obj.number|add:-2 and num <= page_obj.number|add:2 %}
+            {% if page_obj.number == num %}
+              <li>
+                <span style="display:flex; align-items:center; justify-content:center; width:40px; height:40px; border-radius:50%; border:1px solid #333; background:#333; color:#fff; font-size:16px;">
+                  {{ num }}
+                </span>
+              </li>
+            {% else %}
+              <li>
+                <a href="?q={{ query }}&page={{ num }}"
+                   style="display:flex; align-items:center; justify-content:center; width:40px; height:40px; border-radius:50%; border:1px solid #ddd; text-decoration:none; color:#000; font-size:16px;">
+                  {{ num }}
+                </a>
+              </li>
+            {% endif %}
+          {% endif %}
+        {% endfor %}
+
+        {# Right ellipsis #}
+        {% if page_obj.number < page_obj.paginator.num_pages|add:-2 %}
+          <li><span style="width:40px; text-align:center;">...</span></li>
+        {% endif %}
+
+        {# Last page #}
+        {% if page_obj.paginator.num_pages > 1 %}
+          <li>
+            <a href="?q={{ query }}&page={{ page_obj.paginator.num_pages }}"
+               style="display:flex; align-items:center; justify-content:center; width:40px; height:40px; border-radius:50%; border:1px solid #ddd; text-decoration:none; color:#000; font-size:16px;">
+              {{ page_obj.paginator.num_pages }}
+            </a>
+          </li>
+        {% endif %}
+
+        {% if page_obj.has_next %}
+          <li>
+            <a href="?q={{ query }}&page={{ page_obj.next_page_number }}"
+               style="display:flex; align-items:center; justify-content:center; width:40px; height:40px; border-radius:50%; border:1px solid #ddd; text-decoration:none; color:#000; font-size:16px;">
+              &gt;
+            </a>
+          </li>
+        {% endif %}
+
+      </ul>
+    </div>
+  </div>
+</div>
+
+        
+        
         </div>
     </section>
 

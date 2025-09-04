@@ -8,11 +8,13 @@ from django.http import FileResponse, Http404, HttpResponse, HttpResponseRedirec
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views.decorators.http import require_http_methods
 from django.core.mail import send_mail, BadHeaderError
+from django.core.paginator import Paginator
 from django.db.models import Q
 from django.conf import settings
 from django.contrib import messages
 from django.urls import reverse
 from django.utils.html import escape
+
 
 
 
@@ -113,15 +115,19 @@ def contact(request):
 #
 #   context = {"p_form": productform, "i_form": productimageform}
 #   return render(request, "create.html", context)
- 
+
   
 def show_all_product(request):
-  products = Product.objects.all()
-  context = {"products": products}
+  products = Product.objects.all().distinct().order_by('-id')
+  
+  paginator = Paginator(products, 12)
+  page_number = request.GET.get('page')
+  page_obj = paginator.get_page(page_number)
+  context = {"page_obj": page_obj}
   return render(request, 'products.html', context)
   
 def product_detail(request, pk):
-  product = Product.objects.get(id=pk)
+  product = Product.objects.get(id=pk).distinct().order_by('-id')
   images = ProductImage.objects.filter(product=product)
   context = {"product": product, "images": images}
   return render(request, 'productDetail.html', context)
@@ -129,21 +135,31 @@ def product_detail(request, pk):
 
 def category_products(request, category_name):
     category = get_object_or_404(Category, name__iexact=category_name)
-    products = Product.objects.filter(category=category)
+    products = Product.objects.filter(category=category).distinct().order_by('-id')
+    
+    paginator = Paginator(products, 12)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    
     return render(request, 'category_products.html', {
         "category": category,
-        "products": products
+        "page_obj": page_obj
     })
 
 
 def subcategory_products(request, category_name, subcategory_name):
   category = get_object_or_404(Category, name__iexact=category_name)
   subcategory = get_object_or_404(SubCategory, name__iexact=subcategory_name, category=category)
-  products = Product.objects.filter(category=category, subcategory=subcategory)
+  products = Product.objects.filter(category=category, subcategory=subcategory).distinct().order_by('-id')
+  
+  paginator = Paginator(products, 12)
+  page_number = request.GET.get('page')
+  page_obj = paginator.get_page(page_number)
+  
   return render(request, 'subcategory_products.html', {
     "category": category,
     "subcategory": subcategory,
-    "products": products
+    "page_obj": page_obj
   })
 
 
@@ -157,12 +173,18 @@ def search_products(request):
             Q(brand_name__icontains=query) |
             Q(composition__icontains=query) |
             Q(descriptions__icontains=query) |
-            Q(uses__icontains=query)
-        ).distinct()
+            Q(uses__icontains=query) |
+            Q(subcategory__name__icontains=query) |
+            Q(category__name__icontains=query)
+        ).distinct().order_by('-id')
+    
+    paginator = Paginator(products, 12)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
 
     context = {
         'query': query,
-        'products': products
+        'page_obj': page_obj
     }
     return render(request, 'search.html', context)
 
@@ -304,8 +326,13 @@ def career(request):
 
 
 def news_event(request):
-  newsEvent = NewsEvent.objects.all()
-  context = {"newsEvent": newsEvent}
+  # newsEvent = NewsEvent.objects.all()
+  newsEvent = NewsEvent.objects.all().order_by('-id')
+  
+  paginator = Paginator(newsEvent, 12)
+  page_number = request.GET.get('page')
+  page_obj = paginator.get_page(page_number)
+  context = {"page_obj": page_obj}
   return render(request, 'news_blog.html',context)
   
 def news_detail(request, pk):

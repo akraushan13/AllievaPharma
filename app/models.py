@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils.text import slugify
 
 # Create your models here.
 
@@ -20,6 +21,7 @@ class SubCategory(models.Model):
 class Product(models.Model):
 	# id = models.AutoField(primary_key=True)
 	name = models.CharField(max_length=100)
+	slug = models.SlugField(unique=True, blank=True)
 	image = models.ImageField(upload_to='images/', default='images/no-image.jpg')
 	brand_name = models.CharField(max_length=100)
 	composition = models.CharField(max_length=100)
@@ -37,6 +39,10 @@ class Product(models.Model):
 	side_effects = models.TextField()
 	dosage = models.TextField()
 	
+	def save(self, *args, **kwargs):
+		if not self.slug:
+			self.slug = slugify(self.composition)
+		super().save(*args, **kwargs)
 	
 	def __str__(self):
 		return self.name

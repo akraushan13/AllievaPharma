@@ -41,14 +41,14 @@
         {% if page_obj %}
           {% for product in page_obj %}
           <div class="col-sm-6 col-lg-3 text-center item mb-4">
-            <a href="{% url 'productDetail' product.pk %}">
+            <a href="{% url 'productDetail' product.slug %}">
               <img
                 src="{{ product.image.url }}"
                 alt="{{ product.name }}"
                 style="width: 100%; height: 300px; object-fit: contain; border: 1px solid #ccc; border-radius: 8px; background-color: #f8f8f8;">
             </a>
-            <h3 class="text-dark mt-3"><a href="{% url 'productDetail' product.pk %}">{{ product.name }}</a></h3>
-            <h5 class="text-dark mb-2"><a href="{% url 'productDetail' product.pk %}">{{ product.composition }}</a></h5>
+            <h3 class="text-dark mt-3"><a href="{% url 'productDetail' product.slug %}">{{ product.name }}</a></h3>
+            <h5 class="text-dark mb-2"><a href="{% url 'productDetail' product.slug %}">{{ product.composition }}</a></h5>
             <p>
               <a href="#"
                 class="rounded-pill buy-now btn btn-sm height-auto px-4 py-3 btn-primary enquiry-btn"

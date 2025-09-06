@@ -126,11 +126,17 @@ def show_all_product(request):
   context = {"page_obj": page_obj}
   return render(request, 'products.html', context)
   
-def product_detail(request, pk):
-  product = Product.objects.get(id=pk).distinct().order_by('-id')
-  images = ProductImage.objects.filter(product=product)
-  context = {"product": product, "images": images}
-  return render(request, 'productDetail.html', context)
+# def product_detail(request, pk):
+#   product = Product.objects.get(id=pk)
+#   images = ProductImage.objects.filter(product=product)
+#   context = {"product": product, "images": images}
+#   return render(request, 'productDetail.html', context)
+
+
+def product_detail(request, product_slug):
+  product = get_object_or_404(Product, slug=product_slug)
+  images = product.images.all()
+  return render(request, 'productDetail.html', {"product": product, "images": images})
 
 
 def category_products(request, category_name):

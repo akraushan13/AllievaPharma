@@ -1,30 +1,14 @@
-import csv
-import os
+from django.utils.text import slugify
+from app.models import Product  # replace "app" with your app name
 
-csv_path = os.path.join("data", "products.csv")
-
-
-def get_product_by_code(code: str):
-	code = (code or "").strip().upper()
-	
-	if not os.path.exists(csv_path):
-		print("CSV file not found:", csv_path)
-		return None
-	
-	with open(csv_path, newline="", encoding="utf-8") as f:
-		reader = csv.DictReader(f)
-		for row in reader:
-			vcode = (row.get("Verification code") or row.get("Code") or "").strip().upper()
-			if vcode == code:
-				print("---- Product Details ----")
-				for key, value in row.items():
-					print(f"{key}: {value}")
-				print("-------------------------\n")
-				return row  # return full dict if needed
-	print("No product found with code:", code)
-	return None
-
-
-if __name__ == "__main__":
-	user_code = input("Enter Verification Code: ")
-	get_product_by_code(user_code)
+for product in Product.objects.all():
+    if not product.slug:  # only if slug is empty
+        base_slug = slugify(product.name)
+        slug = base_slug
+        counter = 1
+        # ensure uniqueness
+        while Product.objects.filter(slug=slug).exclude(id=product.id).exists():
+            slug = f"{base_slug}-{counter}"
+            counter += 1
+        product.slug = slug
+        product.save()

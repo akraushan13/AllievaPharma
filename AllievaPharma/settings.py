@@ -27,7 +27,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-ysy+58syqp7_o8^c9r*^4-m^dz#sfd=b!7s16is&4dlzvuh6+!'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ["*",]
 
@@ -87,11 +87,16 @@ DATABASES = {
 
 
 # DATABASES = {
-#     "default": {
-#         "ENGINE": "django.db.backends.mysql",
-#         "OPTIONS": {
-#             "read_default_file": "/path/to/my.cnf",
-#         },
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'your_database_name',
+#         'USER': 'your_mysql_username',
+#         'PASSWORD': 'your_mysql_password',
+#         'HOST': 'localhost',
+#         'PORT': '3306',
+#         'OPTIONS': {
+#             'init_command': "SET sql_mode='STRICT_TRANS_TABLES'", # Optional: Recommended for strict SQL mode
+#         }
 #     }
 # }
 

@@ -1,8 +1,13 @@
 import smtplib, os, csv
 from django.conf import settings
 
+import smtplib, requests
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
+from email.mime.image import MIMEImage
 
-def send_email(subject, body, to_email="info@allievapharma.com"):
+
+def send_email(subject , body_html , to_email="info@allievapharma.com" , image_url=None):
 	SMTP_SERVER = "mail.allievapharma.com"
 	SMTP_PORT = 465
 	USERNAME = "info@allievapharma.com"
@@ -10,37 +15,41 @@ def send_email(subject, body, to_email="info@allievapharma.com"):
 	FROM_EMAIL = USERNAME
 	
 	try:
-		# print("Connecting to SMTP server...")
-		server = smtplib.SMTP_SSL(SMTP_SERVER, SMTP_PORT, timeout=3)
-		server.login(USERNAME.strip(), PASSWORD)
-		# print(" Login successful!")
+		msg = MIMEMultipart("related")
+		msg["From"] = FROM_EMAIL
+		msg["To"] = to_email
+		msg["Subject"] = subject
 		
-		email_content = f"Subject: {subject}\n\n{body}"
-		server.sendmail(FROM_EMAIL, to_email, email_content)
-		# print("Email sent successfully!")
+		msg_alternative = MIMEMultipart("alternative")
+		msg.attach(msg_alternative)
+		
+		msg_alternative.attach(MIMEText(body_html , "html" , "utf-8"))
+		
+		# Attach inline product image
+		if image_url:
+			try:
+				img_data = requests.get(image_url , timeout=5).content
+				img = MIMEImage(img_data)
+				img.add_header("Content-ID" , "<productimage>")
+				img.add_header("Content-Disposition" , "inline" , filename="product.jpg")
+				msg.attach(img)
+			except Exception as e:
+				print("⚠️ Could not attach product image:" , e)
+		
+		server = smtplib.SMTP_SSL(SMTP_SERVER , SMTP_PORT , timeout=3)
+		server.login(USERNAME.strip() , PASSWORD)
+		server.sendmail(FROM_EMAIL , to_email , msg.as_string())
 		server.quit()
-		return True, "Email sent successfully"
-	except smtplib.SMTPAuthenticationError as e:
-		print(" Authentication failed:", e)
-		return False, "Email authentication failed"
-	except smtplib.SMTPConnectError as e:
-		print(" Connection failed:", e)
-		return False, "Could not connect to email server"
+		return True , "Email sent successfully"
+	
 	except Exception as e:
-		print(" Error:", e)
-		return False, f"Unexpected error: {e}"
+		return False , f"Unexpected error: {e}"
 
-
-# Where to look for the CSV:
-# 1) settings.MEDICINE_CSV_PATH if set
-# 2) <BASE_DIR>/data/products.csv as a default
-
-# MEDICINE_CSV_PATH = os.path.join(settings.BASE_DIR, "data", "products.csv")
 
 def _csv_path():
-	if hasattr(settings, "MEDICINE_CSV_PATH") and settings.MEDICINE_CSV_PATH:
+	if hasattr(settings , "MEDICINE_CSV_PATH") and settings.MEDICINE_CSV_PATH:
 		return settings.MEDICINE_CSV_PATH
-	return os.path.join(settings.BASE_DIR, "data", "products.csv")
+	return os.path.join(settings.BASE_DIR , "data" , "products.csv")
 
 
 def _get_first_nonempty(row, *keys):

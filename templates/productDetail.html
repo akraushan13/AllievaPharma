@@ -58,16 +58,28 @@
             </tbody>
           </table>
 
-          <!-- ENQUIRY button -->
-          <p>
+          <p class="modal-footer d-flex gap-2">
+            <!-- ENQUIRY Button -->
             <a href="#"
-               class="rounded-pill btn btn-sm height-auto px-4 py-3 btn-primary enquiry-btn"
-               data-bs-toggle="modal"
-               data-bs-target="#enquiryModal"
-               data-product="{{ product.name }} - {{ product.composition }}">
-              ENQUIRY!
+                class="rounded-pill buy-now btn btn-sm height-auto px-4 py-3 btn-primary enquiry-btn"
+                data-bs-toggle="modal"
+                data-bs-target="#enquiryModal"
+                data-product="{{ product.name }} - {{ product.composition }}"
+                data-slug="{{ product.slug }}">
+<!--                data-image="{{ product.image.url }}">-->
+            
+                ENQUIRY!
+              </a>
+
+              <!-- WhatsApp Button -->
+            <a href="https://wa.me/918700983467?text=Hello, I would like to enquire about {{ product.name }} - {{ product.composition }}. Here is the product link: {{ product_url }}"
+              target="_blank"
+              class="rounded-pill btn btn-success px-4 py-3">
+              <i class="fa fa-whatsapp"></i> Enquire via WhatsApp
             </a>
           </p>
+
+          
         </div>
         
         <div class="mt-5">
@@ -102,6 +114,8 @@
           <form method="POST" action="{% url 'send_enquiry' %}">
             {% csrf_token %}
             <input type="hidden" id="enquiry-product" name="product">
+            <input type="hidden" id="enquiry-slug" name="product_slug">
+<!--            <input type="hidden" id="enquiry-image-url" name="product_image">-->
 
             <div class="row mb-3">
               <div class="col">
@@ -118,6 +132,12 @@
               <label>Email <span style="color:red">*</span></label>
               <input type="email" name="email" class="form-control" required>
             </div>
+            
+            <div class="mb-3">
+            <label>Phone Number <span style="color:red">*</span></label>
+            <input type="tel" name="phone" class="form-control" required
+                   placeholder="e.g. +91 9667279510" pattern="[0-9+\-\s]{7,15}">
+          </div>
 
             <div class="mb-3">
               <label>Subject</label>
@@ -191,10 +211,36 @@
 </div>
 
 
+<!--<script>-->
+<!--  function changeImage(elem, src) {-->
+<!--    document.getElementById("mainImage").src = src;-->
+<!--    document.querySelectorAll(".thumbnail-container img").forEach(img => img.style.border = "2px solid transparent");-->
+<!--    elem.style.border = "2px solid #007bff";-->
+<!--  }-->
+
+<!--  // Fill enquiry modal with product details-->
+<!--  document.addEventListener('click', function (e) {-->
+<!--    const btn = e.target.closest('.enquiry-btn');-->
+<!--    if (!btn) return;-->
+
+<!--    const product = btn.getAttribute('data-product') || '';-->
+
+<!--    const titleEl   = document.getElementById('enquiryModalLabel');-->
+<!--    const subjectEl = document.getElementById('enquiry-subject');-->
+<!--    const hiddenEl  = document.getElementById('enquiry-product');-->
+
+<!--    if (titleEl)   titleEl.textContent   = 'Enquiry for: ' + product;-->
+<!--    if (subjectEl) subjectEl.value       = 'Enquiry about: ' + product;-->
+<!--    if (hiddenEl)  hiddenEl.value        = product;-->
+<!--  });-->
+<!--</script>-->
+
+
 <script>
   function changeImage(elem, src) {
     document.getElementById("mainImage").src = src;
-    document.querySelectorAll(".thumbnail-container img").forEach(img => img.style.border = "2px solid transparent");
+    document.querySelectorAll(".thumbnail-container img")
+      .forEach(img => img.style.border = "2px solid transparent");
     elem.style.border = "2px solid #007bff";
   }
 
@@ -204,14 +250,21 @@
     if (!btn) return;
 
     const product = btn.getAttribute('data-product') || '';
+    const slug    = btn.getAttribute('data-slug') || '';
+<!--    const image   = btn.getAttribute('data-image') || '';-->
 
+    // Update modal title and subject
     const titleEl   = document.getElementById('enquiryModalLabel');
     const subjectEl = document.getElementById('enquiry-subject');
     const hiddenEl  = document.getElementById('enquiry-product');
+    const slugEl    = document.getElementById('enquiry-slug');
+<!--    const imageEl   = document.getElementById('enquiry-image-url');-->
 
     if (titleEl)   titleEl.textContent   = 'Enquiry for: ' + product;
     if (subjectEl) subjectEl.value       = 'Enquiry about: ' + product;
     if (hiddenEl)  hiddenEl.value        = product;
+    if (slugEl)    slugEl.value          = slug;
+<!--    if (imageEl)   imageEl.value         = image;-->
   });
 </script>
 

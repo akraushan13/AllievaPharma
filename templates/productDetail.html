@@ -60,7 +60,7 @@
 
           <p class="modal-footer d-flex gap-2">
             <!-- ENQUIRY Button -->
-            <a href="#"
+              <a href="#"
                 class="rounded-pill buy-now btn btn-sm height-auto px-4 py-3 btn-primary enquiry-btn"
                 data-bs-toggle="modal"
                 data-bs-target="#enquiryModal"
@@ -70,6 +70,7 @@
             
                 ENQUIRY!
               </a>
+
 
               <!-- WhatsApp Button -->
             <a href="https://wa.me/918700983467?text=Hello, I would like to enquire about {{ product.name }} - {{ product.composition }}. Here is the product link: {{ product_url }}"
@@ -115,8 +116,19 @@
             {% csrf_token %}
             <input type="hidden" id="enquiry-product" name="product">
             <input type="hidden" id="enquiry-slug" name="product_slug">
+            <input type="hidden" id="enquiry-collab" name="collaboration_type">
 <!--            <input type="hidden" id="enquiry-image-url" name="product_image">-->
-
+<div class="mb-3 text-center">
+  <p><strong>Select Collaboration Type:</strong></p>
+  <button type="submit" class="btn btn-outline-primary me-2"
+          onclick="setCollaboration('domestic')">
+    Domestic Collaboration
+  </button>
+  <button type="submit" class="btn btn-outline-success"
+          onclick="setCollaboration('international')">
+    International Collaboration
+  </button>
+</div>
             <div class="row mb-3">
               <div class="col">
                 <label>First Name <span style="color:red">*</span></label>
@@ -236,13 +248,11 @@
 <!--</script>-->
 
 
+
+
+
 <script>
-  function changeImage(elem, src) {
-    document.getElementById("mainImage").src = src;
-    document.querySelectorAll(".thumbnail-container img")
-      .forEach(img => img.style.border = "2px solid transparent");
-    elem.style.border = "2px solid #007bff";
-  }
+
 
   // Fill enquiry modal with product details
   document.addEventListener('click', function (e) {
@@ -264,8 +274,25 @@
     if (subjectEl) subjectEl.value       = 'Enquiry about: ' + product;
     if (hiddenEl)  hiddenEl.value        = product;
     if (slugEl)    slugEl.value          = slug;
-<!--    if (imageEl)   imageEl.value         = image;-->
+
   });
+  
+  // Handle collaboration type selection
+  function setCollaboration(type) {
+    document.getElementById("enquiry-collab").value = type;
+
+    const product = document.getElementById("enquiry-product").value || "Product";
+    const titleEl = document.getElementById("enquiryModalLabel");
+
+    if (titleEl) {
+      if (type === "domestic") {
+        titleEl.textContent = "Domestic Collaboration Enquiry for: " + product;
+      } else if (type === "international") {
+        titleEl.textContent = "International Collaboration Enquiry for: " + product;
+      }
+    }
+  }
+  
 </script>
 
 

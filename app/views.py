@@ -113,7 +113,7 @@ def product_detail(request, product_slug):
 	images = product.images.all()
 	product_url = request.build_absolute_uri(product.get_absolute_url())
 	
-	return render(request, 'productDetail.html', {"product": product, "images": images, "product_url": product_url, })
+	return render(request, 'productDetail.html', {"product": product, "images": images, "product_url": product_url, 'hide_whatsapp': True, })
 
 
 def category_products(request, category_name):
@@ -183,6 +183,66 @@ def download_catalogue(request):
 	return FileResponse(open(file_path, 'rb'), as_attachment=False, filename='Products-LBL-All.pdf')
 
 
+# def send_enquiry(request):
+# 	if request.method == 'POST':
+# 		first_name = request.POST.get('first_name')
+# 		last_name = request.POST.get('last_name')
+# 		email = request.POST.get('email')
+# 		phone = request.POST.get('phone')
+# 		subject = request.POST.get('subject')
+# 		message = request.POST.get('message')
+# 		product = request.POST.get('product')
+# 		slug = request.POST.get('product_slug')
+# 		# image_url = request.POST.get('product_image')
+#
+# 		# Generate full product URL
+# 		product_url = request.build_absolute_uri(reverse("productDetail", args=[slug]))
+#
+# 		# Build HTML email body
+# 		full_message = f"""
+#         <html>
+#         <body style="font-family: Arial, sans-serif; line-height: 1.6;">
+#           <h2 style="color:#007bff;">📩 New Product Enquiry - Allieva Pharma</h2>
+#           <hr>
+#           <h3>🔹 Product Details</h3>
+#           <p><strong>{escape(product)}</strong></p>
+#           <p><a href="{product_url}" target="_blank">{product_url}</a></p>
+#
+#
+#           <h3>👤 Customer Details</h3>
+#           <p><strong>Name:</strong> {escape(first_name)} {escape(last_name)}<br>
+#              <strong>Email:</strong> {escape(email)}<br>
+#              <strong>Phone:</strong> {escape(phone)}</p>
+#
+#           <h3>📝 Enquiry</h3>
+#           <p><strong>Subject:</strong> {escape(subject)}<br>
+#              <strong>Message:</strong><br>{escape(message)}</p>
+#
+#           <hr>
+#           <p style="font-size:12px; color:#888;">This enquiry was sent from the Allieva Pharma website.</p>
+#         </body>
+#         </html>
+#         """
+#
+# 		success, response_msg = send_email(
+# 			subject=f"New Product Enquiry: {subject or product}",
+# 			body_html=full_message,
+# 			# image_url=image_url  # pass for inline image
+# 		)
+#
+# 		if success:
+# 			previous_page = request.META.get("HTTP_REFERER", reverse("products"))
+# 			return render(request, "thankyou.html", {
+# 				"message": "Your enquiry has been sent successfully!",
+# 				"previous_page": previous_page
+# 			})
+# 		else:
+# 			messages.error(request, response_msg)
+# 			return redirect("products")
+#
+# 	return redirect("products")
+
+
 def send_enquiry(request):
 	if request.method == 'POST':
 		first_name = request.POST.get('first_name')
@@ -193,10 +253,16 @@ def send_enquiry(request):
 		message = request.POST.get('message')
 		product = request.POST.get('product')
 		slug = request.POST.get('product_slug')
-		# image_url = request.POST.get('product_image')
+		collaboration_type = request.POST.get('collaboration_type')
 		
 		# Generate full product URL
-		product_url = request.build_absolute_uri(reverse("productDetail", args=[slug]))
+		if slug:
+			try:
+				product_url = request.build_absolute_uri(reverse("productDetail" , args=[slug]))
+			except Exception:
+				product_url = request.build_absolute_uri(reverse("products"))
+		else:
+			product_url = request.build_absolute_uri(reverse("products"))
 		
 		# Build HTML email body
 		full_message = f"""
@@ -207,7 +273,6 @@ def send_enquiry(request):
           <h3>🔹 Product Details</h3>
           <p><strong>{escape(product)}</strong></p>
           <p><a href="{product_url}" target="_blank">{product_url}</a></p>
-          
 
           <h3>👤 Customer Details</h3>
           <p><strong>Name:</strong> {escape(first_name)} {escape(last_name)}<br>
@@ -218,26 +283,34 @@ def send_enquiry(request):
           <p><strong>Subject:</strong> {escape(subject)}<br>
              <strong>Message:</strong><br>{escape(message)}</p>
 
+          <p><strong>Collaboration Type:</strong> {collaboration_type}</p>
+
           <hr>
           <p style="font-size:12px; color:#888;">This enquiry was sent from the Allieva Pharma website.</p>
         </body>
         </html>
         """
 		
-		success, response_msg = send_email(
-			subject=f"New Product Enquiry: {subject or product}",
-			body_html=full_message,
-			# image_url=image_url  # pass for inline image
+		# Choose recipient email based on collaboration type
+		if collaboration_type == "international":
+			recipient_email = "export@allievapharma.com"
+		else:
+			recipient_email = "info@allievapharma.com"
+		
+		success , response_msg = send_email(
+			subject=f"New Product Enquiry: {subject or product}" ,
+			body_html=full_message ,
+			to_email=recipient_email ,  # override based on selection
 		)
 		
 		if success:
-			previous_page = request.META.get("HTTP_REFERER", reverse("products"))
-			return render(request, "thankyou.html", {
-				"message": "Your enquiry has been sent successfully!",
+			previous_page = request.META.get("HTTP_REFERER" , reverse("products"))
+			return render(request , "thankyou.html" , {
+				"message": "Your enquiry has been sent successfully!" ,
 				"previous_page": previous_page
 			})
 		else:
-			messages.error(request, response_msg)
+			messages.error(request , response_msg)
 			return redirect("products")
 	
 	return redirect("products")

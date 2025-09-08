@@ -1,33 +1,272 @@
-<div class="row mt-2 mb-2">
-  <div class="col-md-12 text-center mb-5">
-    <div class="site-block-27">
-      <ul style="padding:0; margin:0; list-style:none; display:flex; justify-content:center; gap:8px;">
+{% extends "base.html" %}
+{% load static %}
+{% block title %}
+  {{product.slug}}
+{% endblock title %}
+{% block body %}
 
-        {% if page_obj.has_previous %}
-          <li>
-            <a href="?page={{ page_obj.previous_page_number }}" style="display:flex; align-items:center; justify-content:center; width:40px; height:40px; border-radius:50%; border:1px solid #ddd; text-decoration:none; color:#000; font-size:16px;">&lt;</a>
-          </li>
-        {% endif %}
 
-        {% for num in page_obj.paginator.page_range %}
-          {% if page_obj.number == num %}
-            <li>
-              <span style="display:flex; align-items:center; justify-content:center; width:40px; height:40px; border-radius:50%; border:1px solid #333; background:#333; color:#fff; font-size:16px;">{{ num }}</span>
-            </li>
-          {% else %}
-            <li>
-              <a href="?page={{ num }}" style="display:flex; align-items:center; justify-content:center; width:40px; height:40px; border-radius:50%; border:1px solid #ddd; text-decoration:none; color:#000; font-size:16px;">{{ num }}</a>
-            </li>
-          {% endif %}
-        {% endfor %}
+<div class="site-wrap">
 
-        {% if page_obj.has_next %}
-          <li>
-            <a href="?page={{ page_obj.next_page_number }}" style="display:flex; align-items:center; justify-content:center; width:40px; height:40px; border-radius:50%; border:1px solid #ddd; text-decoration:none; color:#000; font-size:16px;">&gt;</a>
-          </li>
-        {% endif %}
+  <section class="page-title mb-0" style="background-image: url('{% static 'images/background/1709723307145.jpeg' %}');
+              padding: 30px;
+              background-size: cover;
+              background-position: center;">
+    <div class="auto-container mt-2">
+      <h3 style="">Product Details</h3>
+        <ul class="bread-crumb clearfix mb-0">
+          <li><a href="{% url 'index' %}">Home</a></li>
+          <li><a href="{% url 'products' %}">All Products</a></li>
+          <li>Product Details</li>
+        </ul>
+    </div>
+  </section>
 
-      </ul>
+  <div class="site-section mt-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 mr-auto">
+          <!-- Main Image -->
+          <div class="border text-center">
+            <img id="mainImage"
+                 src="{{ images.0.images.url }}"
+                 alt="{{ product.name }}"
+                 style="width: 100%; height: 400px; object-fit: contain; border: 1px solid #ccc; border-radius: 8px; background-color: #f8f8f8;">
+          </div>
+
+          <!-- Thumbnail Images -->
+          <div class="d-flex gap-2 mt-3 thumbnail-container">
+            {% for image in images %}
+            <img src="{{ image.images.url }}"
+                 onclick="changeImage(this, '{{ image.images.url }}')"
+                 style="width: 60px; height: 60px; object-fit: cover; cursor: pointer; border: 2px solid {% if forloop.first %}#007bff{% else %}transparent{% endif %}; border-radius: 4px;"/>
+            {% endfor %}
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <h2 class="text-black">{{product.name}}</h2>
+          
+          <table class="table custom-table">
+            <tbody>
+              <tr><td>Brand Name</td><td class="bg-light">{{product.brand_name}}</td></tr>
+              <tr><td>Composition</td><td class="bg-light">{{product.composition}}</td></tr>
+              <tr><td>Manufacture By</td><td class="bg-light">{{product.manufacture}}</td></tr>
+              <tr><td>Form</td><td class="bg-light">{{product.form}}</td></tr>
+              <tr><td>Packing</td><td class="bg-light">{{product.packing}}</td></tr>
+              <tr><td>Country Of Origin</td><td class="bg-light">{{product.country_of_origin}}</td></tr>
+            </tbody>
+          </table>
+
+          <p class="modal-footer d-flex gap-2">
+            <!-- ENQUIRY Button -->
+            <a href="#"
+                class="rounded-pill buy-now btn btn-sm height-auto px-4 py-3 btn-primary enquiry-btn"
+                data-bs-toggle="modal"
+                data-bs-target="#enquiryModal"
+                data-product="{{ product.name }} - {{ product.composition }}"
+                data-slug="{{ product.slug }}">
+<!--                data-image="{{ product.image.url }}">-->
+            
+                ENQUIRY!
+              </a>
+
+              <!-- WhatsApp Button -->
+            <a href="https://wa.me/918700983467?text=Hello, I would like to enquire about {{ product.name }} - {{ product.composition }}. Here is the product link: {{ product_url }}"
+              target="_blank"
+              class="rounded-pill btn btn-success px-4 py-3">
+              <i class="fa fa-whatsapp"></i> Enquire via WhatsApp
+            </a>
+          </p>
+
+          
+        </div>
+        
+        <div class="mt-5">
+          <div class="col-md-12">
+            <h3 class="text-decoration-underline text-primary">Description</h3>
+             <table class="table custom-table mt-2">
+                <tbody>
+                  <tr><td class="fw-bold">Description</td><td>{{product.descriptions}}</td></tr>
+                  <tr><td class="fw-bold">Uses</td><td>{{product.uses}}</td></tr>
+                  <tr><td class="fw-bold">Side Effects</td><td>{{product.side_effects}}</td></tr>
+                  <tr><td class="fw-bold">Dosage</td><td>{{product.dosage}}</td></tr>
+                </tbody>
+              </table>
+          </div>
+        </div>
+        
+      </div>
     </div>
   </div>
+
+  <!-- Enquiry Modal -->
+  <div class="modal fade" id="enquiryModal" tabindex="-1" aria-labelledby="enquiryModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content">
+
+        <div class="modal-header">
+          <h5 class="modal-title" id="enquiryModalLabel">Get In Touch</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+
+        <div class="modal-body">
+          <form method="POST" action="{% url 'send_enquiry' %}">
+            {% csrf_token %}
+            <input type="hidden" id="enquiry-product" name="product">
+            <input type="hidden" id="enquiry-slug" name="product_slug">
+<!--            <input type="hidden" id="enquiry-image-url" name="product_image">-->
+
+            <div class="row mb-3">
+              <div class="col">
+                <label>First Name <span style="color:red">*</span></label>
+                <input type="text" name="first_name" class="form-control" required>
+              </div>
+              <div class="col">
+                <label>Last Name <span style="color:red">*</span></label>
+                <input type="text" name="last_name" class="form-control" required>
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label>Email <span style="color:red">*</span></label>
+              <input type="email" name="email" class="form-control" required>
+            </div>
+            
+            <div class="mb-3">
+            <label>Phone Number <span style="color:red">*</span></label>
+            <input type="tel" name="phone" class="form-control" required
+                   placeholder="e.g. +91 9667279510" pattern="[0-9+\-\s]{7,15}">
+          </div>
+
+            <div class="mb-3">
+              <label>Subject</label>
+              <input type="text" id="enquiry-subject" name="subject" class="form-control">
+            </div>
+
+            <div class="mb-3">
+              <label>Message</label>
+              <textarea name="message" class="form-control" rows="4"></textarea>
+            </div>
+
+            <button type="submit" class="btn w-100" style="background-color:#4ef2f2;color:#000;">
+              SEND MESSAGE
+            </button>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  
+  
+  <section class="info-section mt-mb-0">
+		<div class="auto-container">
+			<div class="inner-container">
+				<div class="clearfix">
+
+					<!-- Info Block -->
+					<div class="info-block col-lg-4 col-md-6 col-sm-12">
+						<div class="inner-box">
+							<div class="content">
+								<div class="icon flaticon-headphones-1"></div>
+								<br>
+								<strong>24/7 Clients Support</strong>
+								<div class="text"> </div>
+							</div>
+						</div>
+					</div>
+
+					<!-- Info Block -->
+					<div class="info-block col-lg-4 col-md-6 col-sm-12">
+						<div class="inner-box">
+							<div class="content">
+								<div class="icon flaticon-bulb"></div>
+								<br>
+								<strong>Best Price</strong>
+								<div class="text"> </div>
+							</div>
+						</div>
+					</div>
+
+					<!-- Info Block -->
+					<div class="info-block col-lg-4 col-md-6 col-sm-12">
+						<div class="inner-box">
+							<div class="content">
+								<div class="icon flaticon-security"></div>
+								<br>
+								<strong>Quality Assurance</strong>
+								<div class="text"> </div>
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</section>
+ 
+ 
+
 </div>
+
+
+<!--<script>-->
+<!--  function changeImage(elem, src) {-->
+<!--    document.getElementById("mainImage").src = src;-->
+<!--    document.querySelectorAll(".thumbnail-container img").forEach(img => img.style.border = "2px solid transparent");-->
+<!--    elem.style.border = "2px solid #007bff";-->
+<!--  }-->
+
+<!--  // Fill enquiry modal with product details-->
+<!--  document.addEventListener('click', function (e) {-->
+<!--    const btn = e.target.closest('.enquiry-btn');-->
+<!--    if (!btn) return;-->
+
+<!--    const product = btn.getAttribute('data-product') || '';-->
+
+<!--    const titleEl   = document.getElementById('enquiryModalLabel');-->
+<!--    const subjectEl = document.getElementById('enquiry-subject');-->
+<!--    const hiddenEl  = document.getElementById('enquiry-product');-->
+
+<!--    if (titleEl)   titleEl.textContent   = 'Enquiry for: ' + product;-->
+<!--    if (subjectEl) subjectEl.value       = 'Enquiry about: ' + product;-->
+<!--    if (hiddenEl)  hiddenEl.value        = product;-->
+<!--  });-->
+<!--</script>-->
+
+
+<script>
+  function changeImage(elem, src) {
+    document.getElementById("mainImage").src = src;
+    document.querySelectorAll(".thumbnail-container img")
+      .forEach(img => img.style.border = "2px solid transparent");
+    elem.style.border = "2px solid #007bff";
+  }
+
+  // Fill enquiry modal with product details
+  document.addEventListener('click', function (e) {
+    const btn = e.target.closest('.enquiry-btn');
+    if (!btn) return;
+
+    const product = btn.getAttribute('data-product') || '';
+    const slug    = btn.getAttribute('data-slug') || '';
+<!--    const image   = btn.getAttribute('data-image') || '';-->
+
+    // Update modal title and subject
+    const titleEl   = document.getElementById('enquiryModalLabel');
+    const subjectEl = document.getElementById('enquiry-subject');
+    const hiddenEl  = document.getElementById('enquiry-product');
+    const slugEl    = document.getElementById('enquiry-slug');
+<!--    const imageEl   = document.getElementById('enquiry-image-url');-->
+
+    if (titleEl)   titleEl.textContent   = 'Enquiry for: ' + product;
+    if (subjectEl) subjectEl.value       = 'Enquiry about: ' + product;
+    if (hiddenEl)  hiddenEl.value        = product;
+    if (slugEl)    slugEl.value          = slug;
+<!--    if (imageEl)   imageEl.value         = image;-->
+  });
+</script>
+
+
+{% endblock body %}

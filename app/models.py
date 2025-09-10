@@ -31,8 +31,8 @@ class Product(models.Model):
 	country_of_origin = models.CharField(max_length=50, default="India")
 	packing  = models.CharField(max_length=100, default="")
 
-	category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True, blank=True)
-	subcategory = models.ForeignKey(SubCategory, on_delete=models.SET_NULL, null=True, blank=True)
+	category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True, blank=True, related_name="products")
+	subcategory = models.ManyToManyField(SubCategory, null=True, blank=True, related_name="products")
 	
 	# price = models.DecimalField(max_digits=10, decimal_places=2)
 	descriptions = models.TextField()

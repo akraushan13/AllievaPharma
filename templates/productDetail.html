@@ -224,11 +224,11 @@
 
 
 <!--<script>-->
-<!--  function changeImage(elem, src) {-->
-<!--    document.getElementById("mainImage").src = src;-->
-<!--    document.querySelectorAll(".thumbnail-container img").forEach(img => img.style.border = "2px solid transparent");-->
-<!--    elem.style.border = "2px solid #007bff";-->
-<!--  }-->
+  function changeImage(elem, src) {
+    document.getElementById("mainImage").src = src;
+    document.querySelectorAll(".thumbnail-container img").forEach(img => img.style.border = "2px solid transparent");
+    elem.style.border = "2px solid #007bff";
+  }
 
 <!--  // Fill enquiry modal with product details-->
 <!--  document.addEventListener('click', function (e) {-->
@@ -253,6 +253,11 @@
 
 <script>
 
+    function changeImage(elem, src) {
+    document.getElementById("mainImage").src = src;
+    document.querySelectorAll(".thumbnail-container img").forEach(img => img.style.border = "2px solid transparent");
+    elem.style.border = "2px solid #007bff";
+  }
 
   // Fill enquiry modal with product details
   document.addEventListener('click', function (e) {

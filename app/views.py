@@ -133,7 +133,10 @@ def category_products(request, category_name):
 def subcategory_products(request, category_name, subcategory_name):
 	category = get_object_or_404(Category, name__iexact=category_name)
 	subcategory = get_object_or_404(SubCategory, name__iexact=subcategory_name, category=category)
-	products = Product.objects.filter(category=category, subcategory=subcategory).distinct().order_by('-id')
+	products = Product.objects.filter(
+		category=category,
+		subcategory=subcategory.id
+	).distinct().order_by('-id')
 	
 	paginator = Paginator(products, 12)
 	page_number = request.GET.get('page')

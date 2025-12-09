@@ -89,12 +89,27 @@ WSGI_APPLICATION = 'AllievaPharma.wsgi.application'
 # }
 
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'alliezwb_allieva',
+#         'USER': 'alliezwb_avinash',
+#         'PASSWORD': 'Allieva@2512@IT',
+#         'HOST': 'localhost',
+#         'PORT': '3306',
+#         'OPTIONS': {
+#             'init_command': "SET sql_mode='STRICT_TRANS_TABLES'", # Optional: Recommended for strict SQL mode
+#         }
+#     }
+# }
+
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'alliezwb_allieva',
-        'USER': 'alliezwb_avinash',
-        'PASSWORD': 'Allieva@2512@IT',
+        'NAME': 'allieva_demo',
+        'USER': 'root',
+        'PASSWORD': 'root',
         'HOST': 'localhost',
         'PORT': '3306',
         'OPTIONS': {
@@ -170,3 +185,20 @@ CKEDITOR_UPLOAD_PATH = "uploads/"
 
 # Optional: Allow all file types
 CKEDITOR_ALLOW_NONIMAGE_FILES = True
+
+
+
+CKEDITOR_CONFIGS = {
+    "default": {
+        "toolbar": "full",
+        "height": 200,
+        "width": "100%",
+        "toolbar_Custom": [
+            ["Bold", "Italic", "Underline"],
+            ["NumberedList", "BulletedList"],
+            ["Undo", "Redo"],
+            ["Link", "Unlink"],
+            ["RemoveFormat"],
+        ],
+    }
+}

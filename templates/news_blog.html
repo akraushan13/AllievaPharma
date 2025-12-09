@@ -37,7 +37,7 @@
                             <span style="background-color: #000254; color: white; padding: 5px 10px; border-radius: 4px; font-size: 12px; font-weight: 600; text-transform: uppercase;">{{news.category}}</span>
                             <p style="color: #777; font-size: 14px; margin-bottom: 10px;">{{news.date}}</p>
                             <h5 style="color: #1B00A0; font-weight: 600; margin-bottom: 15px;">{{news.title}}</h5>
-                            <p style="color: #666; margin-bottom: 20px;">{{news.short_description}}</p>
+                            <p style="color: #666; margin-bottom: 20px;">{{news.short_description|safe}}</p>
                             <a href="{% url 'news_detail' news.pk  %}" class="btn" style="background-color: #1B00A0; color: white; border: none; padding: 8px 20px; border-radius: 4px; font-weight: 500;">Read More</a>
                         </div>
                     </div>

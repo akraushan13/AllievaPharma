@@ -45,16 +45,16 @@
         </div>
 
         <div class="col-md-6">
-          <h2 class="text-black">{{product.name}}</h2>
+          <h2 class="text-black">{{product.name|safe}}</h2>
           
           <table class="table custom-table">
             <tbody>
-              <tr><td>Brand Name</td><td class="bg-light">{{product.brand_name}}</td></tr>
-              <tr><td>Composition</td><td class="bg-light">{{product.composition}}</td></tr>
-              <tr><td>Manufacture By</td><td class="bg-light">{{product.manufacture}}</td></tr>
-              <tr><td>Form</td><td class="bg-light">{{product.form}}</td></tr>
-              <tr><td>Packing</td><td class="bg-light">{{product.packing}}</td></tr>
-              <tr><td>Country Of Origin</td><td class="bg-light">{{product.country_of_origin}}</td></tr>
+              <tr><td>Brand Name</td><td class="bg-light">{{product.brand_name|safe}}</td></tr>
+              <tr><td>Composition</td><td class="bg-light">{{product.composition|safe}}</td></tr>
+              <tr><td>Manufacture By</td><td class="bg-light">{{product.manufacture|safe}}</td></tr>
+              <tr><td>Form</td><td class="bg-light">{{product.form|safe}}</td></tr>
+              <tr><td>Packing</td><td class="bg-light">{{product.packing|safe}}</td></tr>
+              <tr><td>Country Of Origin</td><td class="bg-light">{{product.country_of_origin|safe}}</td></tr>
             </tbody>
           </table>
 
@@ -73,7 +73,7 @@
 
 
               <!-- WhatsApp Button -->
-            <a href="https://wa.me/918700983467?text=Hello, I would like to enquire about {{ product.name }} - {{ product.composition }}. Here is the product link: {{ product_url }}"
+            <a href="https://wa.me/917011639113?text=Hello, I would like to enquire about {{ product.name|safe }} - {{ product.composition|safe }}. Here is the product link: {{ product_url }}"
               target="_blank"
               class="rounded-pill btn btn-success px-4 py-3">
               <i class="fa fa-whatsapp"></i> Enquire via WhatsApp
@@ -88,10 +88,10 @@
             <h3 class="text-decoration-underline text-primary">Description</h3>
              <table class="table custom-table mt-2">
                 <tbody>
-                  <tr><td class="fw-bold">Description</td><td>{{product.descriptions}}</td></tr>
-                  <tr><td class="fw-bold">Uses</td><td>{{product.uses}}</td></tr>
-                  <tr><td class="fw-bold">Side Effects</td><td>{{product.side_effects}}</td></tr>
-                  <tr><td class="fw-bold">Dosage</td><td>{{product.dosage}}</td></tr>
+                  <tr><td class="fw-bold">Description</td><td>{{product.descriptions|safe}}</td></tr>
+                  <tr><td class="fw-bold">Uses</td><td>{{product.uses|safe}}</td></tr>
+                  <tr><td class="fw-bold">Side Effects</td><td>{{product.side_effects|safe}}</td></tr>
+                  <tr><td class="fw-bold">Dosage</td><td>{{product.dosage|safe}}</td></tr>
                 </tbody>
               </table>
           </div>

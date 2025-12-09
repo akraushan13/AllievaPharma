@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils.text import slugify
 from django.urls import reverse
+from ckeditor.fields import RichTextField
 
 # Create your models here.
 
@@ -22,9 +23,9 @@ class SubCategory(models.Model):
 class Product(models.Model):
 	# id = models.AutoField(primary_key=True)
 	name = models.CharField(max_length=100)
-	slug = models.SlugField(unique=True, blank=True)
+	slug = models.SlugField(max_length=255, unique=True, blank=True)
 	image = models.ImageField(upload_to='images/', default='images/no-image.jpg')
-	brand_name = models.CharField(max_length=100)
+	brand_name = models.CharField(max_length=255)
 	composition = models.CharField(max_length=100)
 	manufacture  = models.CharField(max_length=100, default="Allieva Pharma Private Limited")
 	form  = models.CharField(max_length=100, default="")
@@ -35,10 +36,10 @@ class Product(models.Model):
 	subcategory = models.ManyToManyField(SubCategory, null=True, blank=True, related_name="products")
 	
 	# price = models.DecimalField(max_digits=10, decimal_places=2)
-	descriptions = models.TextField()
-	uses = models.TextField()
-	side_effects = models.TextField()
-	dosage = models.TextField()
+	descriptions = RichTextField(blank=True , null=True)
+	uses = RichTextField(blank=True , null=True)
+	side_effects = RichTextField(blank=True , null=True)
+	dosage = RichTextField(blank=True , null=True)
 	
 	def save(self, *args, **kwargs):
 		if not self.slug:
@@ -70,9 +71,9 @@ class JobPosting(models.Model):
 	location = models.CharField(max_length=100)
 	urgent = models.CharField(max_length=50)
 	posted_on = models.DateField(auto_now_add=True)
-	job_description = models.TextField()
-	responsibilities = models.TextField()
-	requirements = models.TextField()
+	job_description = RichTextField(blank=True , null=True)
+	responsibilities = RichTextField(blank=True , null=True)
+	requirements = RichTextField(blank=True , null=True)
 	tags = models.ManyToManyField(JobTag, related_name="jobs")
 	
 	def __str__(self):
@@ -103,8 +104,8 @@ class NewsEvent(models.Model):
 	author = models.CharField(max_length=255)
 	title = models.CharField(max_length=255)
 	category = models.ForeignKey(NewsEventCategory, on_delete=models.SET_NULL, null=True, blank=True)
-	short_description = models.TextField()
-	description = models.TextField()
+	short_description = RichTextField(blank=True , null=True)
+	description = RichTextField(blank=True , null=True)
 	image1 = models.ImageField(upload_to='news_images/', blank=True, null=True)
 	image2 = models.ImageField(upload_to='news_images/', blank=True, null=True)
 	date = models.DateField()

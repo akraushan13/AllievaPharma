@@ -35,14 +35,17 @@ ALLOWED_HOSTS = ["*",]
 # Application definition
 
 INSTALLED_APPS = [
-  'django.contrib.admin',
-  'django.contrib.auth',
-  'django.contrib.contenttypes',
-  'django.contrib.sessions',
-  'django.contrib.messages',
-  'django.contrib.staticfiles',
-  'app',
-  "widget_tweaks"
+    'django.contrib.admin' ,
+    'django.contrib.auth' ,
+    'django.contrib.contenttypes' ,
+    'django.contrib.sessions' ,
+    'django.contrib.messages' ,
+    'django.contrib.staticfiles' ,
+    
+    'app' ,
+    "widget_tweaks" ,
+    "ckeditor" ,
+    'ckeditor_uploader' ,
 ]
 
 MIDDLEWARE = [
@@ -78,27 +81,27 @@ WSGI_APPLICATION = 'AllievaPharma.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
-DATABASES = {
-  'default': {
-    'ENGINE': 'django.db.backends.sqlite3',
-    'NAME': BASE_DIR / 'db.sqlite3',
-  }
-}
-
-
 # DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.mysql',
-#         'NAME': 'your_database_name',
-#         'USER': 'your_mysql_username',
-#         'PASSWORD': 'your_mysql_password',
-#         'HOST': 'localhost',
-#         'PORT': '3306',
-#         'OPTIONS': {
-#             'init_command': "SET sql_mode='STRICT_TRANS_TABLES'", # Optional: Recommended for strict SQL mode
-#         }
-#     }
+#   'default': {
+#     'ENGINE': 'django.db.backends.sqlite3',
+#     'NAME': BASE_DIR / 'db.sqlite3',
+#   }
 # }
+
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'alliezwb_allieva',
+        'USER': 'alliezwb_avinash',
+        'PASSWORD': 'Allieva@2512@IT',
+        'HOST': 'localhost',
+        'PORT': '3306',
+        'OPTIONS': {
+            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'", # Optional: Recommended for strict SQL mode
+        }
+    }
+}
 
 
 # Password validation
@@ -159,3 +162,11 @@ EMAIL_USE_SSL = False
 EMAIL_HOST_USER = 'info@allievapharma.com'
 EMAIL_HOST_PASSWORD = 'Allieva@0908'
 DEFAULT_FROM_EMAIL = 'info@allievapharma.com'
+
+
+
+# CKEditor Upload Directory
+CKEDITOR_UPLOAD_PATH = "uploads/"
+
+# Optional: Allow all file types
+CKEDITOR_ALLOW_NONIMAGE_FILES = True

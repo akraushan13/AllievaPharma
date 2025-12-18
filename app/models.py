@@ -7,14 +7,31 @@ from ckeditor.fields import RichTextField
 
 class Category(models.Model):
 	name = models.CharField(max_length=100)
+	slug = models.SlugField(max_length=120, blank=True)
+	
+	def save(self , *args , **kwargs):
+		if not self.slug:
+			self.slug = slugify(self.name)
+		super().save(*args , **kwargs)
 	
 	def __str__(self):
 		return self.name
+	
 
 
 class SubCategory(models.Model):
 	category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='subcategories')
 	name = models.CharField(max_length=100)
+	
+	slug = models.SlugField(max_length=120 , blank=True)
+	
+	class Meta:
+		unique_together = ("category" , "slug")
+	
+	def save(self , *args , **kwargs):
+		if not self.slug:
+			self.slug = slugify(self.name)
+		super().save(*args , **kwargs)
 	
 	def __str__(self):
 		return f"{self.category.name} > {self.name}"

@@ -116,37 +116,56 @@ def product_detail(request, product_slug):
 	return render(request, 'productDetail.html', {"product": product, "images": images, "product_url": product_url, 'hide_whatsapp': True, })
 
 
-def category_products(request, category_name):
-	category = get_object_or_404(Category, name__iexact=category_name)
-	products = Product.objects.filter(category=category).distinct().order_by('-id')
+
+def category_products(request , category_slug):
+	print("CATEGORY SLUG HIT:" , category_slug)
+	category = get_object_or_404(Category , slug=category_slug)
 	
-	paginator = Paginator(products, 12)
-	page_number = request.GET.get('page')
-	page_obj = paginator.get_page(page_number)
 	
-	return render(request, 'category_products.html', {
-		"category": category,
-		"page_obj": page_obj
+	products = (
+		Product.objects
+		.filter(category=category)
+		.select_related("category")
+		.prefetch_related("subcategory")
+		.order_by("-id")
+	)
+	
+	paginator = Paginator(products , 12)
+	page_obj = paginator.get_page(request.GET.get("page"))
+	
+	return render(request , "category_products.html" , {
+		"category": category ,
+		"page_obj": page_obj ,
 	})
 
 
-def subcategory_products(request, category_name, subcategory_name):
-	category = get_object_or_404(Category, name__iexact=category_name)
-	subcategory = get_object_or_404(SubCategory, name__iexact=subcategory_name, category=category)
-	products = Product.objects.filter(
-		category=category,
-		subcategory=subcategory.id
-	).distinct().order_by('-id')
+def subcategory_products(request , category_slug , subcategory_slug):
+	print("SUBCATEGORY SLUG HIT:" , category_slug, subcategory_slug)
+	category = get_object_or_404(Category , slug=category_slug)
+	subcategory = get_object_or_404(
+		SubCategory ,
+		category=category ,
+		slug=subcategory_slug
+	)
 	
-	paginator = Paginator(products, 12)
-	page_number = request.GET.get('page')
-	page_obj = paginator.get_page(page_number)
+	products = (
+		Product.objects
+		.filter(category=category , subcategory=subcategory)
+		.select_related("category")
+		.prefetch_related("subcategory")
+		.distinct()
+		.order_by("-id")
+	)
 	
-	return render(request, 'subcategory_products.html', {
-		"category": category,
-		"subcategory": subcategory,
-		"page_obj": page_obj
+	paginator = Paginator(products , 12)
+	page_obj = paginator.get_page(request.GET.get("page"))
+	
+	return render(request , "subcategory_products.html" , {
+		"category": category ,
+		"subcategory": subcategory ,
+		"page_obj": page_obj ,
 	})
+
 
 
 def search_products(request):
@@ -184,66 +203,6 @@ def download_catalogue(request):
 	
 	# FileResponse streams the file without loading it entirely into memory
 	return FileResponse(open(file_path, 'rb'), as_attachment=False, filename='Products-LBL-All.pdf')
-
-
-# def send_enquiry(request):
-# 	if request.method == 'POST':
-# 		first_name = request.POST.get('first_name')
-# 		last_name = request.POST.get('last_name')
-# 		email = request.POST.get('email')
-# 		phone = request.POST.get('phone')
-# 		subject = request.POST.get('subject')
-# 		message = request.POST.get('message')
-# 		product = request.POST.get('product')
-# 		slug = request.POST.get('product_slug')
-# 		# image_url = request.POST.get('product_image')
-#
-# 		# Generate full product URL
-# 		product_url = request.build_absolute_uri(reverse("productDetail", args=[slug]))
-#
-# 		# Build HTML email body
-# 		full_message = f"""
-#         <html>
-#         <body style="font-family: Arial, sans-serif; line-height: 1.6;">
-#           <h2 style="color:#007bff;">📩 New Product Enquiry - Allieva Pharma</h2>
-#           <hr>
-#           <h3>🔹 Product Details</h3>
-#           <p><strong>{escape(product)}</strong></p>
-#           <p><a href="{product_url}" target="_blank">{product_url}</a></p>
-#
-#
-#           <h3>👤 Customer Details</h3>
-#           <p><strong>Name:</strong> {escape(first_name)} {escape(last_name)}<br>
-#              <strong>Email:</strong> {escape(email)}<br>
-#              <strong>Phone:</strong> {escape(phone)}</p>
-#
-#           <h3>📝 Enquiry</h3>
-#           <p><strong>Subject:</strong> {escape(subject)}<br>
-#              <strong>Message:</strong><br>{escape(message)}</p>
-#
-#           <hr>
-#           <p style="font-size:12px; color:#888;">This enquiry was sent from the Allieva Pharma website.</p>
-#         </body>
-#         </html>
-#         """
-#
-# 		success, response_msg = send_email(
-# 			subject=f"New Product Enquiry: {subject or product}",
-# 			body_html=full_message,
-# 			# image_url=image_url  # pass for inline image
-# 		)
-#
-# 		if success:
-# 			previous_page = request.META.get("HTTP_REFERER", reverse("products"))
-# 			return render(request, "thankyou.html", {
-# 				"message": "Your enquiry has been sent successfully!",
-# 				"previous_page": previous_page
-# 			})
-# 		else:
-# 			messages.error(request, response_msg)
-# 			return redirect("products")
-#
-# 	return redirect("products")
 
 
 def send_enquiry(request):

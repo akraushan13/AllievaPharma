@@ -3,561 +3,577 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>   {%block title %}  {% endblock title %} | ALLIEVA PHARMA PVT LTD  </title>
-    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    <link rel="stylesheet" href="{% static 'css/responsive.css' %}">
-    <link rel="stylesheet" href="{% static 'css/my.css' %}">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title> {%block title %} {% endblock title %} | ALLIEVA PHARMA PVT LTD </title>
+  <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <link rel="stylesheet" href="{% static 'css/responsive.css' %}">
+  <link rel="stylesheet" href="{% static 'css/my.css' %}">
   
-
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   
-    <link href="https://fonts.googleapis.com/css?family=Rubik:400,700|Crimson+Text:400,400i" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Rubik:400,700|Crimson+Text:400,400i" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@100;200;300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
   
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-
-    
-
-    <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon">
-    <link rel="icon" href="images/favicon.png" type="image/x-icon">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-    
+  
+  
+  <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon">
+  <link rel="icon" href="images/favicon.png" type="image/x-icon">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+  
   {% if not hide_whatsapp %}
-      <a href="https://api.whatsapp.com/send?phone=+917011639113&text=I have a query !!" class="float" target="_blank">
-        <i class="fa fa-whatsapp my-float"></i>
-      </a>
+  <a href="https://api.whatsapp.com/send?phone=+917011639113&text=I have a query !!" class="float" target="_blank">
+    <i class="fa fa-whatsapp my-float"></i>
+  </a>
   {% endif %}
   
-    <!-- Responsive -->
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
-  
+  <!-- Responsive -->
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
 
 
 </head>
 
 <body>
 
-    <!-- Main Header / Header Style Two -->
-    <header class="main-header header-style-two">
-
-        <!-- Header Upper -->
-        <div class="header-upper">
-            <div class="auto-container">
-                <div class="clearfix">
-                    <div class="pull-left logo-box">
-                        <br>
-                        <div class="logo"><a href="{% url 'index' %}"><img
-                                    src="{% static 'images/allieva-logo-dark.png' %}" alt="Allieva Logo"
-                                    title="Allieva"></a></div>
-                    </div>
-                    <div class="pull-right upper-right clearfix">
-                        <!--Info Box-->
-                        <div class="upper-column info-box">
-                            <div class="icon-box"><span class="flaticon-customer-support-1"></span></div>
-                            <ul>
-                                <li>24/7 <br> Customer Service</li>
-                            </ul>
-                        </div>
-                        <!--Info Box-->
-                        <div class="upper-column info-box">
-                            <div class="icon-box"><span class="flaticon-checked"></span></div>
-                            <ul>
-                                <li>ISO 9001 <br> Certification Company</li>
-                            </ul>
-                        </div>
-                        <!--Info Box-->
-                        <div class="upper-column info-box">
-                            <div class="icon-box"><span class="flaticon-checked"></span></div>
-                            <ul>
-                                <li>WHO-GMP<br>Certified Company</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
+<!-- Main Header / Header Style Two -->
+<header class="main-header header-style-two">
+  
+  <!-- Header Upper -->
+  <div class="header-upper">
+    <div class="auto-container">
+      <div class="clearfix">
+        <div class="pull-left logo-box">
+          <br>
+          <div class="logo"><a href="{% url 'index' %}"><img
+                  src="{% static 'images/allieva-logo-dark.png' %}" alt="Allieva Logo"
+                  title="Allieva"></a></div>
+        </div>
+        <div class="pull-right upper-right clearfix">
+          <!--Info Box-->
+          <div class="upper-column info-box">
+            <div class="icon-box"><span class="flaticon-customer-support-1"></span></div>
+            <ul>
+              <li>24/7 <br> Customer Service</li>
+            </ul>
+          </div>
+          <!--Info Box-->
+          <div class="upper-column info-box">
+            <div class="icon-box"><span class="flaticon-checked"></span></div>
+            <ul>
+              <li>ISO 9001 <br> Certification Company</li>
+            </ul>
+          </div>
+          <!--Info Box-->
+          <div class="upper-column info-box">
+            <div class="icon-box"><span class="flaticon-checked"></span></div>
+            <ul>
+              <li>WHO-GMP<br>Certified Company</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- End Header Upper -->
+    <!-- Header lower -->
+    <div class="header-lower">
+      <div class="auto-container">
+        <div class="inner-container clearfix">
+          <div class="nav-outer">
+            <!-- Mobile Navigation Toggler -->
+            <div class="mobile-nav-toggler">
+              <span class="icon flaticon-menu-3"></span>
             </div>
-
-            <!-- End Header Upper -->
-            <!-- Header lower -->
-            <div class="header-lower">
-                <div class="auto-container">
-                    <div class="inner-container clearfix">
-                        <div class="nav-outer">
-                            <!-- Mobile Navigation Toggler -->
-                            <div class="mobile-nav-toggler">
-                                <span class="icon flaticon-menu-3"></span>
-                            </div>
-                            <!-- Main Menu -->
-                            <nav class="main-menu navbar-expand-md">
-                                <div class="navbar-header">
-                                    <!-- Toggle Button -->
-                                    <button class="navbar-toggler" type="button" data-toggle="collapse"
-                                        data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                                        aria-expanded="false" aria-label="Toggle navigation">
-                                        <span class="icon-bar"></span>
-                                        <span class="icon-bar"></span>
-                                        <span class="icon-bar"></span>
-                                    </button>
-                                </div>
-                                <div class="navbar-collapse collapse clearfix" id="navbarSupportedContent">
-                                    <ul class="navigation clearfix">
-                                        <li class="navigation clearfix"><a href="{% url 'index' %}">Home</a></li>
-                                        <li class="dropdown">
-                                            <a href="{% url 'about_us' %}">About us</a>
-                                            <ul>
-                                                <li><a href="{% url 'about_us' %}">About us</a></li>
-                                                <li><a href="{% url 'jitender_gupta' %}">From The Desk</a></li>
-                                                <li><a href="{% url 'leadership' %}">Team</a></li>
-                                            </ul>
-                                        </li>
-                                        <li class="dropdown"><a href="{% url 'products' %}">Our Products</a>
-
-                                            <ul>
-                                                <li class="dropdown"><a
-                                                        href="{% url 'category_products' 'oncology' %}">ONCOLOGY</a>
-                                                    <ul>
-                                                        <li><a
-                                                                href="{% url 'subcategory_products' 'oncology' 'breast-cancer' %}">Breast Cancer</a>
-                                                        </li>
-                                                        <li><a
-                                                                href="{% url 'subcategory_products' 'oncology' 'Prostate-Cancer' %}">Prostate Cancer</a>
-                                                        </li>
-                                                    </ul>
-                                                </li>
-                                                <li class="dropdown"><a
-                                                        href="{% url 'category_products' 'hepatology' %}">HEPATOLOGY</a>
-                                                    <ul>
-                                                        <li><a
-                                                                href="{% url 'subcategory_products' 'hepatology' 'hep-b' %}">HEP-B</a>
-                                                        </li>
-                                                        <li><a
-                                                                href="{% url 'subcategory_products' 'hepatology' 'hep-c' %}">HEP-C</a>
-                                                        </li>
-                                                    </ul>
-                                                </li>
-                                                <li><a href="{% url 'products' %}">All Products</a></li>
-                                            </ul>
-                                        </li>
-                                        <li><a href="{% url 'career' %}">Career</a></li>
-                                        <li class=""><a href="{% url 'news_event' %}">News & Blog</a></li>
-                                        <li><a href="{% url 'contact' %}">Contact</a></li>
-                                        <!-- Search Box -->
-                              <li class="navigation clearfix" style="list-style: none; margin-left: 15px;">
-                              <!-- Search Toggle Icon -->
-                                <button id="search-toggle" aria-label="Toggle search box" style="background: none; border: none; cursor: pointer;">
-                                  <i class="fa fa-search" style="font-size: 18px; color: #fff;"></i>
-                                </button>
-                                <!-- Search Popup Box -->
-                                <div id="search-popup" style="display: none; position: absolute; top: 30px; right: 0; background: white; padding: 10px; border: 1px solid #ddd; border-radius: 6px; box-shadow: 0 0 10px rgba(0,0,0,0.1); z-index: 999;">
-                                  <form id="search-form" action="{% url 'search_products' %}" method="get" style="display: flex; gap: 10px;">
-                                    <input type="search" id="search-input" placeholder="Search products..." style="padding: 5px 10px; border: 1px solid #ccc; border-radius: 4px; width: 200px;">
-                                    <button type="submit" id="search-btn" style="background-color: #00008B; color: white; border: none; padding: 5px 12px; border-radius: 4px;">Search</button>
-                                  </form>
-                                </div>
-                              </li>
-                              <!-- End Search Box -->
-                                    </ul>
-                                </div>
-                            </nav>
-                            <!-- Main Menu End-->
-                            <div class="outer-box clearfix">
-                                <!-- Btn Box -->
-                                <div class="btn-box">
-                                    <a href="{% url 'download_catalogue' %}" target="_blank"
-                                        class="theme-btn btn-style-two clearfix">
+            <!-- Main Menu -->
+            <nav class="main-menu navbar-expand-md">
+              <div class="navbar-header">
+                <!-- Toggle Button -->
+                <button class="navbar-toggler" type="button" data-toggle="collapse"
+                        data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                </button>
+              </div>
+              <div class="navbar-collapse collapse clearfix" id="navbarSupportedContent">
+                <ul class="navigation clearfix">
+                  <li class="navigation clearfix"><a href="{% url 'index' %}">Home</a></li>
+                  <li class="dropdown">
+                    <a href="{% url 'about_us' %}">About us</a>
+                    <ul>
+                      <li><a href="{% url 'about_us' %}">About us</a></li>
+                      <li><a href="{% url 'jitender_gupta' %}">From The Desk</a></li>
+                      <li><a href="{% url 'leadership' %}">Team</a></li>
+                    </ul>
+                  </li>
+                  <li class="dropdown">
+                    <a href="{% url 'products' %}">Our Products</a>
+                    <ul>
+                      {% for category in menu_categories %}
+                      <li class="dropdown">
+                        <a href="{% url 'category_products' category.slug %}">
+                          {{ category.name|upper }}
+                        </a>
+                        
+                        {% if category.subcategories.all %}
+                        <ul>
+                          {% for sub in category.subcategories.all %}
+                          <li>
+                            <a href="{% url 'subcategory_products' category.slug sub.slug %}">
+                              {{ sub.name }}
+                            </a>
+                          </li>
+                          {% endfor %}
+                        </ul>
+                        {% endif %}
+                      </li>
+                      {% endfor %}
+                      
+                      <li>
+                        <a href="{% url 'products' %}">All Products</a>
+                      </li>
+                    </ul>
+                  </li>
+                  
+                  
+                  <li><a href="{% url 'career' %}">Career</a></li>
+                  <li class=""><a href="{% url 'news_event' %}">News & Blog</a></li>
+                  <li><a href="{% url 'contact' %}">Contact</a></li>
+                  <!-- Search Box -->
+                  <li class="navigation clearfix" style="list-style: none; margin-left: 15px;">
+                    <!-- Search Toggle Icon -->
+                    <button id="search-toggle" aria-label="Toggle search box"
+                            style="background: none; border: none; cursor: pointer;">
+                      <i class="fa fa-search" style="font-size: 18px; color: #fff;"></i>
+                    </button>
+                    <!-- Search Popup Box -->
+                    <div id="search-popup"
+                         style="display: none; position: absolute; top: 30px; right: 0; background: white; padding: 10px; border: 1px solid #ddd; border-radius: 6px; box-shadow: 0 0 10px rgba(0,0,0,0.1); z-index: 999;">
+                      <form id="search-form" action="{% url 'search_products' %}" method="get"
+                            style="display: flex; gap: 10px;">
+                        <input type="search" id="search-input" placeholder="Search products..."
+                               style="padding: 5px 10px; border: 1px solid #ccc; border-radius: 4px; width: 200px;">
+                        <button type="submit" id="search-btn"
+                                style="background-color: #00008B; color: white; border: none; padding: 5px 12px; border-radius: 4px;">
+                          Search
+                        </button>
+                      </form>
+                    </div>
+                  </li>
+                  <!-- End Search Box -->
+                </ul>
+              </div>
+            </nav>
+            <!-- Main Menu End-->
+            <div class="outer-box clearfix">
+              <!-- Btn Box -->
+              <div class="btn-box">
+                <a href="{% url 'download_catalogue' %}" target="_blank"
+                   class="theme-btn btn-style-two clearfix">
                                         <span class="btn-wrap">
                                             <span class="text-one">OUR CATALOGUE</span>
                                             <span class="text-two">OUR CATALOGUE</span>
                                         </span>
-                                        <span class="plus flaticon-plus"></span>
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="mobile-nav-toggler">
-                                <span class="icon flaticon-menu-3"></span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                  <span class="plus flaticon-plus"></span>
+                </a>
+              </div>
             </div>
-            <!--End Header lower-->
-            <!-- Sticky Header  -->
-            <div class="sticky-header">
-                <div class="auto-container clearfix newsearch-s">
-                   <!-- Search Box -->
-                              <li class="navigation clearfix newsearch-bar" style="list-style: none; margin-left: 15px;">
-                              <!-- Search Toggle Icon -->
-                                <button id="search-toggle1" aria-label="Toggle search box" style="background: none; border: none; cursor: pointer;">
-                                  <i class="fa fa-search" style="font-size: 18px;"></i>
-                                </button>
-                                
-                                
-                                <!-- Search Popup Box -->
-                                <div id="search-popup1" style="display: none; position: absolute; top: 30px; right: 0; background: white; padding: 10px; border: 1px solid #ddd; border-radius: 6px; box-shadow: 0 0 10px rgba(0,0,0,0.1); z-index: 999;">
-                                  <form id="search-form1" action="{% url 'search_products' %}" method="get" style="display: flex; gap: 10px;">
-                                    <input type="search" id="search-input1" placeholder="Search products..." style="padding: 5px 10px; border: 1px solid #ccc; border-radius: 4px; width: 200px;">
-                                    <button type="submit" id="search-btn1" style="background-color: #00008B; color: white; border: none; padding: 5px 12px; border-radius: 4px;">Search</button>
-                                  </form>
-                                </div>
-                              </li>
-                              <!-- End Search Box -->
-                    <!--Logo-->
-                    <div class="logo pull-left pull-left-new">
-                        <a href="/" title="">
-                            <img src="{% static 'images/allieva-logo-dark.png' %}" alt="Allieva Logo"
-                                title="Allieva Pharma">
-                        </a>
-                    </div>
-                    <!--Right Col-->
-                    <div class="pull-right">
-                        <!-- Main Menu -->
-                        <nav class="main-menu">
-                            <!--Keep This Empty / Menu will come through Javascript-->
-         
-                        </nav>
-                        <!-- Main Menu End-->
-
-                        <!-- Mobile Navigation Toggler -->
-                        <div class="mobile-nav-toggler"><span class="icon flaticon-menu-3"></span></div>
-                    </div>
-                </div>
+            <div class="mobile-nav-toggler">
+              <span class="icon flaticon-menu-3"></span>
             </div>
-            <!-- End Sticky Menu -->
-            <!-- Mobile Menu  -->
-            <div class="mobile-menu">
-                <div class="menu-backdrop"></div>
-                <div class="close-btn">
-                    <span class="icon fa fa-close"></span>
-                </div>
-
-                <nav class="menu-box">
-                    <div class="nav-logo">
-                        <a href="/"><img src="{% static 'images/allieva-logo-dark.png' %}" alt="Allieva Logo"
-                                title="Allieva Pharma"></a>
-                    </div>
-                            <!-- Search Box -->
-                  
-                              <!-- Search Popup Box -->
-<div id="search-popup2" style="position: absolute; top: 56px; right: 0; background: white; padding: 10px; border: 1px solid #ddd; border-radius: 6px; box-shadow: 0 0 10px rgba(0,0,0,0.1); z-index: 999;">
-  <form id="search-form2" action="{% url 'search_products' %}" method="get" style="display: flex; gap: 10px;">
-    <input type="search" name="q" id="search-input2" placeholder="Search products..."
-           style="padding: 5px 10px; border: 1px solid #ccc; border-radius: 4px; width: 200px;">
-    <button type="submit" id="search-btn2"
-            style="background-color: #00008B; color: white; border: none; padding: 5px 12px; border-radius: 4px;">
-      Search
-    </button>
-  </form>
-</div>
-                    
-                              <!-- End Search Box -->
-                  
-                    <div class="menu-outer">
-                        <!--Here Menu Will Come Automatically Via Javascript / Same Menu as in Header-->
-                    </div>
-
-
-
-                </nav>
-            </div>
+          </div>
         </div>
-        <!-- End Mobile Menu -->
-    </header>
-    <!-- End Main Header -->
-
+      </div>
+    </div>
+    <!--End Header lower-->
+    <!-- Sticky Header  -->
+    <div class="sticky-header">
+      <div class="auto-container clearfix newsearch-s">
+        <!-- Search Box -->
+        <li class="navigation clearfix newsearch-bar" style="list-style: none; margin-left: 15px;">
+          <!-- Search Toggle Icon -->
+          <button id="search-toggle1" aria-label="Toggle search box"
+                  style="background: none; border: none; cursor: pointer;">
+            <i class="fa fa-search" style="font-size: 18px;"></i>
+          </button>
+          
+          
+          <!-- Search Popup Box -->
+          <div id="search-popup1"
+               style="display: none; position: absolute; top: 30px; right: 0; background: white; padding: 10px; border: 1px solid #ddd; border-radius: 6px; box-shadow: 0 0 10px rgba(0,0,0,0.1); z-index: 999;">
+            <form id="search-form1" action="{% url 'search_products' %}" method="get" style="display: flex; gap: 10px;">
+              <input type="search" id="search-input1" placeholder="Search products..."
+                     style="padding: 5px 10px; border: 1px solid #ccc; border-radius: 4px; width: 200px;">
+              <button type="submit" id="search-btn1"
+                      style="background-color: #00008B; color: white; border: none; padding: 5px 12px; border-radius: 4px;">
+                Search
+              </button>
+            </form>
+          </div>
+        </li>
+        <!-- End Search Box -->
+        <!--Logo-->
+        <div class="logo pull-left pull-left-new">
+          <a href="/" title="">
+            <img src="{% static 'images/allieva-logo-dark.png' %}" alt="Allieva Logo"
+                 title="Allieva Pharma">
+          </a>
+        </div>
+        <!--Right Col-->
+        <div class="pull-right">
+          <!-- Main Menu -->
+          <nav class="main-menu">
+            <!--Keep This Empty / Menu will come through Javascript-->
+          
+          </nav>
+          <!-- Main Menu End-->
+          
+          <!-- Mobile Navigation Toggler -->
+          <div class="mobile-nav-toggler"><span class="icon flaticon-menu-3"></span></div>
+        </div>
+      </div>
+    </div>
+    <!-- End Sticky Menu -->
+    <!-- Mobile Menu  -->
+    <div class="mobile-menu">
+      <div class="menu-backdrop"></div>
+      <div class="close-btn">
+        <span class="icon fa fa-close"></span>
+      </div>
+      
+      <nav class="menu-box">
+        <div class="nav-logo">
+          <a href="/"><img src="{% static 'images/allieva-logo-dark.png' %}" alt="Allieva Logo"
+                           title="Allieva Pharma"></a>
+        </div>
+        <!-- Search Box -->
         
-        {% block body %}
-       
-        {% endblock body %}
+        <!-- Search Popup Box -->
+        <div id="search-popup2"
+             style="position: absolute; top: 56px; right: 0; background: white; padding: 10px; border: 1px solid #ddd; border-radius: 6px; box-shadow: 0 0 10px rgba(0,0,0,0.1); z-index: 999;">
+          <form id="search-form2" action="{% url 'search_products' %}" method="get" style="display: flex; gap: 10px;">
+            <input type="search" name="q" id="search-input2" placeholder="Search products..."
+                   style="padding: 5px 10px; border: 1px solid #ccc; border-radius: 4px; width: 200px;">
+            <button type="submit" id="search-btn2"
+                    style="background-color: #00008B; color: white; border: none; padding: 5px 12px; border-radius: 4px;">
+              Search
+            </button>
+          </form>
+        </div>
+        
+        <!-- End Search Box -->
+        
+        <div class="menu-outer">
+          <!--Here Menu Will Come Automatically Via Javascript / Same Menu as in Header-->
+        </div>
+      
+      
+      </nav>
+    </div>
+  </div>
+  <!-- End Mobile Menu -->
+</header>
+<!-- End Main Header -->
 
-    <!-- Footer Style Two -->
-    <footer class="footer-style-two">
-        <div class="pattern-layer" style="background-image: url('{% static 'images/background/pattern-23.png' %}')">
-        </div>
-        <div class="pattern-layer-two" style="background-image: url('{% static 'images/background/pattern-24.png' %}')">
-        </div>
-        <div class="auto-container">
-            <!-- Widgets Section -->
-            <div class="widgets-section">
-                <div class="row clearfix">
-                    <!-- Big Column -->
-                    <div class="big-column col-lg-6 col-md-12 col-sm-12">
-                        <div class="row clearfix">
-                            <!-- Footer Column -->
-                            <div class="footer-column col-lg-6 col-md-6 col-sm-12">
-                                <div class="footer-widget logo-widget">
-                                    <div class="logo">
-                                        <a href="#"><img src="{% static 'images/allieva-light-dark.png' %}"
-                                                alt="Allieva Logo"></a>
-                                    </div>
-                                    <div class="text">Allieva Pharma Private Limited was founded in 2016 with goal to
-                                        deliver high standards medicines at affordable price.</div>
-                                    <ul class="social-box">
-                                        <li><a href="https://www.facebook.com/allievapharmaprivatelimited"
-                                                class="fa fa-facebook"></a></li>
-                                        <li><a href="https://twitter.com/AllievapharmaIt" class="fa fa-twitter"></a>
-                                        </li>
-                                        <li><a href="https://www.instagram.com/allieva_pharma/"
-                                                class="fa fa-instagram"></a></li>
-                                        <li><a href="https://www.linkedin.com/company/allieva-pharma"
-                                                class="fa fa-linkedin"></a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <!-- Footer Column -->
-                            <div class="footer-column col-lg-6 col-md-6 col-sm-12">
-                                <div class="footer-widget news-widget">
-                                    <h5>Check Authencity</h5>
-                                    <div class="btn-box">
-                                        <a href="{% url 'medicine_verification' %}"
-                                            class="theme-btn btn-style-two clearfix">
+
+{% block body %}
+
+{% endblock body %}
+
+<!-- Footer Style Two -->
+<footer class="footer-style-two">
+  <div class="pattern-layer" style="background-image: url('{% static 'images/background/pattern-23.png' %}')">
+  </div>
+  <div class="pattern-layer-two" style="background-image: url('{% static 'images/background/pattern-24.png' %}')">
+  </div>
+  <div class="auto-container">
+    <!-- Widgets Section -->
+    <div class="widgets-section">
+      <div class="row clearfix">
+        <!-- Big Column -->
+        <div class="big-column col-lg-6 col-md-12 col-sm-12">
+          <div class="row clearfix">
+            <!-- Footer Column -->
+            <div class="footer-column col-lg-6 col-md-6 col-sm-12">
+              <div class="footer-widget logo-widget">
+                <div class="logo">
+                  <a href="#"><img src="{% static 'images/allieva-light-dark.png' %}"
+                                   alt="Allieva Logo"></a>
+                </div>
+                <div class="text">Allieva Pharma Private Limited was founded in 2016 with goal to
+                  deliver high standards medicines at affordable price.
+                </div>
+                <ul class="social-box">
+                  <li><a href="https://www.facebook.com/allievapharmaprivatelimited"
+                         class="fa fa-facebook"></a></li>
+                  <li><a href="https://twitter.com/AllievapharmaIt" class="fa fa-twitter"></a>
+                  </li>
+                  <li><a href="https://www.instagram.com/allieva_pharma/"
+                         class="fa fa-instagram"></a></li>
+                  <li><a href="https://www.linkedin.com/company/allieva-pharma"
+                         class="fa fa-linkedin"></a></li>
+                </ul>
+              </div>
+            </div>
+            <!-- Footer Column -->
+            <div class="footer-column col-lg-6 col-md-6 col-sm-12">
+              <div class="footer-widget news-widget">
+                <h5>Check Authencity</h5>
+                <div class="btn-box">
+                  <a href="{% url 'medicine_verification' %}"
+                     class="theme-btn btn-style-two clearfix">
                                             <span class="btn-wrap">
                                                 <span class="text-one">Medicine Verification</span>
                                                 <span class="text-two">Medicine Verification</span>
                                             </span>
-                                            <span class="plus flaticon-plus"></span>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Big Column -->
-                    <div class="big-column col-lg-6 col-md-12 col-sm-12">
-                        <div class="row clearfix">
-                            <!-- Footer Column -->
-                            <div class="footer-column col-lg-6 col-md-6 col-sm-12">
-                                <div class="footer-widget newsletter-widget">
-                                    <h5>Information</h5>
-                                    <div class="widget-content">
-                                        <div class="text">Welcome to Allieva Pharma Private Limited Was Incorporated in
-                                            2016 in India. With One Goal in Mind to Provide High Quality and Affordable
-                                            Medicines to All.</div>
-                                        <!-- Email Box -->
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Footer Column -->
-                            <div class="footer-column col-lg-6 col-md-6 col-sm-12">
-                                <div class="footer-widget contact-widget">
-                                    <h5>Get In Touch</h5>
-                                    <ul class="contact-list">
-                                        <li>
-                                            <span class="icon flaticon-telephone"></span>
-                                            Phone Number
-                                            <a href="mailto:+91-9667279510">+91- 9667279510</a>
-                                        </li>
-                                        <li>
-                                            <span class="icon flaticon-email"></span>
-                                            Email Address
-                                            <a href="mailto:info@allievapharma.com">info@allievapharma.com</a>
-                                        </li>
-                                        <li>
-                                            <span class="icon flaticon-home"></span>
-                                            Office Address
-                                            <a href="https://maps.app.goo.gl/d8dJHBa7KT9rDbfHA">14/16/1 Site 4 Sahibabad
-                                                Industrial Area Ghaziabad <br> Uttar Pradesh 201010 </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <span class="plus flaticon-plus"></span>
+                  </a>
                 </div>
+              </div>
             </div>
-            <div class="footer-bottom">
-                <div class="clearfix">
-                    <div class="pull-left">
-                        <div class="copyright">&copy; 2024 Allieva Pharma - All rights reserved. <a
-                                href="{% url 'index' %}">Allieva Pharma</a></div>
-                    </div>
-                    <div class="pull-right">
-                        <ul class="footer-nav">
-                            <li><a href="#">Privacy Policy</a></li>
-                            <li><a href="#">Cookie Policy</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
+          </div>
         </div>
-    </footer>
-    <!-- End Footer Style Two -->
+        <!-- Big Column -->
+        <div class="big-column col-lg-6 col-md-12 col-sm-12">
+          <div class="row clearfix">
+            <!-- Footer Column -->
+            <div class="footer-column col-lg-6 col-md-6 col-sm-12">
+              <div class="footer-widget newsletter-widget">
+                <h5>Information</h5>
+                <div class="widget-content">
+                  <div class="text">Welcome to Allieva Pharma Private Limited Was Incorporated in
+                    2016 in India. With One Goal in Mind to Provide High Quality and Affordable
+                    Medicines to All.
+                  </div>
+                  <!-- Email Box -->
+                </div>
+              </div>
+            </div>
+            <!-- Footer Column -->
+            <div class="footer-column col-lg-6 col-md-6 col-sm-12">
+              <div class="footer-widget contact-widget">
+                <h5>Get In Touch</h5>
+                <ul class="contact-list">
+                  <li>
+                    <span class="icon flaticon-telephone"></span>
+                    Phone Number
+                    <a href="mailto:+91-9667279510">+91- 9667279510</a>
+                  </li>
+                  <li>
+                    <span class="icon flaticon-email"></span>
+                    Email Address
+                    <a href="mailto:info@allievapharma.com">info@allievapharma.com</a>
+                  </li>
+                  <li>
+                    <span class="icon flaticon-home"></span>
+                    Office Address
+                    <a href="https://maps.app.goo.gl/d8dJHBa7KT9rDbfHA">14/16/1 Site 4 Sahibabad
+                      Industrial Area Ghaziabad <br> Uttar Pradesh 201010 </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="clearfix">
+        <div class="pull-left">
+          <div class="copyright">&copy; 2024 Allieva Pharma - All rights reserved. <a
+                  href="{% url 'index' %}">Allieva Pharma</a></div>
+        </div>
+        <div class="pull-right">
+          <ul class="footer-nav">
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Cookie Policy</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+<!-- End Footer Style Two -->
 
 
-    
+<!-- Scroll to top -->
+<button class="scroll-top scroll-to-target" data-target="html"><span class="fa fa-arrow-up"></span></button>
 
-    <!-- Scroll to top -->
-    <button class="scroll-top scroll-to-target" data-target="html"><span class="fa fa-arrow-up"></span></button>
+<!-- Main JS -->
+<script src="{% static 'js/jquery.js' %}"></script>
+<script src="{% static 'js/popper.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
+<script src="{% static 'js/jquery.mCustomScrollbar.concat.min.js' %}"></script>
+<script src="{% static 'js/magnific-popup.min.js' %}"></script>
+<script src="{% static 'js/appear.js' %}"></script>
+<script src="{% static 'js/parallax.min.js' %}"></script>
+<script src="{% static 'js/tilt.jquery.min.js' %}"></script>
+<script src="{% static 'js/jquery.paroller.min.js' %}"></script>
+<script src="{% static 'js/owl.js' %}"></script>
+<script src="{% static 'js/wow.js' %}"></script>
+<script src="{% static 'js/odometer.js' %}"></script>
+<script src="{% static 'js/slick.js' %}"></script>
+<script src="{% static 'js/backToTop.js' %}"></script>
+<script src="{% static 'js/jquery-ui.js' %}"></script>
+<script src="{% static 'js/cursor-script.js' %}"></script>
+<script src="{% static 'js/script.js' %}"></script>
 
-    <!-- Main JS -->
-    <script src="{% static 'js/jquery.js' %}"></script>
-    <script src="{% static 'js/popper.min.js' %}"></script>
-    <script src="{% static 'js/bootstrap.min.js' %}"></script>
-    <script src="{% static 'js/jquery.mCustomScrollbar.concat.min.js' %}"></script>
-    <script src="{% static 'js/magnific-popup.min.js' %}"></script>
-    <script src="{% static 'js/appear.js' %}"></script>
-    <script src="{% static 'js/parallax.min.js' %}"></script>
-    <script src="{% static 'js/tilt.jquery.min.js' %}"></script>
-    <script src="{% static 'js/jquery.paroller.min.js' %}"></script>
-    <script src="{% static 'js/owl.js' %}"></script>
-    <script src="{% static 'js/wow.js' %}"></script>
-    <script src="{% static 'js/odometer.js' %}"></script>
-    <script src="{% static 'js/slick.js' %}"></script>
-    <script src="{% static 'js/backToTop.js' %}"></script>
-    <script src="{% static 'js/jquery-ui.js' %}"></script>
-    <script src="{% static 'js/cursor-script.js' %}"></script>
-    <script src="{% static 'js/script.js' %}"></script>
-    
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    
-    <script>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+<script>
   AOS.init();
 </script>
 
-    <!-- <script src="{% static 'js/jquery.js' %}"></script>
-    <script src="{% static 'js/popper.min.js' %}"></script>
-    <script src="{% static 'js/bootstrap.min.js' %}"></script>
-    <script src="{% static 'js/jquery.mCustomScrollbar.concat.min.js' %}"></script>
-    <script src="{% static 'js/jquery.fancybox.js' %}"></script>
-    <script src="{% static 'js/js/appear.js' %}"></script>
-    <script src="{% static 'js/parallax.min.js' %}"></script>
-    <script src="{% static 'js/tilt.jquery.min.js' %}"></script>
-    <script src="{% static 'js/script.js' %}"></script> -->
+<!-- <script src="{% static 'js/jquery.js' %}"></script>
+<script src="{% static 'js/popper.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
+<script src="{% static 'js/jquery.mCustomScrollbar.concat.min.js' %}"></script>
+<script src="{% static 'js/jquery.fancybox.js' %}"></script>
+<script src="{% static 'js/js/appear.js' %}"></script>
+<script src="{% static 'js/parallax.min.js' %}"></script>
+<script src="{% static 'js/tilt.jquery.min.js' %}"></script>
+<script src="{% static 'js/script.js' %}"></script> -->
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO"
         crossorigin="anonymous"></script>
 
 
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.x/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.x/dist/js/bootstrap.bundle.min.js"></script>
 
 
-     <script>
-      const searchToggle = document.getElementById('search-toggle');
-      const searchPopup = document.getElementById('search-popup');
-      const searchInput = document.getElementById('search-input');
-      const searchBtn = document.getElementById('search-btn');
+<script>
+  const searchToggle = document.getElementById('search-toggle');
+  const searchPopup = document.getElementById('search-popup');
+  const searchInput = document.getElementById('search-input');
+  const searchBtn = document.getElementById('search-btn');
 <!--      Toggle popup-->
-      searchToggle?.addEventListener('click', (e) => {
-      e.stopPropagation();
-      if (searchPopup.style.display === 'none' || searchPopup.style.display === '') {
-      searchPopup.style.display = 'block';
-      searchInput.focus();
-      } else {
-        searchPopup.style.display = 'none';
-      }
-      });
+  searchToggle?.addEventListener('click', (e) => {
+  e.stopPropagation();
+  if (searchPopup.style.display === 'none' || searchPopup.style.display === '') {
+  searchPopup.style.display = 'block';
+  searchInput.focus();
+  } else {
+    searchPopup.style.display = 'none';
+  }
+  });
 <!--      Close popup if clicked outside-->
-      document.addEventListener('click', (e) => {
-        if (!searchPopup.contains(e.target) && !searchToggle.contains(e.target)) {
-        searchPopup.style.display = 'none';
-        }
-      });
+  document.addEventListener('click', (e) => {
+    if (!searchPopup.contains(e.target) && !searchToggle.contains(e.target)) {
+    searchPopup.style.display = 'none';
+    }
+  });
 
 <!--      Close popup on Escape-->
-      document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape') {
-          searchPopup.style.display = 'none';
-        }
-      });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      searchPopup.style.display = 'none';
+    }
+  });
 
 <!--      Submit form using JS-->
 
-      document.getElementById('search-form')?.addEventListener('submit', (e) => {
-        e.preventDefault();
-        const query = searchInput.value.trim();
-        if (query) {
-          window.location.href = `/search/?q=${encodeURIComponent(query)}`;
-        }
-      });
-    </script>
+  document.getElementById('search-form')?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const query = searchInput.value.trim();
+    if (query) {
+      window.location.href = `/search/?q=${encodeURIComponent(query)}`;
+    }
+  });
+</script>
 
 
-    <script>
-      const searchToggle1 = document.getElementById('search-toggle1');
-      const searchPopup1 = document.getElementById('search-popup1');
-      const searchInput1 = document.getElementById('search-input1');
-      const searchBtn1 = document.getElementById('search-btn1');
+<script>
+  const searchToggle1 = document.getElementById('search-toggle1');
+  const searchPopup1 = document.getElementById('search-popup1');
+  const searchInput1 = document.getElementById('search-input1');
+  const searchBtn1 = document.getElementById('search-btn1');
 <!--      Toggle popup-->
-      searchToggle1?.addEventListener('click', (e) => {
-      e.stopPropagation();
-      if (searchPopup1.style.display === 'none' || searchPopup1.style.display === '') {
-      searchPopup1.style.display = 'block';
-      searchInput1.focus();
-      } else {
-        searchPopup1.style.display = 'none';
-      }
-      });
+  searchToggle1?.addEventListener('click', (e) => {
+  e.stopPropagation();
+  if (searchPopup1.style.display === 'none' || searchPopup1.style.display === '') {
+  searchPopup1.style.display = 'block';
+  searchInput1.focus();
+  } else {
+    searchPopup1.style.display = 'none';
+  }
+  });
 <!--      Close popup if clicked outside-->
-      document.addEventListener('click', (e) => {
-        if (!searchPopup1.contains(e.target) && !searchToggle1.contains(e.target)) {
-        searchPopup1.style.display = 'none';
-        }
-      });
+  document.addEventListener('click', (e) => {
+    if (!searchPopup1.contains(e.target) && !searchToggle1.contains(e.target)) {
+    searchPopup1.style.display = 'none';
+    }
+  });
 
 <!--      Close popup on Escape-->
-      document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape') {
-          searchPopup1.style.display = 'none';
-        }
-      });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      searchPopup1.style.display = 'none';
+    }
+  });
 
 <!--      Submit form using JS-->
 
-      document.getElementById('search-form1')?.addEventListener('submit', (e) => {
-        e.preventDefault();
-        const query = searchInput1.value.trim();
-        if (query) {
-          window.location.href = `/search/?q=${encodeURIComponent(query)}`;
-        }
-      });
-    </script>
+  document.getElementById('search-form1')?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const query = searchInput1.value.trim();
+    if (query) {
+      window.location.href = `/search/?q=${encodeURIComponent(query)}`;
+    }
+  });
+</script>
 
 
-    <script>
-      const searchToggle2 = document.getElementById('search-toggle2');
-      const searchPopup2 = document.getElementById('search-popup2');
-      const searchInput2 = document.getElementById('search-input2');
-      const searchBtn2 = document.getElementById('search-btn2');
+<script>
+  const searchToggle2 = document.getElementById('search-toggle2');
+  const searchPopup2 = document.getElementById('search-popup2');
+  const searchInput2 = document.getElementById('search-input2');
+  const searchBtn2 = document.getElementById('search-btn2');
 <!--      Toggle popup-->
-      searchToggle2?.addEventListener('click', (e) => {
-      e.stopPropagation();
-      if (searchPopup2.style.display === 'none' || searchPopup2.style.display === '') {
-      searchPopup2.style.display = 'block';
-      searchInput2.focus();
-      } else {
-        searchPopup2.style.display = 'none';
-      }
-      });
+  searchToggle2?.addEventListener('click', (e) => {
+  e.stopPropagation();
+  if (searchPopup2.style.display === 'none' || searchPopup2.style.display === '') {
+  searchPopup2.style.display = 'block';
+  searchInput2.focus();
+  } else {
+    searchPopup2.style.display = 'none';
+  }
+  });
 <!--      Close popup if clicked outside-->
-      document.addEventListener('click', (e) => {
-        if (!searchPopup2.contains(e.target) && !searchToggle2.contains(e.target)) {
-        searchPopup2.style.display = 'none';
-        }
-      });
+  document.addEventListener('click', (e) => {
+    if (!searchPopup2.contains(e.target) && !searchToggle2.contains(e.target)) {
+    searchPopup2.style.display = 'none';
+    }
+  });
 
 <!--      Close popup on Escape-->
-      document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape') {
-          searchPopup2.style.display = 'none';
-        }
-      });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      searchPopup2.style.display = 'none';
+    }
+  });
 
 <!--      Submit form using JS-->
 
-      document.getElementById('search-form2')?.addEventListener('submit', (e) => {
-        e.preventDefault();
-        const query = searchInput2.value.trim();
-        if (query) {
-          window.location.href = `/search/?q=${encodeURIComponent(query)}`;
-        }
-      });
-    </script>
+  document.getElementById('search-form2')?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const query = searchInput2.value.trim();
+    if (query) {
+      window.location.href = `/search/?q=${encodeURIComponent(query)}`;
+    }
+  });
+</script>
 
 
 </body>

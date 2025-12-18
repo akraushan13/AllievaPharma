@@ -33,12 +33,12 @@
               </a>
             </div>
           </div>
-          <h2 class="text-dark"> <b>RESULTS FOR "{{ query }}"</b> </h2>
+          <h3 class="text-dark"> <b>Results For "{{ query }}"</b> </h3>
         </div>
       </div>
 
       <div class="row">
-        {% if page_obj %}
+        {% if page_obj and page_obj.object_list %}
           {% for product in page_obj %}
           <div class="col-sm-6 col-lg-3 text-center item mb-4">
             <a href="{% url 'productDetail' product.slug %}">
@@ -50,13 +50,6 @@
             <h5 class="text-dark mt-3"><a href="{% url 'productDetail' product.slug  %}">{{product.brand_name|safe}}</a></h5>
             <p class="text-dark mb-2"><a href="{% url 'productDetail' product.slug  %}">{{product.name|safe}}</a></p>
             <p>
-<!--              <a href="#"-->
-<!--                class="rounded-pill buy-now btn btn-sm height-auto px-4 py-3 btn-primary enquiry-btn"-->
-<!--                data-bs-toggle="modal"-->
-<!--                data-bs-target="#enquiryModal"-->
-<!--                data-product="{{ product.name }} - {{ product.composition }}">-->
-<!--                ENQUIRY!-->
-<!--              </a>-->
               
               <a href="{% url 'productDetail' product.slug %}" class="rounded-pill buy-now btn btn-sm height-auto px-4 py-2 btn-primary">
                 SEE DETAILS
@@ -66,63 +59,10 @@
             <!-- <p class="price"><del>95.00</del> &mdash; $55.00</p> -->
           </div>
         
-          <!-- Enquiry Modal  -->
-<!--    <div class="modal fade" id="enquiryModal" tabindex="-1" aria-labelledby="enquiryModalLabel" aria-hidden="true">-->
-<!--    <div class="modal-dialog modal-lg modal-dialog-centered">-->
-<!--      <div class="modal-content">-->
-
-<!--        <div class="modal-header">-->
-<!--          <h5 class="modal-title" id="enquiryModalLabel">Get In Touch</h5>-->
-<!--          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>-->
-<!--        </div>-->
-
-<!--        <div class="modal-body">-->
-<!--          <form method="POST" action="{% url 'send_enquiry' %}">-->
-<!--            {% csrf_token %}-->
-
-<!--            &lt;!&ndash; (Optional) Hidden field to also send product info separately &ndash;&gt;-->
-<!--            <input type="hidden" id="enquiry-product" name="product">-->
-
-<!--            <div class="row mb-3">-->
-<!--              <div class="col">-->
-<!--                <label>First Name <span style="color:red">*</span></label>-->
-<!--                <input type="text" name="first_name" class="form-control" required>-->
-<!--              </div>-->
-<!--              <div class="col">-->
-<!--                <label>Last Name <span style="color:red">*</span></label>-->
-<!--                <input type="text" name="last_name" class="form-control" required>-->
-<!--              </div>-->
-<!--            </div>-->
-
-<!--            <div class="mb-3">-->
-<!--              <label>Email <span style="color:red">*</span></label>-->
-<!--              <input type="email" name="email" class="form-control" required>-->
-<!--            </div>-->
-
-<!--            <div class="mb-3">-->
-<!--              <label>Subject</label>-->
-<!--              <input type="text" id="enquiry-subject" name="subject" class="form-control">-->
-<!--            </div>-->
-
-<!--            <div class="mb-3">-->
-<!--              <label>Message</label>-->
-<!--              <textarea name="message" class="form-control" rows="4"></textarea>-->
-<!--            </div>-->
-
-<!--            <button type="submit" class="btn w-100" style="background-color:#4ef2f2;color:#000;">-->
-<!--              SEND MESSAGE-->
-<!--            </button>-->
-<!--          </form>-->
-<!--        </div>-->
-<!--      </div>-->
-<!--    </div>-->
-<!--    </div>-->
-        
-        
           {% endfor %}
         {% else %}
-          <div class="col-md-12 text-center">
-            <p class="text-muted">No products found matching your search.</p>
+          <div class="col-md-12 text-center my-5">
+            <h4 class="text-muted">No products found matching your search.</h4>
           </div>
         {% endif %}
       </div>
@@ -214,23 +154,7 @@
 </div>
 
 
-<!--<script>-->
-<!--  // Fill modal title + subject + hidden field when an ENQUIRY button is clicked-->
-<!--  document.addEventListener('click', function (e) {-->
-<!--    const btn = e.target.closest('.enquiry-btn');-->
-<!--    if (!btn) return;-->
 
-<!--    const product = btn.getAttribute('data-product') || '';-->
-
-<!--    const titleEl   = document.getElementById('enquiryModalLabel');-->
-<!--    const subjectEl = document.getElementById('enquiry-subject');-->
-<!--    const hiddenEl  = document.getElementById('enquiry-product');-->
-
-<!--    if (titleEl)   titleEl.textContent   = 'Enquiry for: ' + product;-->
-<!--    if (subjectEl) subjectEl.value       = 'Enquiry about: ' + product;-->
-<!--    if (hiddenEl)  hiddenEl.value        = product;-->
-<!--  });-->
-<!--</script>-->
 
 
 {% endblock body %}

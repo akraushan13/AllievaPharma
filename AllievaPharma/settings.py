@@ -27,7 +27,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-ysy+58syqp7_o8^c9r*^4-m^dz#sfd=b!7s16is&4dlzvuh6+!'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = [
     "allievapharma.com",
@@ -95,29 +95,12 @@ WSGI_APPLICATION = 'AllievaPharma.wsgi.application'
 
 # server
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.mysql',
-#         'NAME': 'alliezwb_allieva',
-#         'USER': 'alliezwb_avinash',
-#         'PASSWORD': 'Allieva@2512@IT',
-#         'HOST': 'localhost',
-#         'PORT': '3306',
-#         'OPTIONS': {
-#             'init_command': "SET sql_mode='STRICT_TRANS_TABLES'", # Optional: Recommended for strict SQL mode
-#         }
-#     }
-# }
-
-
-# local
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'allieva_demo',
-        'USER': 'root',
-        'PASSWORD': 'root',
+        'NAME': 'alliezwb_allieva',
+        'USER': 'alliezwb_avinash',
+        'PASSWORD': 'Allieva@2512@IT',
         'HOST': 'localhost',
         'PORT': '3306',
         'OPTIONS': {
@@ -125,6 +108,23 @@ DATABASES = {
         }
     }
 }
+
+
+# local
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'allieva_demo',
+#         'USER': 'root',
+#         'PASSWORD': 'root',
+#         'HOST': 'localhost',
+#         'PORT': '3306',
+#         'OPTIONS': {
+#             'init_command': "SET sql_mode='STRICT_TRANS_TABLES'", # Optional: Recommended for strict SQL mode
+#         }
+#     }
+# }
 
 
 # Password validation

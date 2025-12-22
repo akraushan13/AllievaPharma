@@ -98,7 +98,7 @@ WSGI_APPLICATION = 'AllievaPharma.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'alliezwb_allieva',
+        'NAME': 'alliezwb_new_allieva',
         'USER': 'alliezwb_avinash',
         'PASSWORD': 'Allieva@2512@IT',
         'HOST': 'localhost',
@@ -115,7 +115,7 @@ DATABASES = {
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.mysql',
-#         'NAME': 'allieva_demo',
+#         'NAME': 'allieva_demo1',
 #         'USER': 'root',
 #         'PASSWORD': 'root',
 #         'HOST': 'localhost',

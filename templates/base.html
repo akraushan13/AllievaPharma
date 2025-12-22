@@ -121,12 +121,13 @@
                     <a href="{% url 'products' %}">Our Products</a>
                     <ul>
                       {% for category in menu_categories %}
+                      {% if category.slug %}
                       <li class="dropdown">
                         <a href="{% url 'category_products' category.slug %}">
                           {{ category.name|upper }}
                         </a>
                         
-                        {% if category.subcategories.all %}
+                        {% if category.subcategories.exists %}
                         <ul>
                           {% for sub in category.subcategories.all %}
                           <li>
@@ -138,6 +139,7 @@
                         </ul>
                         {% endif %}
                       </li>
+                      {% endif %}
                       {% endfor %}
                       
                       <li>

@@ -7,7 +7,7 @@ from ckeditor.fields import RichTextField
 
 class Category(models.Model):
 	name = models.CharField(max_length=100)
-	slug = models.SlugField(max_length=120, blank=True)
+	slug = models.SlugField(max_length=120, blank=False)
 	
 	def save(self , *args , **kwargs):
 		if not self.slug:
@@ -23,7 +23,7 @@ class SubCategory(models.Model):
 	category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='subcategories')
 	name = models.CharField(max_length=100)
 	
-	slug = models.SlugField(max_length=120 , blank=True)
+	slug = models.SlugField(max_length=120 , blank=False)
 	
 	class Meta:
 		unique_together = ("category" , "slug")
@@ -40,7 +40,7 @@ class SubCategory(models.Model):
 class Product(models.Model):
 	# id = models.AutoField(primary_key=True)
 	name = models.CharField(max_length=100)
-	slug = models.SlugField(max_length=255, unique=True, blank=True)
+	slug = models.SlugField(max_length=255, unique=True, blank=False)
 	image = models.ImageField(upload_to='images/', default='images/no-image.jpg')
 	brand_name = models.CharField(max_length=255)
 	composition = models.CharField(max_length=100)

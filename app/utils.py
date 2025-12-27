@@ -49,7 +49,7 @@ def send_email(subject , body_html , to_email="info@allievapharma.com" , image_u
 def _csv_path():
 	if hasattr(settings , "MEDICINE_CSV_PATH") and settings.MEDICINE_CSV_PATH:
 		return settings.MEDICINE_CSV_PATH
-	return os.path.join(settings.BASE_DIR , "data" , "products.csv")
+	return os.path.join(settings.MEDIA_ROOT, "data", "products.csv")
 
 
 def _get_first_nonempty(row, *keys):

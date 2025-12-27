@@ -95,29 +95,12 @@ WSGI_APPLICATION = 'AllievaPharma.wsgi.application'
 
 # server
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'alliezwb_new_allieva',
-        'USER': 'alliezwb_avinash',
-        'PASSWORD': 'Allieva@2512@IT',
-        'HOST': 'localhost',
-        'PORT': '3306',
-        'OPTIONS': {
-            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'", # Optional: Recommended for strict SQL mode
-        }
-    }
-}
-
-
-# local
-
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.mysql',
-#         'NAME': 'allieva_demo1',
-#         'USER': 'root',
-#         'PASSWORD': 'root',
+#         'NAME': 'alliezwb_new_allieva',
+#         'USER': 'alliezwb_avinash',
+#         'PASSWORD': 'Allieva@2512@IT',
 #         'HOST': 'localhost',
 #         'PORT': '3306',
 #         'OPTIONS': {
@@ -125,6 +108,23 @@ DATABASES = {
 #         }
 #     }
 # }
+
+
+# local
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'allieva_demo1',
+        'USER': 'root',
+        'PASSWORD': 'root',
+        'HOST': 'localhost',
+        'PORT': '3306',
+        'OPTIONS': {
+            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'", # Optional: Recommended for strict SQL mode
+        }
+    }
+}
 
 
 # Password validation

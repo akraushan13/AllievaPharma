@@ -1,7 +1,11 @@
 from django.db import models
+import os
+from django.core.exceptions import ValidationError
+from django.conf import settings
 from django.utils.text import slugify
 from django.urls import reverse
 from ckeditor.fields import RichTextField
+
 
 # Create your models here.
 
@@ -133,3 +137,27 @@ class NewsEvent(models.Model):
 	
 	def __str__(self):
 		return self.title
+
+
+def csv_upload_path(instance , filename):
+	return "data/products.csv"
+
+
+class ProductCSV(models.Model):
+	csv_file = models.FileField(upload_to=csv_upload_path)
+	uploaded_at = models.DateTimeField(auto_now=True)
+	
+	def clean(self):
+		if self.csv_file and not self.csv_file.name.lower().endswith(".csv"):
+			raise ValidationError("Only CSV files allowed")
+	
+	def save(self , *args , **kwargs):
+		path = os.path.join(settings.MEDIA_ROOT , "data" , "products.csv")
+		
+		if os.path.exists(path):
+			os.remove(path)
+		
+		super().save(*args , **kwargs)
+	
+	def __str__(self):
+		return "Products CSV"
